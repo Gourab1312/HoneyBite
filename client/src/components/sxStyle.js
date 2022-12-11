@@ -35,7 +35,15 @@ const sxprop = {
         margin:'5px 0'
     },
     buttongrpsx:{
-        margin:'18px 0'
+        margin:'18px 0',
+        marginTop:{xs: '45px'}
+    },
+
+    customcardsx:{
+        minWidth: 275,
+        borderRadius:'30px',
+        backgroundColor:'#e9e9e9',
+        boxShadow:0
     }
 }
 

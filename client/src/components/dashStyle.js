@@ -31,6 +31,11 @@ const customTheme = {
             fontFamily: "Open Sans",
             fontSize: "18px",
             fontWeight: "600"
+        },
+        cardhrdtxt:{
+            fontFamily: "Open Sans",
+            fontSize: "14px",
+            fontWeight: "600"
         }
     },
     stack: {

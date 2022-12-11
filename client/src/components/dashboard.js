@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
-import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
 import { ThemeProvider } from '@emotion/react';
 import Stack from '@mui/material/Stack';
@@ -11,7 +10,7 @@ import Typography from '@mui/material/Typography';
 import AppBar from '@mui/material/AppBar';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-import { createTheme } from '@mui/material';
+import { createTheme, Grid } from '@mui/material';
 import customTheme from './dashStyle';
 import sxprop from './sxStyle';
 import Accordion from '@mui/material/Accordion';
@@ -23,6 +22,7 @@ import Cards from './card';
 const drawerWidth = 300;
 
 const Dashboard = () => {
+  
   const theme = createTheme(customTheme)
   const [mobileOpen, setMobileOpen] = useState(false);
   const handleDrawerToggle = () => {
@@ -58,22 +58,22 @@ const Dashboard = () => {
 
   const Resource = (
 
-      <Accordion sx={sxprop.sxAccordian}>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1a-content"
-          id="panel1a-header"
-        >
-          <Typography variant='accordianhead'>Resource</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Stack spacing={1} direction="column" sx={{ marginTop: "20px", marginLeft: "20px" }}>
-            {['FeedBack & Bug Report', 'Governace', 'Help'].map((text, index) => (<Typography variant="listfont" display="block" gutterBottom key={index}>
-              {text}
-            </Typography>))}
-          </Stack>
-        </AccordionDetails>
-      </Accordion>
+    <Accordion sx={sxprop.sxAccordian}>
+      <AccordionSummary
+        expandIcon={<ExpandMoreIcon />}
+        aria-controls="panel1a-content"
+        id="panel1a-header"
+      >
+        <Typography variant='accordianhead'>Resource</Typography>
+      </AccordionSummary>
+      <AccordionDetails>
+        <Stack spacing={1} direction="column" sx={{ marginTop: "20px", marginLeft: "20px" }}>
+          {['FeedBack & Bug Report', 'Governace', 'Help'].map((text, index) => (<Typography variant="listfont" display="block" gutterBottom key={index}>
+            {text}
+          </Typography>))}
+        </Stack>
+      </AccordionDetails>
+    </Accordion>
 
   )
 
@@ -106,11 +106,12 @@ const Dashboard = () => {
           sx={{
             display: { xs: 'block', sm: 'none' },
             '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+            backgroundColor:'white'
           }}
         >
           <Toolbar>
             <IconButton
-              color="inherit"
+              color="black"
               aria-label="open drawer"
               edge="start"
               onClick={handleDrawerToggle}
@@ -118,9 +119,7 @@ const Dashboard = () => {
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" noWrap component="div">
-              Responsive drawer
-            </Typography>
+            <Typography variant='logosame'>HoneyBite</Typography>
           </Toolbar>
         </AppBar>
         <Box
@@ -142,7 +141,7 @@ const Dashboard = () => {
           </Drawer>
           <Drawer
             variant="permanent"
-            
+
             sx={sxprop.drawersx}
             open
           >
@@ -153,19 +152,28 @@ const Dashboard = () => {
         </Box>
         <Box
           component="main"
-          sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } , marginLeft:'29px'}}
+          sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` }, marginLeft: '29px' ,margin :{xs: '0 5px'}}}
         >
           <Stack direction="row" spacing={2} sx={sxprop.buttongrpsx}>
             <Button variant='outlined' sx={sxprop.buttonsx}>Upcoming IDO</Button>
             <Button variant='outlined' sx={sxprop.greybtnsx}>Ended IDO</Button>
             <Button variant='outlined' sx={sxprop.greybtnsx}>Insured Projects</Button>
-            </Stack>
+          </Stack>
 
-            <Box sx={sxprop.headingboxsx}>
-              <Typography variant='headingcon'>Upcoming Projects</Typography>
-            </Box>
-         <Cards/>
-          
+          <Box sx={sxprop.headingboxsx}>
+            <Typography variant='headingcon'>Upcoming Projects</Typography>
+          </Box>
+          <Grid container spacing={3}>
+            {
+              [1, 2, 3, 4, 5, 6, 7, 8, 9].map((key) => {
+                return <Grid item xs={12} sm={4} key={key}>
+                  <Cards />
+                </Grid>
+              })
+            }
+
+          </Grid>
+
         </Box>
       </Box>
     </ThemeProvider>
