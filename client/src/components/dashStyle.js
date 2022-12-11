@@ -25,6 +25,12 @@ const customTheme = {
             fontFamily: "Open Sans",
             fontSize: "20px",
             fontWeight: "600"
+        },
+
+        headingcon:{
+            fontFamily: "Open Sans",
+            fontSize: "18px",
+            fontWeight: "600"
         }
     },
     stack: {
