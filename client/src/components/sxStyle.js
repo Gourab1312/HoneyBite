@@ -31,20 +31,38 @@ const sxprop = {
         '& .MuiDrawer-paper': { boxSizing: 'border-box', width: 240, borderRadius: "40px", boxShadow: " 31px 0px 55px -19px rgba(138,138,138,1)" },
 
     },
-    headingboxsx:{
-        margin:'5px 0'
+    headingboxsx: {
+        margin: '5px 0'
     },
-    buttongrpsx:{
-        margin:'18px 0',
-        marginTop:{xs: '45px'}
+    buttongrpsx: {
+        margin: '18px 0',
+        marginTop: { xs: '45px' }
     },
 
-    customcardsx:{
+    customcardsx: {
         minWidth: 275,
-        borderRadius:'30px',
-        backgroundColor:'#e9e9e9',
-        boxShadow:0
-    }
+        borderRadius: '30px',
+        backgroundColor: '#e9e9e9',
+        boxShadow: 0
+    },
+    headercardsx: {
+        maxWidth: 500,
+        borderRadius: '30px',
+        backgroundColor: 'transparent',
+        boxShadow: 0,
+    },
+    sxfaq: {
+        '&.MuiAccordion-root': {
+            boxShadow: 0,
+            width: '50%',
+            marginTop:'40px'
+        },
+        '&:before': {
+            backgroundColor: 'transparent',
+            boxShadow: 0,
+            width: '50%'
+        },
+    },
 }
 
 export default sxprop
