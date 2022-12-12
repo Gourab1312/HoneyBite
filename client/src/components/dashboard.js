@@ -22,6 +22,7 @@ import { Link, Route, Routes } from 'react-router-dom';
 // components import 
 import Allprojects from './Allprojects';
 import AirDrop from './AirDrop';
+import ProjectDetails from './ProjectDetails';
 
 const drawerWidth = 300;
 
@@ -45,11 +46,11 @@ const Dashboard = () => {
       </Box>
       <Stack spacing={1} direction="column" sx={{ margin: "20px 0", marginLeft: "20px" }}>
         <Typography variant="listfont" display="block" gutterBottom>
-          <Link to="allprojects">All Projects</Link>
+          <Link to="allprojects" style={{ textDecoration: 'none' }}>All Projects</Link>
         </Typography>
         <Typography variant="listfont" display="block" gutterBottom>
-          <Link to='airdrop'>AirDrop</Link>
-        </Typography>
+          <Link to='airdrop' style={{ textDecoration: 'none' }}>AirDrop</Link>
+        </Typography> 
         <Typography variant="listfont" display="block" gutterBottom>
           Honey-Bite Venture
         </Typography>
@@ -160,8 +161,10 @@ const Dashboard = () => {
       >
         <Routes>
           <Route path='/' element={<Allprojects />}></Route>
-          <Route path='allprojects' element={<Allprojects />}></Route>
-          <Route path='airdrop' element={<AirDrop />}></Route>
+          <Route path='/allprojects' element={<Allprojects />}></Route>
+          <Route path='/airdrop' element={<AirDrop />}></Route>
+          <Route path='/projectdetails' element={<ProjectDetails/>}></Route>
+          <Route path='/allprojects/projectdetails' element={<ProjectDetails/>}></Route>
         </Routes>
       </Box>
     </Box>

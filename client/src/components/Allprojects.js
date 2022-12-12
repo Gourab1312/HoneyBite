@@ -8,6 +8,20 @@ import sxprop from './sxStyle';
 import Cards from './card';
 
 const Allprojects = () => {
+  var dummyjson=[
+    {
+      name:'Harmony Launcher',
+      token_name:'HAL'
+    },
+    {
+      name:'WeWay',
+      token_name:'WEW'
+    },
+    {
+      name:'Axes Metaverse',
+      token_name:'AXM'
+    }
+  ]
     
   return (
     <div>
@@ -22,9 +36,9 @@ const Allprojects = () => {
           </Box>
           <Grid container spacing={3}>
             {
-              [1, 2, 3, 4, 5, 6, 7, 8, 9].map((key) => {
-                return <Grid item xs={12} sm={4} key={key}>
-                  <Cards />
+              dummyjson.map((value,index) => {
+                return <Grid item xs={12} sm={4} key={index}>
+                  <Cards ido={value}/>
                 </Grid>
               })
             }
