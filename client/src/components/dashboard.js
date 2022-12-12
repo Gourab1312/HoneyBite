@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import Drawer from '@mui/material/Drawer';
-import { ThemeProvider } from '@emotion/react';
+
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Toolbar from '@mui/material/Toolbar';
@@ -10,20 +10,24 @@ import Typography from '@mui/material/Typography';
 import AppBar from '@mui/material/AppBar';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-import { createTheme, Grid } from '@mui/material';
-import customTheme from './dashStyle';
+
+
 import sxprop from './sxStyle';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import Cards from './card';
+
+import { Link, Route, Routes } from 'react-router-dom';
+// components import 
+import Allprojects from './Allprojects';
+import AirDrop from './AirDrop';
 
 const drawerWidth = 300;
 
 const Dashboard = () => {
-  
-  const theme = createTheme(customTheme)
+
+
   const [mobileOpen, setMobileOpen] = useState(false);
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -41,10 +45,10 @@ const Dashboard = () => {
       </Box>
       <Stack spacing={1} direction="column" sx={{ margin: "20px 0", marginLeft: "20px" }}>
         <Typography variant="listfont" display="block" gutterBottom>
-          All Projects
+          <Link to="allprojects">All Projects</Link>
         </Typography>
         <Typography variant="listfont" display="block" gutterBottom>
-          AirDrop
+          <Link to='airdrop'>AirDrop</Link>
         </Typography>
         <Typography variant="listfont" display="block" gutterBottom>
           Honey-Bite Venture
@@ -98,85 +102,70 @@ const Dashboard = () => {
 
 
   return (
-    <ThemeProvider theme={theme}>
-      <Box sx={{ display: 'flex' }}>
-        <CssBaseline />
-        <AppBar
-          position="fixed"
+
+    <Box sx={{ display: 'flex' }}>
+      <CssBaseline />
+      <AppBar
+        position="fixed"
+        sx={{
+          display: { xs: 'block', sm: 'none' },
+          '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+          backgroundColor: 'white'
+        }}
+      >
+        <Toolbar>
+          <IconButton
+            color="black"
+            aria-label="open drawer"
+            edge="start"
+            onClick={handleDrawerToggle}
+            sx={{ mr: 2, display: { sm: 'none' } }}
+          >
+            <MenuIcon />
+          </IconButton>
+          <Typography variant='logosame'>HoneyBite</Typography>
+        </Toolbar>
+      </AppBar>
+      <Box
+        component="nav"
+        sx={{ width: { sm: 240 }, flexShrink: { sm: 0 } }}
+        aria-label="mailbox folders"
+      >
+        <Drawer
+          variant="temporary"
+          open={mobileOpen}
+          onClose={handleDrawerToggle}
           sx={{
             display: { xs: 'block', sm: 'none' },
             '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
-            backgroundColor:'white'
-          }}
+          }}>
+          {drawer}
+          {Resource}
+          {General}
+        </Drawer>
+        <Drawer
+          variant="permanent"
+
+          sx={sxprop.drawersx}
+          open
         >
-          <Toolbar>
-            <IconButton
-              color="black"
-              aria-label="open drawer"
-              edge="start"
-              onClick={handleDrawerToggle}
-              sx={{ mr: 2, display: { sm: 'none' } }}
-            >
-              <MenuIcon />
-            </IconButton>
-            <Typography variant='logosame'>HoneyBite</Typography>
-          </Toolbar>
-        </AppBar>
-        <Box
-          component="nav"
-          sx={{ width: { sm: 240 }, flexShrink: { sm: 0 } }}
-          aria-label="mailbox folders"
-        >
-          <Drawer
-            variant="temporary"
-            open={mobileOpen}
-            onClose={handleDrawerToggle}
-            sx={{
-              display: { xs: 'block', sm: 'none' },
-              '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
-            }}>
-            {drawer}
-            {Resource}
-            {General}
-          </Drawer>
-          <Drawer
-            variant="permanent"
-
-            sx={sxprop.drawersx}
-            open
-          >
-            {drawer}
-            {Resource}
-            {General}
-          </Drawer>
-        </Box>
-        <Box
-          component="main"
-          sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` }, marginLeft: '29px' ,margin :{xs: '0 5px'}}}
-        >
-          <Stack direction="row" spacing={2} sx={sxprop.buttongrpsx}>
-            <Button variant='outlined' sx={sxprop.buttonsx}>Upcoming IDO</Button>
-            <Button variant='outlined' sx={sxprop.greybtnsx}>Ended IDO</Button>
-            <Button variant='outlined' sx={sxprop.greybtnsx}>Insured Projects</Button>
-          </Stack>
-
-          <Box sx={sxprop.headingboxsx}>
-            <Typography variant='headingcon'>Upcoming Projects</Typography>
-          </Box>
-          <Grid container spacing={3}>
-            {
-              [1, 2, 3, 4, 5, 6, 7, 8, 9].map((key) => {
-                return <Grid item xs={12} sm={4} key={key}>
-                  <Cards />
-                </Grid>
-              })
-            }
-
-          </Grid>
-
-        </Box>
+          {drawer}
+          {Resource}
+          {General}
+        </Drawer>
       </Box>
-    </ThemeProvider>
+      <Box
+        component="main"
+        sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` }, marginLeft: '29px', margin: { xs: '0 5px' } }}
+      >
+        <Routes>
+          <Route path='/' element={<Allprojects />}></Route>
+          <Route path='allprojects' element={<Allprojects />}></Route>
+          <Route path='airdrop' element={<AirDrop />}></Route>
+        </Routes>
+      </Box>
+    </Box>
+
   )
 }
 
