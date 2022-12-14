@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect,useState } from "react";
 import { ProjectContext } from '../Context/ProjContext'
 import { Avatar, Divider, Grid, Stack } from '@mui/material';
 import Typography from '@mui/material/Typography';
@@ -16,10 +16,16 @@ import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { Link,Route, Routes } from "react-router-dom";
+import Metrics from "./Metrics";
+import ProjectInfo from "./ProjectInfo";
+import Allocation from "./Allocation";
+import YourBid from "./YourBid";
 
 
 const ProjectDetails = () => {
   const { projectdtls, setprojectdtls } = useContext(ProjectContext)
+  const [isventure, setventure] = useState(true)
   useEffect(() => {
     if (Object.keys(projectdtls).length === 0) {
       setprojectdtls(JSON.parse(localStorage.getItem('projdtls')))
@@ -63,92 +69,21 @@ const ProjectDetails = () => {
         <Button variant="outlined" sx={sxprop.buttonsx}>Invest Now</Button>
       </Stack>
       <Stack direction={'row'} spacing={4} sx={{margin:'20px'}}>
-        <Typography>Project Details</Typography>
+        <Typography><Link to="info" style={{ textDecoration: 'none' }}>Project Details</Link></Typography>
         <Typography>Team & Partners</Typography>
         <Typography>Metrics</Typography>
         <Typography>Your Allocation</Typography>
+        {isventure && <Typography>Your Bid</Typography>}
       </Stack>
       <Divider variant="middle" sx={{ margin: '20px' }} />
-      <Grid container spacing={5} sx={{margin:'2px'}}>
-        <Grid item xs={12} sm={6} >
-          <Stack direction={'column'}>
-            <Typography variant='cardhrdtxt'>
-              IDO INFORMATION
-            </Typography>
-            <Grid container spacing={1}>
-              <Grid item xs={6}>
-                <Typography variant="body2">FCFS opens</Typography>
-              </Grid>
-              <Grid item xs={6}>
-                <Typography variant="body2">dates</Typography>
-              </Grid>
-              <Grid item xs={6}>
-                <Typography variant="body2">Early Access</Typography>
-              </Grid>
-              <Grid item xs={6}>
-                <Typography variant="body2">dates</Typography>
-              </Grid>
-              <Grid item xs={6}>
-                <Typography variant="body2">FCFS closes</Typography>
-              </Grid>
-              <Grid item xs={6}>
-                <Typography variant="body2">Dates</Typography>
-              </Grid>
-              <Grid item xs={6}>
-                <Typography variant="body2">Swap Rates</Typography>
-              </Grid>
-              <Grid item xs={6}>
-                <Typography variant="body2">0.02BUSD</Typography>
-              </Grid>
-              <Grid item xs={6}>
-                <Typography variant="body2">Total Raises</Typography>
-              </Grid>
-              <Grid item xs={6}>
-                <Typography variant="body2">$30000</Typography>
-              </Grid>
-              <Grid item xs={6}>
-                <Typography variant="body2">Access Type</Typography>
-              </Grid>
-              <Grid item xs={6}>
-                <Typography variant="body2">Private</Typography>
-              </Grid>
-            </Grid>
-          </Stack>
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <Stack direction={'column'}>
-            <Typography variant='cardhrdtxt'>
-              TOKEN INFORMATION
-            </Typography>
-            <Grid container spacing={1}>
-              <Grid item xs={6}>
-                <Typography variant="body2">Name</Typography>
-              </Grid>
-              <Grid item xs={6}>
-                <Typography variant="body2">{projectdtls.name}</Typography>
-              </Grid>
-              <Grid item xs={6}>
-                <Typography variant="body2">Token Symbol</Typography>
-              </Grid>
-              <Grid item xs={6}>
-                <Typography variant="body2">{projectdtls.token_name}</Typography>
-              </Grid>
-              <Grid item xs={6}>
-                <Typography variant="body2">Total Supply</Typography>
-              </Grid>
-              <Grid item xs={6}>
-                <Typography variant="body2">5000000</Typography>
-              </Grid>
-              <Grid item xs={6}>
-                <Typography variant="body2">Vesting</Typography>
-              </Grid>
-              <Grid item xs={6}>
-                <Typography variant="body2">15% TGE, then 17% each month</Typography>
-              </Grid>
-            </Grid>
-          </Stack>
-        </Grid>
-      </Grid>
+      <Routes>
+      <Route path='/allprojects/projectdetails/*' element={<ProjectInfo projectdtls={projectdtls}/>}></Route>
+      <Route path='/allprojects/projectdetails/metrics' element={<Metrics/>}></Route>
+      <Route path='/allprojects/projectdetails/allocation' element={<Allocation/>}></Route>
+      <Route path='/allprojects/projectdetails/bidyour' element={<YourBid/>}></Route>
+      <Route path='/allprojects/projectdetails/teampartners' element={<ProjectDetails/>}></Route>
+
+      </Routes>
       <Accordion sx={sxprop.sxfaq}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}

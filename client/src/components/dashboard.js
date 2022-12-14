@@ -23,6 +23,8 @@ import { Link, Route, Routes } from 'react-router-dom';
 import Allprojects from './Allprojects';
 import AirDrop from './AirDrop';
 import ProjectDetails from './ProjectDetails';
+import VentureProj from './VentureProj';
+import Venturecard from './Venturecard';
 
 const drawerWidth = 300;
 
@@ -52,7 +54,7 @@ const Dashboard = () => {
           <Link to='airdrop' style={{ textDecoration: 'none' }}>AirDrop</Link>
         </Typography> 
         <Typography variant="listfont" display="block" gutterBottom>
-          Honey-Bite Venture
+        <Link to='venture' style={{ textDecoration: 'none' }}>Honey-Bite Venture</Link>
         </Typography>
         <Typography variant="listfont" display="block" gutterBottom>
           Membership
@@ -165,6 +167,8 @@ const Dashboard = () => {
           <Route path='/airdrop' element={<AirDrop />}></Route>
           <Route path='/projectdetails' element={<ProjectDetails/>}></Route>
           <Route path='/allprojects/projectdetails' element={<ProjectDetails/>}></Route>
+          <Route path='/venture' element={<VentureProj/>}></Route>
+          <Route path='/venture/projectdetails' element={<ProjectDetails/>}></Route>
         </Routes>
       </Box>
     </Box>
