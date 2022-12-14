@@ -162,13 +162,13 @@ const Dashboard = () => {
         sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` }, marginLeft: '29px', margin: { xs: '0 5px' } }}
       >
         <Routes>
-          <Route path='/' element={<Allprojects />}></Route>
+          <Route path='/*' element={<Allprojects />}></Route>
           <Route path='/allprojects' element={<Allprojects />}></Route>
           <Route path='/airdrop' element={<AirDrop />}></Route>
-          <Route path='/projectdetails' element={<ProjectDetails/>}></Route>
-          <Route path='/allprojects/projectdetails' element={<ProjectDetails/>}></Route>
+          <Route path='/projectdetails/*' element={<ProjectDetails/>}></Route>
+          <Route path='/allprojects/*' element={<ProjectDetails/>}></Route>
           <Route path='/venture' element={<VentureProj/>}></Route>
-          <Route path='/venture/projectdetails' element={<ProjectDetails/>}></Route>
+          <Route path='/venture/*' element={<ProjectDetails/>}></Route>
         </Routes>
       </Box>
     </Box>

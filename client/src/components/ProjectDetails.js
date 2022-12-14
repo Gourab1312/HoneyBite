@@ -1,4 +1,4 @@
-import React, { useContext, useEffect,useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { ProjectContext } from '../Context/ProjContext'
 import { Avatar, Divider, Grid, Stack } from '@mui/material';
 import Typography from '@mui/material/Typography';
@@ -16,11 +16,12 @@ import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { Link,Route, Routes } from "react-router-dom";
+import { Link, Route, Routes } from "react-router-dom";
 import Metrics from "./Metrics";
 import ProjectInfo from "./ProjectInfo";
 import Allocation from "./Allocation";
 import YourBid from "./YourBid";
+import TeamPartners from "./TeamPartners";
 
 
 const ProjectDetails = () => {
@@ -68,20 +69,20 @@ const ProjectDetails = () => {
         </Card>
         <Button variant="outlined" sx={sxprop.buttonsx}>Invest Now</Button>
       </Stack>
-      <Stack direction={'row'} spacing={4} sx={{margin:'20px'}}>
+      <Stack direction={'row'} spacing={4} sx={{ margin: '20px' }}>
         <Typography><Link to="info" style={{ textDecoration: 'none' }}>Project Details</Link></Typography>
-        <Typography>Team & Partners</Typography>
+        <Typography><Link to="teampartners" style={{ textDecoration: 'none' }}>Team & Partners</Link ></Typography>
         <Typography>Metrics</Typography>
         <Typography>Your Allocation</Typography>
-        {isventure && <Typography>Your Bid</Typography>}
+        {isventure && <Typography><Link to="bid" style={{ textDecoration: 'none' }}>Your Bid</Link></Typography>}
       </Stack>
       <Divider variant="middle" sx={{ margin: '20px' }} />
       <Routes>
-      <Route path='/allprojects/projectdetails/*' element={<ProjectInfo projectdtls={projectdtls}/>}></Route>
-      <Route path='/allprojects/projectdetails/metrics' element={<Metrics/>}></Route>
-      <Route path='/allprojects/projectdetails/allocation' element={<Allocation/>}></Route>
-      <Route path='/allprojects/projectdetails/bidyour' element={<YourBid/>}></Route>
-      <Route path='/allprojects/projectdetails/teampartners' element={<ProjectDetails/>}></Route>
+        <Route path='info' element={<ProjectInfo projectdtls={projectdtls} />}></Route>
+        <Route path='/allprojects/projectdetails/metrics' element={<Metrics />}></Route>
+        <Route path='/allprojects/projectdetails/allocation' element={<Allocation />}></Route>
+        <Route path='bid' element={<YourBid />}></Route>
+        <Route path='teampartners' element={<TeamPartners />}></Route>
 
       </Routes>
       <Accordion sx={sxprop.sxfaq}>
