@@ -34,6 +34,7 @@ const sxprop = {
     headingboxsx: {
         margin: '5px 0'
     },
+    subboxsx:{margin:'10px 25px'},
     buttongrpsx: {
         margin: '18px 0',
         marginTop: { xs: '45px' }

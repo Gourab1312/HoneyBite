@@ -1,8 +1,12 @@
 import React from 'react'
+import Box from '@mui/material/Box';
+import sxprop from './sxStyle';
+
 
 const YourBid = () => {
   return (
-    <div>YourBid</div>
+    <Box sx={sxprop.subboxsx}>Your Bid</Box>
+    
   )
 }
 

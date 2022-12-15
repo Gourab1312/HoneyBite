@@ -72,15 +72,15 @@ const ProjectDetails = () => {
       <Stack direction={'row'} spacing={4} sx={{ margin: '20px' }}>
         <Typography><Link to="info" style={{ textDecoration: 'none' }}>Project Details</Link></Typography>
         <Typography><Link to="teampartners" style={{ textDecoration: 'none' }}>Team & Partners</Link ></Typography>
-        <Typography>Metrics</Typography>
-        <Typography>Your Allocation</Typography>
-        {isventure && <Typography><Link to="bid" style={{ textDecoration: 'none' }}>Your Bid</Link></Typography>}
+        <Typography><Link to="metrics" style={{ textDecoration: 'none' }}>Metrics</Link ></Typography>
+        <Typography><Link to="allocation" style={{ textDecoration: 'none' }}>Your Allocation</Link ></Typography>
+        {isventure && <Typography><Link to="bid" style={{ textDecoration: 'none' }}><Link to="teampartners" style={{ textDecoration: 'none' }}>Your Bid</Link ></Link></Typography>}
       </Stack>
       <Divider variant="middle" sx={{ margin: '20px' }} />
       <Routes>
         <Route path='info' element={<ProjectInfo projectdtls={projectdtls} />}></Route>
-        <Route path='/allprojects/projectdetails/metrics' element={<Metrics />}></Route>
-        <Route path='/allprojects/projectdetails/allocation' element={<Allocation />}></Route>
+        <Route path='metrics' element={<Metrics />}></Route>
+        <Route path='allocation' element={<Allocation />}></Route>
         <Route path='bid' element={<YourBid />}></Route>
         <Route path='teampartners' element={<TeamPartners />}></Route>
 

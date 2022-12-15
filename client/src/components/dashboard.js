@@ -25,6 +25,8 @@ import AirDrop from './AirDrop';
 import ProjectDetails from './ProjectDetails';
 import VentureProj from './VentureProj';
 import Venturecard from './Venturecard';
+import Membership from './Membership';
+import LaunchSection from './LaunchSection';
 
 const drawerWidth = 300;
 
@@ -52,12 +54,12 @@ const Dashboard = () => {
         </Typography>
         <Typography variant="listfont" display="block" gutterBottom>
           <Link to='airdrop' style={{ textDecoration: 'none' }}>AirDrop</Link>
-        </Typography> 
-        <Typography variant="listfont" display="block" gutterBottom>
-        <Link to='venture' style={{ textDecoration: 'none' }}>Honey-Bite Venture</Link>
         </Typography>
         <Typography variant="listfont" display="block" gutterBottom>
-          Membership
+          <Link to='venture' style={{ textDecoration: 'none' }}>Honey-Bite Venture</Link>
+        </Typography>
+        <Typography variant="listfont" display="block" gutterBottom>
+          <Link to='membership' style={{ textDecoration: 'none' }}>Membership</Link>
         </Typography>
       </Stack>
     </div>
@@ -95,9 +97,15 @@ const Dashboard = () => {
       </AccordionSummary>
       <AccordionDetails>
         <Stack spacing={1} direction="column" sx={{ marginTop: "20px", marginLeft: "20px" }}>
-          {['Apply to Launch', 'Privacy Policy', 'Terms of use'].map((text, index) => (<Typography variant="listfont" display="block" gutterBottom key={index}>
-            {text}
-          </Typography>))}
+          <Typography variant="listfont" display="block" gutterBottom>
+            <Link to='launchapplyto' style={{ textDecoration: 'none' }}>Apply to Launch</Link>
+          </Typography>
+          <Typography variant="listfont" display="block" gutterBottom>
+            Privacy Policy
+          </Typography>
+          <Typography variant="listfont" display="block" gutterBottom>
+            Terms of use'
+          </Typography>
         </Stack>
       </AccordionDetails>
     </Accordion>
@@ -165,10 +173,12 @@ const Dashboard = () => {
           <Route path='/*' element={<Allprojects />}></Route>
           <Route path='/allprojects' element={<Allprojects />}></Route>
           <Route path='/airdrop' element={<AirDrop />}></Route>
-          <Route path='/projectdetails/*' element={<ProjectDetails/>}></Route>
-          <Route path='/allprojects/*' element={<ProjectDetails/>}></Route>
-          <Route path='/venture' element={<VentureProj/>}></Route>
-          <Route path='/venture/*' element={<ProjectDetails/>}></Route>
+          <Route path='/projectdetails/*' element={<ProjectDetails />}></Route>
+          <Route path='/allprojects/*' element={<ProjectDetails />}></Route>
+          <Route path='/venture' element={<VentureProj />}></Route>
+          <Route path='/venture/*' element={<ProjectDetails />}></Route>
+          <Route path='/membership' element={<Membership />}></Route>
+          <Route path='/launchapplyto' element={<LaunchSection />}></Route>
         </Routes>
       </Box>
     </Box>
