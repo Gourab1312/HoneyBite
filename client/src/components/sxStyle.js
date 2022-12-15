@@ -34,7 +34,7 @@ const sxprop = {
     headingboxsx: {
         margin: '5px 0'
     },
-    subboxsx:{margin:'10px 25px'},
+    subboxsx: { margin: '10px 25px' },
     buttongrpsx: {
         margin: '18px 0',
         marginTop: { xs: '45px' }
@@ -56,7 +56,7 @@ const sxprop = {
         '&.MuiAccordion-root': {
             boxShadow: 0,
             width: '50%',
-            marginTop:'40px'
+            marginTop: '40px'
         },
         '&:before': {
             backgroundColor: 'transparent',
@@ -64,6 +64,25 @@ const sxprop = {
             width: '50%'
         },
     },
+    membercardsx: {
+        backgroundColor: '#2e79eb',
+        color: 'white',
+        borderRadius: '30px',
+    },
+    memberbtn: {
+        width: "fitcontent",
+        borderRadius: "20px",
+        '&.MuiButton-outlined': {
+
+            color: '#8c8c8c',
+            borderColor: '#8c8c8c'
+        },
+        '&.MuiButton-root': {
+            fontFamily: "Open Sans",
+            fontSize: "14px",
+            backgroundColor: 'white'
+        }
+    }
 }
 
 export default sxprop

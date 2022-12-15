@@ -3,6 +3,16 @@ const customTheme = {
         "grey": "#8c8c8c"
     },
     typography: {
+        memberheader:{
+            fontFamily: "Open Sans",
+            fontSize: "19px",
+            fontWeight: "500"
+        },
+        moneytext:{
+            fontFamily: "Open Sans",
+            fontSize: "30px",
+            fontWeight: "600"
+        },
         listfont: {
             fontFamily: "Open Sans",
             fontSize: "13px"
