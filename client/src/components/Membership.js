@@ -17,7 +17,7 @@ const Membership = () => {
                     Select a plan that will be best for your need
                 </Typography>
             </Box>
-            <Grid container spacing={3}>
+            <Grid container spacing={3} sx={{marginTop:'40px'}}>
                 <Grid item xs={12} sm={4}>
                     <Card sx={sxprop.membercardsx} >
                         <CardContent>
