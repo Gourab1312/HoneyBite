@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import Drawer from '@mui/material/Drawer';
@@ -24,16 +24,24 @@ import Allprojects from './Allprojects';
 import AirDrop from './AirDrop';
 import ProjectDetails from './ProjectDetails';
 import VentureProj from './VentureProj';
-import Venturecard from './Venturecard';
 import Membership from './Membership';
 import LaunchSection from './LaunchSection';
 
+import { ProjectContext } from '../Context/ProjContext'
+import axios from "axios";
+
 const drawerWidth = 300;
+var dummywallet = 'we54ew2132ecvc31renbnmr54';
 
 const Dashboard = () => {
 
-
+  const { User, setUser } = useContext(ProjectContext)
   const [mobileOpen, setMobileOpen] = useState(false);
+  const handleuser = () => {
+    axios.post('http://localhost:5000/usercrypto', { walletAddress: dummywallet }).then((res) => {
+      console.log(res);
+    })
+  }
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
@@ -43,7 +51,7 @@ const Dashboard = () => {
         <Typography variant='logosame'>HoneyBite</Typography>
       </Toolbar>
       <Box sx={sxprop.toolboxsx}>
-        <Button variant="outlined" sx={sxprop.buttonsx}>Connect Wallet</Button>
+        <Button variant="outlined" sx={sxprop.buttonsx} onClick={handleuser}>Connect Wallet</Button>
         <Typography variant="captionmod" color="grey" gutterBottom>
           Your Honey-Bite Launchpad experience will be limited without connecting.
         </Typography>
