@@ -1,4 +1,5 @@
 const CryptoUser = require("../models/User")
+const MemberDetails = require('../models/MemShipModel')
 const { hashPassword, comparePassword } = require("../config/generatehash")
 const express = require("express");
 const router = express.Router();
@@ -13,6 +14,11 @@ router.post('/usercrypto', async (req, res) => {
             }
 
         };
+        const membership = await new MemberDetails({
+            userWallet: req.body.walletAddress,
+            isMember: false,
+            whatMember: 'free'
+        }).save()
         const newUser = await new CryptoUser({
             ...req.body,
             walletAddress: req.body.walletAddress,
