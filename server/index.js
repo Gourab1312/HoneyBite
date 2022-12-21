@@ -4,6 +4,7 @@ const dotenv = require("dotenv");
 const cors = require('cors')
 const userRoutes = require("./routes/userRoutes")
 const projectRoutes = require('./routes/projectRoutes')
+const allocationRoute = require('./routes/allocationRoute')
 
 dotenv.config()
 
@@ -13,6 +14,7 @@ app.use(express.json())
 
 app.use(userRoutes)
 app.use(projectRoutes)
+app.use(allocationRoute)
 
 
 const port = process.env.PORT || 5000

@@ -5,6 +5,7 @@ const router = express.Router();
 
 router.post('/addproject', async (req, res) => {
     const { name,
+        swap_rate,
         token_name,
         total_fund,
         total_token,
@@ -23,6 +24,7 @@ router.post('/addproject', async (req, res) => {
         }
         const newProj = await new ProjectDetails({
             name,
+            swap_rate,
             token_name,
             total_fund,
             total_token,
