@@ -10,6 +10,7 @@ const LaunchSection = () => {
   }
   const [project, setProject] = useState({
     name: '',
+    swap_rate: '',
     token_name: '',
     total_fund: '',
     total_token: '',
@@ -42,6 +43,9 @@ const LaunchSection = () => {
             <TextField name='Fund' required label="Total Fund in $" fullWidth type={'number'} onChange={(e) => { setProject({ ...project, total_fund: e.target.value }) }} />
           </Grid>
           <Grid item sm={6}>
+            <TextField name='Fund' required label="Swap rate in BUSD" fullWidth type={'number'} onChange={(e) => { setProject({ ...project, swap_rate: e.target.value }) }} />
+          </Grid>
+          <Grid item sm={6}>
             <TextField name='No of Token' required label="No of Token" fullWidth type={'number'} onChange={(e) => { setProject({ ...project, total_token: e.target.value }) }} />
           </Grid>
           <Grid item sm={6}>
@@ -61,7 +65,7 @@ const LaunchSection = () => {
           </Grid>
         </Grid>
 
-        <Button variant='outlined' type='submit'>Upcoming IDO</Button>
+        <Button variant='outlined' type='submit'>Launch IDO</Button>
       </form>
     </div>
   )

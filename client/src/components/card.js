@@ -16,7 +16,7 @@ import { ThemeProvider } from '@emotion/react';
 import customTheme from './dashStyle';
 import { createTheme } from '@mui/material';
 import { Link } from 'react-router-dom';
-import { ProjectContext } from '../Context/ProjContext';
+import ProjectContext from '../Context/ProjContext'
 
 
 
@@ -56,7 +56,7 @@ const Cards = ({ido}) => {
                                 Total Raise
                             </Typography></Grid>
                             <Grid item xs={3}><Typography variant='accordianhead'>
-                                $30,000
+                                ${ido.total_fund}
                             </Typography></Grid>
                             <Grid item xs={8} sm={9}><Typography variant='listfont'>
                                 Price
@@ -68,7 +68,7 @@ const Cards = ({ido}) => {
                                 Starting Date
                             </Typography></Grid>
                             <Grid item xs={3}><Typography variant='accordianhead'>
-                                Dec 12,2022
+                               {ido.start_date}
                             </Typography></Grid>
                         </Grid>
                     </CardContent>

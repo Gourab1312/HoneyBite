@@ -54,7 +54,7 @@ router.post('/getprojects/some', async (req, res) => {
     systime1.setDate(systime1.getDate() + 1);
     var jsnres;
     var member = await MemberDetails.findOne({ userWallet: req.body.walletAddress })
-    if (member.isMember) {
+    if (member.isMember) { //jara member tara ekdin aage dekte pabe
         console.log(systime1);
         jsnres = await ProjectDetails.find({ start_date: { $lte: systime1 } }).skip(page * projperpage).limit(projperpage)
     }

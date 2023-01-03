@@ -1,15 +1,7 @@
-import React, { createContext, useState } from 'react'
+import { createContext} from 'react'
 
 const ProjectContext = createContext()
+export default ProjectContext
 
-const ContextProvider = ({ children }) => {
-    const[User,setUser]=useState({})
-    const [projectdtls, setprojectdtls] = useState({})
-    return (
-        <ProjectContext.Provider value={{ projectdtls, setprojectdtls,User,setUser}}>
-            {children}
-        </ProjectContext.Provider>
-    )
-};
 
-export { ContextProvider, ProjectContext }; 
+

@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { ProjectContext } from '../Context/ProjContext'
+import ProjectContext from '../Context/ProjContext'
 import Box from '@mui/material/Box';
 import sxprop from './sxStyle';
 import Typography from '@mui/material/Typography';

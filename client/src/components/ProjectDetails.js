@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { ProjectContext } from '../Context/ProjContext'
+import ProjectContext from '../Context/ProjContext'
 import { Avatar, Divider, Grid, Stack } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
@@ -25,9 +25,10 @@ import TeamPartners from "./TeamPartners";
 
 
 const ProjectDetails = () => {
-  const { projectdtls, setprojectdtls } = useContext(ProjectContext)
+  const { projectdtls, setprojectdtls,User } = useContext(ProjectContext)
   const [isventure, setventure] = useState(true)
   useEffect(() => {
+    console.log(User.current);
     if (Object.keys(projectdtls).length === 0) {
       setprojectdtls(JSON.parse(localStorage.getItem('projdtls')))
     }

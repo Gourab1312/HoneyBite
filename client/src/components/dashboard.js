@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import Drawer from '@mui/material/Drawer';
@@ -27,28 +27,42 @@ import VentureProj from './VentureProj';
 import Membership from './Membership';
 import LaunchSection from './LaunchSection';
 
-import { ProjectContext } from '../Context/ProjContext'
-import axios from "axios";
+import ProjectContext from '../Context/ProjContext'
+// import axios from "axios";
 
 const drawerWidth = 300;
-var dummywallet = 'we54ew2132ec45fgddfgm4';
+var dummywallet = '13wqewqe231trtyty0wq';
 
 const Dashboard = () => {
 
   const { User, setUser } = useContext(ProjectContext)
+
   const [mobileOpen, setMobileOpen] = useState(false);
   const handleuser = () => {
-    axios.post('http://localhost:5000/usercrypto', { walletAddress: dummywallet }).then((res) => {
-      console.log(res);
-    })
+    // axios.post('http://localhost:5000/usercrypto', { walletAddress: dummywallet }).then((res) => {
+    //   console.log(res);
+    // })
+    setUser({ walletAddress: dummywallet })
+    
+    localStorage.setItem('userCrypto', JSON.stringify(User))
+    console.log(User);
   }
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
+
+  // useEffect(() => {
+  //   let tempjson = JSON.parse(localStorage.getItem('userCrypto'))
+  //   console.log(tempjson)
+
+  //   setUser(tempjson)
+  //   console.log(User)
+  // }, [])
+
   const drawer = (
     <div>
       <Toolbar>
-        <Typography variant='logosame'>HoneyBite</Typography>
+        <Typography variant='logosame'>Cryptic</Typography>
       </Toolbar>
       <Box sx={sxprop.toolboxsx}>
         <Button variant="outlined" sx={sxprop.buttonsx} onClick={handleuser}>Connect Wallet</Button>

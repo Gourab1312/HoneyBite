@@ -29,6 +29,7 @@ router.post('/tokenclaim', async (req, res) => {
         let investOne = await ProjectAllocation.findById(investId)
         let investProj = await ProjectDetails.findById(projId)
         if (!investOne.istokenClaimed) {
+            investOne.istokenClaimed = true
             investOne.tokenGain = investOne.invested / investProj.swap_rate
             investProj.total_token = investProj.total_token - investOne.tokenGain
             await ProjectDetails.findByIdAndUpdate(projId, investProj)
