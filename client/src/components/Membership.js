@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import ProjectContext from '../Context/ProjContext'
+
 import Box from '@mui/material/Box';
 import sxprop from './sxStyle';
 import Typography from '@mui/material/Typography';
@@ -8,7 +8,7 @@ import CardContent from '@mui/material/CardContent';
 import { Button, Divider, Grid, Stack } from '@mui/material';
 
 const Membership = () => {
-    const { User, setUser } = useContext(ProjectContext)
+
     return (
         <div>
             <Box sx={sxprop.headingboxsx}>
@@ -64,7 +64,7 @@ const Membership = () => {
                                     No
                                 </Typography></Grid>
                             </Grid>
-                            <Stack direction={'column'} sx={{ alignItems: 'center', marginTop: '10px' }}><Button sx={sxprop.memberbtn}>{Object.keys(User).length === 0 ? 'SignUp' : 'SignIn'}</Button></Stack>
+                            {/* <Stack direction={'column'} sx={{ alignItems: 'center', marginTop: '10px' }}><Button sx={sxprop.memberbtn}>{Object.keys(User).length === 0 ? 'SignUp' : 'SignIn'}</Button></Stack> */}
                         </CardContent>
                     </Card>
                 </Grid>

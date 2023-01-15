@@ -5,7 +5,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import {Grid } from '@mui/material';
 import sxprop from './sxStyle';
-import Cards from './card';
+import Cards from './Card';
 
 const VentureProj = () => {
     var dummyjson=[

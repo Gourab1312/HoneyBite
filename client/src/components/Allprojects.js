@@ -5,20 +5,20 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Grid } from '@mui/material';
 import sxprop from './sxStyle';
-import Cards from './card';
+import Cards from './Card';
 import axios from 'axios';
-import ProjectContext from '../Context/ProjContext'
 
+var dummywallet = '13wqewqe231trtyty0wq';
 const Allprojects = () => {
   const page = useRef(2)
-  const { User } = useContext(ProjectContext)
+
 
   const [projectList, setprojectList] = useState([])
   const getprojectList = async () => {
     // let useraddres = User.current.walletAddress
     // console.log(useraddres);
     let templist = await axios.post(`http://localhost:5000/getprojects/some?page=${page.current}`, {
-      walletAddress: User.walletAddress
+      walletAddress: dummywallet
     })
     console.log(templist);
     setprojectList(templist.data.jsnres)

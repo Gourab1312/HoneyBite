@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useContext } from 'react';
+import { useState } from 'react';
 
 import Card from '@mui/material/Card';
 
@@ -16,12 +16,13 @@ import { ThemeProvider } from '@emotion/react';
 import customTheme from './dashStyle';
 import { createTheme } from '@mui/material';
 import { Link } from 'react-router-dom';
-import ProjectContext from '../Context/ProjContext'
+
 
 
 
 const Cards = ({ido}) => {
-    const {setprojectdtls} = useContext(ProjectContext)
+    const [ projectdtls, setprojectdtls ] = useState()
+
     const theme = createTheme(customTheme)
     return (
         <ThemeProvider theme={theme}>
