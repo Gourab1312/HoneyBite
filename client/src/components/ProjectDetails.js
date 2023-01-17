@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState,useContext } from "react";
 
 import { Avatar, Divider, Grid, Stack } from '@mui/material';
 import Typography from '@mui/material/Typography';
@@ -22,20 +22,17 @@ import ProjectInfo from "./ProjectInfo";
 import Allocation from "./Allocation";
 import YourBid from "./YourBid";
 import TeamPartners from "./TeamPartners";
-
+import UserContext from '../context/appContext';
 
 const ProjectDetails = () => {
-  const [ projectdtls, setprojectdtls ] = useState()
+  const context = useContext(UserContext);
+  const {projectdetails } = context;
   const [isventure, setventure] = useState(true)
-  useEffect(() => {
-    // console.log(User.current);
-    if (Object.keys(projectdtls).length === 0) {
-      setprojectdtls(JSON.parse(localStorage.getItem('projdtls')))
-    }
-  })
 
 
-  console.log(projectdtls);
+
+
+
   return (
     <Box sx={sxprop.headingboxsx}>
       <Stack direction={'row'} spacing={4} sx={{
@@ -47,9 +44,9 @@ const ProjectDetails = () => {
           <CardContent>
             <Grid container spacing={1} sx={{ alignItems: 'center', marginBottom: '10px' }}>
               <Grid item xs={10}>
-                <Typography variant="headingcon">{projectdtls.name}</Typography>
+                <Typography variant="headingcon">{projectdetails.name}</Typography>
                 <Stack direction={'column'}>
-                  <Typography variant='captionmod'>${projectdtls.token_name}</Typography>
+                  <Typography variant='captionmod'>${projectdetails.token_name}</Typography>
                   <Stack direction={'row'} spacing={1}>
                     <LanguageIcon />
                     <FacebookIcon />
@@ -79,7 +76,7 @@ const ProjectDetails = () => {
       </Stack>
       <Divider variant="middle" sx={{ margin: '20px' }} />
       <Routes>
-        <Route path='info' element={<ProjectInfo projectdtls={projectdtls} />}></Route>
+        <Route path='info' element={<ProjectInfo projectdetails={projectdetails} />}></Route>
         <Route path='metrics' element={<Metrics />}></Route>
         <Route path='allocation' element={<Allocation />}></Route>
         <Route path='bid' element={<YourBid />}></Route>

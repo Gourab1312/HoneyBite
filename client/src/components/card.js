@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 
 import Card from '@mui/material/Card';
 
@@ -17,18 +17,24 @@ import customTheme from './dashStyle';
 import { createTheme } from '@mui/material';
 import { Link } from 'react-router-dom';
 
+import UserContext from '../context/appContext';
 
 
+const Cards = ({ ido }) => {
+    const context = useContext(UserContext);
+    const { setprojectList } = context;
+    const handleproject = () => {
+        setprojectList(ido);
+    }
 
-const Cards = ({ido}) => {
-    const [ projectdtls, setprojectdtls ] = useState()
+
 
     const theme = createTheme(customTheme)
     return (
         <ThemeProvider theme={theme}>
-            <Link to='projectdetails' style={{textDecoration: 'none'}}>
+            <Link to='projectdetails' style={{ textDecoration: 'none' }}>
 
-                <Card sx={sxprop.customcardsx} onClick={()=>{setprojectdtls(ido); localStorage.setItem('projdtls',JSON.stringify(ido))}}>
+                <Card sx={sxprop.customcardsx} onClick={handleproject}>
                     <CardContent>
                         <Grid container spacing={1} sx={{ alignItems: 'center', marginBottom: '10px' }}>
                             <Grid item xs={10}><Typography variant='cardhrdtxt'>
@@ -69,7 +75,7 @@ const Cards = ({ido}) => {
                                 Starting Date
                             </Typography></Grid>
                             <Grid item xs={3}><Typography variant='accordianhead'>
-                               {ido.start_date}
+                                {ido.start_date}
                             </Typography></Grid>
                         </Grid>
                     </CardContent>

@@ -7,10 +7,13 @@ import { Grid } from '@mui/material';
 import sxprop from './sxStyle';
 import Cards from './Card';
 import axios from 'axios';
+import UserContext from '../context/appContext';
 
 var dummywallet = '13wqewqe231trtyty0wq';
 const Allprojects = () => {
-  const page = useRef(2)
+  const context = useContext(UserContext);
+  const { user } = context;
+  const page = useRef(1)
 
 
   const [projectList, setprojectList] = useState([])
@@ -18,10 +21,23 @@ const Allprojects = () => {
     // let useraddres = User.current.walletAddress
     // console.log(useraddres);
     let templist = await axios.post(`http://localhost:5000/getprojects/some?page=${page.current}`, {
-      walletAddress: dummywallet
+      walletAddress: user.userWallet
     })
     console.log(templist);
     setprojectList(templist.data.jsnres)
+  }
+  const showmore = async () => {
+    let existingList = projectList;
+    page.current++
+    let templist = await axios.post(`http://localhost:5000/getprojects/some?page=${page.current}`, {
+      walletAddress: user.userWallet
+    })
+    if (Object.keys(templist.data.jsnres) == 0) {
+      alert('no more')
+    }
+    existingList = existingList.concat(templist.data.jsnres)
+    console.log(existingList);
+    setprojectList(existingList)
   }
   useEffect(() => {
     getprojectList()
@@ -49,6 +65,9 @@ const Allprojects = () => {
         }
 
       </Grid>
+      <Box sx={sxprop.loadbox}>
+        <Button variant="outlined" sx={sxprop.buttonsx} onClick={showmore}>Load More</Button>
+      </Box>
 
     </div>
   )

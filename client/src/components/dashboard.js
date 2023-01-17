@@ -26,6 +26,7 @@ import ProjectDetails from './ProjectDetails';
 import VentureProj from './VentureProj';
 import Membership from './Membership';
 import LaunchSection from './LaunchSection';
+import UserContext from '../context/appContext';
 
 // import axios from "axios";
 
@@ -33,17 +34,17 @@ const drawerWidth = 300;
 var dummywallet = '13wqewqe231trtyty0wq';
 
 const Dashboard = () => {
-
+  const context = useContext(UserContext);
+  const { user, setuser } = context;
 
 
   const [mobileOpen, setMobileOpen] = useState(false);
-  var handleuser = () => {
+  const handleuser = () => {
     // axios.post('http://localhost:5000/usercrypto', { walletAddress: dummywallet }).then((res) => {
     //   console.log(res);
     // })
-    
-
-    // localStorage.setItem('userCrypto', JSON.stringify(User))
+    setuser({ userWallet: dummywallet })
+    localStorage.setItem('userCrypto', JSON.stringify(user))
 
   }
   const handleDrawerToggle = () => {
@@ -53,7 +54,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     if (JSON.parse(localStorage.getItem('userCrypto')) != null) {
-      alert('user logged in')
+      // alert('user logged in')
     }
 
   }, [])
@@ -64,7 +65,8 @@ const Dashboard = () => {
         <Typography variant='logosame'>Cryptic</Typography>
       </Toolbar>
       <Box sx={sxprop.toolboxsx}>
-        <Button variant="outlined" sx={sxprop.buttonsx}>Connect Wallet</Button>
+        <Button variant="outlined" sx={sxprop.buttonsx} onClick={handleuser}>Connect Wallet</Button>
+        <Typography variant="captionmod" color="grey" gutterBottom>{user.userWallet}</Typography>
         <Typography variant="captionmod" color="grey" gutterBottom>
           Your Honey-Bite Launchpad experience will be limited without connecting.
         </Typography>

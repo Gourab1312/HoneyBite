@@ -2,7 +2,7 @@ import React from 'react'
 import {Grid, Stack } from '@mui/material';
 import Typography from '@mui/material/Typography';
 
-const ProjectInfo = ({projectdtls}) => {
+const ProjectInfo = ({projectdetails}) => {
   return (
     <div><Grid container spacing={5} sx={{margin:'2px'}}>
     <Grid item xs={12} sm={6} >
@@ -60,13 +60,13 @@ const ProjectInfo = ({projectdtls}) => {
             <Typography variant="body2">Name</Typography>
           </Grid>
           <Grid item xs={6}>
-            <Typography variant="body2">{projectdtls.name}</Typography>
+            <Typography variant="body2">{projectdetails.name}</Typography>
           </Grid>
           <Grid item xs={6}>
             <Typography variant="body2">Token Symbol</Typography>
           </Grid>
           <Grid item xs={6}>
-            <Typography variant="body2">{projectdtls.token_name}</Typography>
+            <Typography variant="body2">{projectdetails.token_name}</Typography>
           </Grid>
           <Grid item xs={6}>
             <Typography variant="body2">Total Supply</Typography>

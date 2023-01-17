@@ -1,6 +1,7 @@
 
 
 const sxprop = {
+    loadbox: { display: "flex", justifyContent: "center", margin: "15px 10px" },
     toolboxsx: { display: "flex", flexDirection: "column", AlignContent: "center", margin: "15px 10px" },
     buttonsx: {
         width: "fitcontent",
