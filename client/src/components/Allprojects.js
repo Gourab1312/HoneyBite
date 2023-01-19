@@ -13,7 +13,7 @@ var dummywallet = '13wqewqe231trtyty0wq';
 const Allprojects = () => {
   const context = useContext(UserContext);
   const { user } = context;
-  const page = useRef(1)
+  const page = useRef(0)
 
 
   const [projectList, setprojectList] = useState([])

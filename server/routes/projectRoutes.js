@@ -13,7 +13,8 @@ router.post('/addproject', async (req, res) => {
         end_date,
         linkedln_url,
         website_url,
-        telegram_url } = req.body;
+        telegram_url,
+        img_url } = req.body;
     try {
         const existingproj = await ProjectDetails.findOne({ token_name: req.body.token_name })
         if (existingproj) {
@@ -32,7 +33,9 @@ router.post('/addproject', async (req, res) => {
             end_date,
             linkedln_url,
             website_url,
-            telegram_url
+            telegram_url,
+            img_url,
+            isInvestOn: true
         }).save()
         res.status(200).json({
             success: true,
@@ -48,19 +51,20 @@ router.post('/addproject', async (req, res) => {
 
 router.post('/getprojects/some', async (req, res) => {
     const page = req.query.page || 0
-    const projperpage = 2
+    const projperpage = 3
     var systime1 = new Date()
     var systime2 = new Date()
     systime1.setDate(systime1.getDate() + 1);
     var jsnres;
-    var member = await MemberDetails.findOne({ userWallet: req.body.walletAddress })
-    if (member?.isMember) { //jara member tara ekdin aage dekte pabe
-        console.log(systime1);
-        jsnres = await ProjectDetails.find({ start_date: { $lte: systime1 } }).skip(page * projperpage).limit(projperpage)
-    }
-    else {
-        jsnres = await ProjectDetails.find({ start_date: { $lte: systime2 } }).skip(page * projperpage).limit(projperpage)
-    }
+    // var member = await MemberDetails.findOne({ userWallet: req.body.walletAddress })
+    // if (member?.isMember) { //jara member tara ekdin aage dekte pabe
+    //     console.log(systime1);
+    //     jsnres = await ProjectDetails.find({ start_date: { $lte: systime1 } }).skip(page * projperpage).limit(projperpage)
+    // }
+    // else {
+    //     jsnres = await ProjectDetails.find({ start_date: { $lte: systime2 } }).skip(page * projperpage).limit(projperpage)
+    // }
+    jsnres = await ProjectDetails.find().sort({ end_date: -1 }).skip(page * projperpage).limit(projperpage)
     res.status(200).json({
         jsnres
     })

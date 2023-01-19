@@ -57,7 +57,7 @@ const ProjectDetails = () => {
                 </Stack>
               </Grid>
               <Grid item xs={2}><Typography variant='cardhrdtxt'>
-                <Avatar sx={{ bgcolor: '#838588' }}>H</Avatar>
+              {projectdetails.img_url == 'NONE' ? <Avatar sx={{ bgcolor: '#838588' }}>NO</Avatar> : <Avatar sx={{ bgcolor: '#838588' }} src={projectdetails.img_url} />}
               </Typography></Grid>
             </Grid>
             <Typography variant="body2" sx={{ margin: '10px' }}>

@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
-import { TextField, InputLabel, Grid, Button } from '@mui/material'
+import { TextField, InputLabel, Grid, Button, Box, FormLabel } from '@mui/material'
+import sxprop from './sxStyle';
 import axios from "axios";
 
 const LaunchSection = () => {
+  const [pics, Setpics] = useState(null)
   const handledate = (e) => {
     var dateEntered = new Date(e.target.value);
     console.log(dateEntered.toISOString());
@@ -18,11 +20,43 @@ const LaunchSection = () => {
     end_date: '',
     linkedln_url: '',
     website_url: '',
-    telegram_url: ''
+    telegram_url: '',
+    img_url: 'NONE'
   })
+  const uploadPhoto = (pics) => {
+    if (pics === undefined) {
+      console.log("please upload an image");
+      return;
+    }
+    if (pics.type === "image/jpeg" || pics.type === "image/png") {
+      const data = new FormData();
+      data.append("file", pics);
+      data.append("upload_preset", "Cryptic");
+      data.append("cloud_name", "db1grdyly");
+      return fetch("https://api.cloudinary.com/v1_1/db1grdyly/image/upload", {
+        method: "post",
+        body: data,
+      }).then((res) => res.json())
+        .then((data) => {
 
-  const handlesubmit = (e) => {
+
+          console.log(data.url.toString());
+          return data.url.toString();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+    else {
+      console.log('error occured');
+      return;
+    }
+  }
+  const handlesubmit = async (e) => {
     e.preventDefault()
+    let uri = await uploadPhoto(pics)
+    console.log(uri);
+    project.img_url = uri;
     axios.post('http://localhost:5000/addproject', project).then((res) => {
       console.log(res);
     })
@@ -63,9 +97,16 @@ const LaunchSection = () => {
           <Grid item sm={6}>
             <TextField name='title' required label="Telegram Channel" InputLabelProps={{ shrink: true }} fullWidth onChange={(e) => { setProject({ ...project, telegram_url: e.target.value }) }} />
           </Grid>
+          <Grid item sm={6}>
+            <FormLabel>Upload Logo Of Company</FormLabel>
+            <input type='file' accept='image/**' onChange={(e) => { Setpics(e.target.files[0]) }} ></input>
+          </Grid>
         </Grid>
 
-        <Button variant='outlined' type='submit'>Launch IDO</Button>
+        <Box sx={sxprop.loadbox}>
+          <Button variant='outlined' type='submit'>Launch IDO</Button>
+        </Box>
+
       </form>
     </div>
   )

@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const ProjectModel = mongoose.Schema(
     {
         name: { type: String },
+        img_url:{type: String},
         swap_rate: { type: Number },
         token_name: { type: String },
         total_fund: { type: Number },

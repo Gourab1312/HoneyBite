@@ -52,7 +52,7 @@ const Cards = ({ ido }) => {
                                 </Stack>
                             </Grid>
                             <Grid item xs={2}><Typography variant='cardhrdtxt'>
-                                <Avatar sx={{ bgcolor: '#838588' }}>H</Avatar>
+                                {ido.img_url == 'NONE' ? <Avatar sx={{ bgcolor: '#838588' }}>NO</Avatar> : <Avatar sx={{ bgcolor: '#838588' }} src={ido.img_url} />}
                             </Typography></Grid>
                         </Grid>
                         <Typography variant="body2" sx={{ margin: '10px' }}>
