@@ -1,4 +1,4 @@
-import React, { useEffect, useState,useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
 
 import { Avatar, Divider, Grid, Stack } from '@mui/material';
 import Typography from '@mui/material/Typography';
@@ -23,18 +23,23 @@ import Allocation from "./Allocation";
 import YourBid from "./YourBid";
 import TeamPartners from "./TeamPartners";
 import UserContext from '../context/appContext';
+import InvestModal from "./InvestModal";
 
 const ProjectDetails = () => {
   const context = useContext(UserContext);
-  const {projectdetails } = context;
+  const { projectdetails } = context;
   const [isventure, setventure] = useState(true)
+  const [open, setOpen] = useState(false)
 
 
-
+  const handleModal = () => {
+    setOpen(true)
+  }
 
 
   return (
     <Box sx={sxprop.headingboxsx}>
+      {open && <InvestModal mod={{ open, setOpen }} />}
       <Stack direction={'row'} spacing={4} sx={{
         flexWrap: 'wrap',
         justifyContent: 'space-between'
@@ -57,7 +62,7 @@ const ProjectDetails = () => {
                 </Stack>
               </Grid>
               <Grid item xs={2}><Typography variant='cardhrdtxt'>
-              {projectdetails.img_url == 'NONE' ? <Avatar sx={{ bgcolor: '#838588' }}>NO</Avatar> : <Avatar sx={{ bgcolor: '#838588' }} src={projectdetails.img_url} />}
+                {projectdetails.img_url == 'NONE' ? <Avatar sx={{ bgcolor: '#838588' }}>NO</Avatar> : <Avatar sx={{ bgcolor: '#838588' }} src={projectdetails.img_url} />}
               </Typography></Grid>
             </Grid>
             <Typography variant="body2" sx={{ margin: '10px' }}>
@@ -65,7 +70,7 @@ const ProjectDetails = () => {
             </Typography>
           </CardContent>
         </Card>
-        <Button variant="outlined" sx={sxprop.buttonsx}>Invest Now</Button>
+        <Button variant="outlined" sx={sxprop.buttonsx} onClick={handleModal}>Invest Now</Button>
       </Stack>
       <Stack direction={'row'} spacing={4} sx={{ margin: '20px' }}>
         <Typography><Link to="info" style={{ textDecoration: 'none' }}>Project Details</Link></Typography>
