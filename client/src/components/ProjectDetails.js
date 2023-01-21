@@ -36,10 +36,16 @@ const ProjectDetails = () => {
     setOpen(true)
   }
 
-
+  var investInfo = {
+    id: projectdetails._id,
+    totalToken: projectdetails.total_token,
+    totalFund: projectdetails.total_fund,
+    Name: projectdetails.name,
+    tokenName:projectdetails.token_name
+  }
   return (
     <Box sx={sxprop.headingboxsx}>
-      {open && <InvestModal mod={{ open, setOpen }} />}
+      {open && <InvestModal mod={{ open, setOpen, investInfo }} />}
       <Stack direction={'row'} spacing={4} sx={{
         flexWrap: 'wrap',
         justifyContent: 'space-between'
