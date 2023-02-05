@@ -55,8 +55,11 @@ router.post('/tokenclaim', async (req, res) => {
 
 router.post('/getallocation', async (req, res) => {
     try {
-        const { walletAddress } = req.body
-        const allocatedProj = await ProjectAllocation.find({ userWallet: walletAddress })
+        const { walletAddress, token_name } = req.body
+        const allocatedProj = await ProjectAllocation.find({
+            userWallet: walletAddress,
+            token_name: token_name
+        })
         res.status(200).json({
             succes: true,
             investedProj: allocatedProj

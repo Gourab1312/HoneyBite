@@ -89,7 +89,7 @@ const ProjectDetails = () => {
       <Routes>
         <Route path='info' element={<ProjectInfo projectdetails={projectdetails} />}></Route>
         <Route path='metrics' element={<Metrics />}></Route>
-        <Route path='allocation' element={<Allocation />}></Route>
+        <Route path='allocation' element={<Allocation proj={{tkn_name:projectdetails.token_name}}/>}></Route>
         <Route path='bid' element={<YourBid />}></Route>
         <Route path='teampartners' element={<TeamPartners />}></Route>
 

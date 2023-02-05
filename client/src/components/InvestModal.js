@@ -4,8 +4,8 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Stack, TextField } from '@mui/material';
-import UserContext from '../context/appContext';
 import axios from "axios";
+import { TransactionContext } from "../context/TransactionContext";
 
 const style = {
     position: 'absolute',
@@ -19,13 +19,14 @@ const style = {
 };
 
 const InvestModal = ({ mod }) => {
-    const context = useContext(UserContext);
-    const { user } = context;
+    const {
+        currentAccount
+    } = useContext(TransactionContext);
     const iserror = useRef(false)
     const [InvestDetails, SetDetails] = useState(
         {
             projId: mod.investInfo.id,
-            userWallet: user.userWallet,
+            userWallet: currentAccount,
             token_name: mod.investInfo.tokenName,
             invested: 0,
             ProjectName: mod.investInfo.Name
