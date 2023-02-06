@@ -10,6 +10,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { TransactionContext } from "../context/TransactionContext";
+import Button from '@mui/material/Button';
 
 
 const Allocation = ({ proj }) => {
@@ -44,20 +45,27 @@ const Allocation = ({ proj }) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {List.map((value, index) => (
-              <TableRow
-                key={index}
-                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-              >
-                <TableCell component="th" scope="row">
-                  {value.ProjectName}
-                </TableCell>
-                <TableCell align="right">{value.DateBrought}</TableCell>
-                <TableCell align="right">{value.invested}</TableCell>
-                <TableCell align="right">{value.tokenGain}</TableCell>
-                <TableCell align="right">{value.istokenClaimed}</TableCell>
-              </TableRow>
-            ))}
+            {List.map((value, index) => {
+              const claimtokenHandle = () => {
+                axios.post('http://localhost:5000/tokenclaim', { investId: value._id, projId: proj.pdt_id }).then((res) => {
+                  console.log(res)
+                  value.istokenClaimed = res.data.succes
+                })
+              }
+              return (
+                <TableRow
+                  key={index}
+                  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                >
+                  <TableCell component="th" scope="row">
+                    {value.ProjectName}
+                  </TableCell>
+                  <TableCell align="right">{value.DateBrought}</TableCell>
+                  <TableCell align="right">{value.invested}</TableCell>
+                  <TableCell align="right">{value.tokenGain}</TableCell>
+                  <TableCell align="right"><Button variant="outlined" sx={sxprop.buttonsx} disabled={value.istokenClaimed} onClick={claimtokenHandle}>Claim Token{value.istokenClaimed && `Claimed`}</Button></TableCell>
+                </TableRow>)
+            })}
           </TableBody>
         </Table>
       </TableContainer>

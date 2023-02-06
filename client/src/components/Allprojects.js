@@ -8,9 +8,11 @@ import sxprop from './sxStyle';
 import Cards from './Card';
 import axios from 'axios';
 import UserContext from '../context/appContext';
+import CircularProgress from '@mui/material/CircularProgress';
 
-var dummywallet = '13wqewqe231trtyty0wq';
 const Allprojects = () => {
+  const [loader, setLoader] = useState(false)
+  const [btnshow, setShow] = useState(true)
   const context = useContext(UserContext);
   const { user } = context;
   const page = useRef(0)
@@ -27,17 +29,20 @@ const Allprojects = () => {
     setprojectList(templist.data.jsnres)
   }
   const showmore = async () => {
+    setLoader(true)
     let existingList = projectList;
     page.current++
     let templist = await axios.post(`http://localhost:5000/getprojects/some?page=${page.current}`, {
       walletAddress: user.userWallet
     })
     if (Object.keys(templist.data.jsnres) == 0) {
-      alert('no more')
+      // alert('no more')
+      setShow(false)
     }
     existingList = existingList.concat(templist.data.jsnres)
     console.log(existingList);
     setprojectList(existingList)
+    setLoader(false)
   }
   useEffect(() => {
     getprojectList()
@@ -58,15 +63,16 @@ const Allprojects = () => {
       <Grid container spacing={3}>
         {
           projectList.map((value, index) => {
-            return <Grid item xs={12} sm={4} key={index}>
+            return (<Grid item xs={12} sm={4} key={index}>
               <Cards ido={value} />
-            </Grid>
+            </Grid>)
           })
         }
 
       </Grid>
       <Box sx={sxprop.loadbox}>
-        <Button variant="outlined" sx={sxprop.buttonsx} onClick={showmore}>Load More</Button>
+        {loader && <CircularProgress />}
+        {(!loader && btnshow) && <Button variant="outlined" sx={sxprop.buttonsx} onClick={showmore}>Load More</Button>}
       </Box>
 
     </div>
