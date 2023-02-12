@@ -30,7 +30,7 @@ const customTheme = {
     },
 
     accordianhead: {
-      fontFamily: "Open Sans",
+      fontFamily: "Montserrat",
       fontSize: "13px",
       fontWeight: "800",
     },
