@@ -1,5 +1,5 @@
+// to avail the membership for each user
 import React, { useContext } from 'react'
-
 import Box from '@mui/material/Box';
 import sxprop from './sxStyle';
 import Typography from '@mui/material/Typography';
