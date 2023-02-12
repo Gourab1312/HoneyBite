@@ -25,7 +25,14 @@ import AirDrop from "./AirDrop";
 import ProjectDetails from "./ProjectDetails";
 
 import Membership from "./Membership";
+
+import Feedback from "./Feedback";
+import ContactUs from "./ContactUs";
+
 import LaunchSection from "./LaunchSection";
+import PrivacyPolicy from "./PrivacyPolicy";
+import TermsAndConditions from "./TermsAndConditions";
+
 import UserContext from "../context/appContext";
 
 // import axios from "axios";
@@ -136,6 +143,7 @@ const Dashboard = () => {
     </>
   );
 
+  // ResourceSectionDropdown
   const Resource = (
     <Accordion sx={sxprop.sxAccordian}>
       <AccordionSummary
@@ -146,26 +154,23 @@ const Dashboard = () => {
         <Typography variant="accordianhead">Resource</Typography>
       </AccordionSummary>
       <AccordionDetails>
-        <Stack
-          spacing={1}
-          direction="column"
-          sx={{marginTop: "20px", marginLeft: "20px"}}
-        >
-          {["FeedBack & Bug Report", "Governace", "Help"].map((text, index) => (
-            <Typography
-              variant="listfont"
-              display="block"
-              gutterBottom
-              key={index}
-            >
-              {text}
-            </Typography>
-          ))}
+        <Stack spacing={1} direction="column">
+          <Typography variant="listfont" display="block" gutterBottom>
+            <Link to="feedbackAndBugReport" style={{textDecoration: "none"}}>
+              Feedback & Bug Report
+            </Link>
+          </Typography>
+          <Typography variant="listfont" display="block" gutterBottom>
+            <Link to="contactUs" style={{textDecoration: "none"}}>
+              Comtact Us
+            </Link>
+          </Typography>
         </Stack>
       </AccordionDetails>
     </Accordion>
   );
 
+  // GeneralSectionDropdown
   const General = (
     <Accordion sx={sxprop.sxAccordian}>
       <AccordionSummary
@@ -183,10 +188,14 @@ const Dashboard = () => {
             </Link>
           </Typography>
           <Typography variant="listfont" display="block" gutterBottom>
-            Privacy Policy
+            <Link to="privacyPolicy" style={{textDecoration: "none"}}>
+              Privacy Policy
+            </Link>
           </Typography>
           <Typography variant="listfont" display="block" gutterBottom>
-            Terms of use'
+            <Link to="termsAndConditions" style={{textDecoration: "none"}}>
+              Terms & Conditions
+            </Link>
           </Typography>
         </Stack>
       </AccordionDetails>
@@ -258,7 +267,16 @@ const Dashboard = () => {
           <Route path="/projectdetails/*" element={<ProjectDetails />}></Route>
           <Route path="/allprojects/*" element={<ProjectDetails />}></Route>
           <Route path="/membership" element={<Membership />}></Route>
+
+          <Route path="/feedbackAndBugReport" element={<Feedback />}></Route>
+          <Route path="/contactUs" element={<ContactUs />}></Route>
+
           <Route path="/launchapplyto" element={<LaunchSection />}></Route>
+          <Route path="/privacyPolicy" element={<PrivacyPolicy />}></Route>
+          <Route
+            path="/termsAndConditions"
+            element={<TermsAndConditions />}
+          ></Route>
         </Routes>
       </Box>
     </Box>
