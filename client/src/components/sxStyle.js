@@ -1,3 +1,4 @@
+// this is componets where all the custom styles are done and passed as props
 const sxprop = {
   loadbox: {display: "flex", justifyContent: "center", margin: "15px 10px"},
   toolboxsx: {
@@ -8,6 +9,7 @@ const sxprop = {
   },
   buttonsx: {
     width: "fitcontent",
+    height:"fitcontent",
     borderRadius: "20px",
     fontFamily: "Montserrat",
     fontWeight: "600",

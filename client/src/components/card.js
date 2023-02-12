@@ -1,3 +1,4 @@
+// This card component is used to show all the card view of the projects listed
 import * as React from 'react';
 import { useState, useContext } from 'react';
 
@@ -56,7 +57,7 @@ const Cards = ({ ido }) => {
                             </Typography></Grid>
                         </Grid>
                         <Typography variant="body2" sx={{ margin: '10px' }}>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, doloremque exercitationem ab libero excepturi eligendi rerum aliquid iste, sapiente, laboriosam quis magni reiciendis quia harum aliquam placeat laudantium natus? Dicta!
+                            {ido.writeup}
                         </Typography>
                         <Grid container spacing={1}>
                             <Grid item xs={9}><Typography variant='listfont'>
@@ -69,13 +70,13 @@ const Cards = ({ ido }) => {
                                 Price
                             </Typography></Grid>
                             <Grid item xs={4} sm={3}><Typography variant='accordianhead'>
-                                1HL=0.02BUSD
+                                {ido.swap_rate} BUSD
                             </Typography></Grid>
                             <Grid item xs={9}><Typography variant='listfont'>
                                 Starting Date
                             </Typography></Grid>
                             <Grid item xs={3}><Typography variant='accordianhead'>
-                                {ido.start_date}
+                                {`${ido.start_date.slice(0, 10)}`}
                             </Typography></Grid>
                         </Grid>
                     </CardContent>

@@ -1,3 +1,4 @@
+// This components where the unreleased projects are fteched from backend 
 import React from 'react'
 import { Grid } from '@mui/material';
 import AirdropCards from './AirdropCards';

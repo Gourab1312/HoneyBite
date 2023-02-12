@@ -14,6 +14,7 @@ router.post('/addproject', async (req, res) => {
         linkedln_url,
         website_url,
         telegram_url,
+        writeup,
         img_url } = req.body;
     try {
         const existingproj = await ProjectDetails.findOne({ token_name: req.body.token_name })
@@ -23,6 +24,7 @@ router.post('/addproject', async (req, res) => {
                 message: "Give Unique token name"
             }
         }
+        
         const newProj = await new ProjectDetails({
             name,
             swap_rate,
@@ -34,6 +36,7 @@ router.post('/addproject', async (req, res) => {
             linkedln_url,
             website_url,
             telegram_url,
+            writeup,
             img_url,
             isInvestOn: true
         }).save()

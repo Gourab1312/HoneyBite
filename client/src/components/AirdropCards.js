@@ -1,3 +1,4 @@
+// This components is used along with Airdrop componets for card view 
 import React from 'react'
 import Card from '@mui/material/Card';
 

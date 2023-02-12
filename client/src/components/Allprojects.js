@@ -1,3 +1,4 @@
+// All the active projects are shown here
 import React, { useState, useEffect, useContext, useRef } from 'react'
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
@@ -51,16 +52,11 @@ const Allprojects = () => {
 
 
     <div>
-      <Stack direction="row" spacing={2} sx={sxprop.buttongrpsx}>
-        <Button variant='outlined' sx={sxprop.buttonsx}>Upcoming IDO</Button>
-        <Button variant='outlined' sx={sxprop.greybtnsx}>Ended IDO</Button>
-        <Button variant='outlined' sx={sxprop.greybtnsx}>Insured Projects</Button>
-      </Stack>
 
       <Box sx={sxprop.headingboxsx}>
-        <Typography variant='headingcon'>Upcoming Projects</Typography>
+        <Typography variant='headingcon'>Active Projects</Typography>
       </Box>
-      <Grid container spacing={3}>
+      <Grid container spacing={3} sx={{marginTop:'40px'}}>
         {
           projectList.map((value, index) => {
             return (<Grid item xs={12} sm={4} key={index}>

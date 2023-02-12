@@ -1,5 +1,5 @@
+// to show detailed info of a particular projects
 import React, { useEffect, useState, useContext } from "react";
-
 import { Avatar, Divider, Grid, Stack } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
@@ -21,7 +21,6 @@ import Metrics from "./Metrics";
 import ProjectInfo from "./ProjectInfo";
 import Allocation from "./Allocation";
 import YourBid from "./YourBid";
-import TeamPartners from "./TeamPartners";
 import UserContext from '../context/appContext';
 import InvestModal from "./InvestModal";
 
@@ -41,12 +40,12 @@ const ProjectDetails = () => {
     totalToken: projectdetails.total_token,
     totalFund: projectdetails.total_fund,
     Name: projectdetails.name,
-    tokenName:projectdetails.token_name
+    tokenName: projectdetails.token_name
   }
   return (
     <Box sx={sxprop.headingboxsx}>
       {open && <InvestModal mod={{ open, setOpen, investInfo }} />}
-      <Stack direction={'row'} spacing={4} sx={{
+      <Stack direction={'column'} spacing={4} sx={{
         flexWrap: 'wrap',
         justifyContent: 'space-between'
       }}>
@@ -71,27 +70,25 @@ const ProjectDetails = () => {
                 {projectdetails.img_url == 'NONE' ? <Avatar sx={{ bgcolor: '#838588' }}>NO</Avatar> : <Avatar sx={{ bgcolor: '#838588' }} src={projectdetails.img_url} />}
               </Typography></Grid>
             </Grid>
-            <Typography variant="body2" sx={{ margin: '10px' }}>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, doloremque exercitationem ab libero excepturi eligendi rerum aliquid iste, sapiente, laboriosam quis magni reiciendis quia harum aliquam placeat laudantium natus? Dicta!
+            <Typography variant="body2" sx={{ margin: '10px', whiteSpace: 'pre-line' }} >
+              {projectdetails.writeup}
             </Typography>
           </CardContent>
         </Card>
-        <Button variant="outlined" sx={sxprop.buttonsx} onClick={handleModal}>Invest Now</Button>
+        <Box sx={sxprop.loadbox}><Button variant="outlined" sx={sxprop.buttonsx} onClick={handleModal}>Invest Now</Button></Box>
+
       </Stack>
       <Stack direction={'row'} spacing={4} sx={{ margin: '20px' }}>
         <Typography><Link to="info" style={{ textDecoration: 'none' }}>Project Details</Link></Typography>
-        <Typography><Link to="teampartners" style={{ textDecoration: 'none' }}>Team & Partners</Link ></Typography>
         <Typography><Link to="metrics" style={{ textDecoration: 'none' }}>Metrics</Link ></Typography>
         <Typography><Link to="allocation" style={{ textDecoration: 'none' }}>Your Allocation</Link ></Typography>
-        {isventure && <Typography><Link to="bid" style={{ textDecoration: 'none' }}><Link to="teampartners" style={{ textDecoration: 'none' }}>Your Bid</Link ></Link></Typography>}
       </Stack>
       <Divider variant="middle" sx={{ margin: '20px' }} />
       <Routes>
         <Route path='info' element={<ProjectInfo projectdetails={projectdetails} />}></Route>
         <Route path='metrics' element={<Metrics />}></Route>
-        <Route path='allocation' element={<Allocation proj={{tkn_name:projectdetails.token_name,pdt_id:projectdetails._id}}/>}></Route>
+        <Route path='allocation' element={<Allocation proj={{ tkn_name: projectdetails.token_name, pdt_id: projectdetails._id }} />}></Route>
         <Route path='bid' element={<YourBid />}></Route>
-        <Route path='teampartners' element={<TeamPartners />}></Route>
 
       </Routes>
       <Accordion sx={sxprop.sxfaq}>

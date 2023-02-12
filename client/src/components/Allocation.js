@@ -1,3 +1,4 @@
+// This shows the allocation of individual idos 
 import React, { useEffect, useState, useContext } from 'react'
 import Box from '@mui/material/Box';
 import sxprop from './sxStyle';

@@ -12,7 +12,7 @@ const LaunchSection = () => {
   }
   const [project, setProject] = useState({
     name: '',
-    swap_rate: '',
+    swap_rate: 0.0,
     token_name: '',
     total_fund: '',
     total_token: '',
@@ -21,6 +21,7 @@ const LaunchSection = () => {
     linkedln_url: '',
     website_url: '',
     telegram_url: '',
+    writeup: '',
     img_url: 'NONE'
   })
   const uploadPhoto = (pics) => {
@@ -97,10 +98,14 @@ const LaunchSection = () => {
           <Grid item sm={6}>
             <TextField name='title' required label="Telegram Channel" InputLabelProps={{ shrink: true }} fullWidth onChange={(e) => { setProject({ ...project, telegram_url: e.target.value }) }} />
           </Grid>
+          <Grid item sm={12}>
+            <TextField name='title' multiline={true} required label="Project Details " InputLabelProps={{ shrink: true }} fullWidth onChange={(e) => { setProject({ ...project, writeup: e.target.value }) }} />
+          </Grid>
           <Grid item sm={6}>
             <FormLabel>Upload Logo Of Company</FormLabel>
             <input type='file' accept='image/**' onChange={(e) => { Setpics(e.target.files[0]) }} ></input>
           </Grid>
+
         </Grid>
 
         <Box sx={sxprop.loadbox}>

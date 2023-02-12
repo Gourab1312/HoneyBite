@@ -1,3 +1,4 @@
+// This component is the dashboard where all user interacts with all the components
 import React, {useState, useContext, useEffect} from "react";
 import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -22,7 +23,7 @@ import {Link, Route, Routes} from "react-router-dom";
 import Allprojects from "./Allprojects";
 import AirDrop from "./AirDrop";
 import ProjectDetails from "./ProjectDetails";
-import VentureProj from "./VentureProj";
+
 import Membership from "./Membership";
 import LaunchSection from "./LaunchSection";
 import UserContext from "../context/appContext";
@@ -124,11 +125,6 @@ const Dashboard = () => {
         <Typography variant="listfont" display="block" gutterBottom>
           <Link to="airdrop" style={{textDecoration: "none"}}>
             AirDrop
-          </Link>
-        </Typography>
-        <Typography variant="listfont" display="block" gutterBottom>
-          <Link to="venture" style={{textDecoration: "none"}}>
-            Honey-Bite Venture
           </Link>
         </Typography>
         <Typography variant="listfont" display="block" gutterBottom>
@@ -261,8 +257,6 @@ const Dashboard = () => {
           <Route path="/airdrop" element={<AirDrop />}></Route>
           <Route path="/projectdetails/*" element={<ProjectDetails />}></Route>
           <Route path="/allprojects/*" element={<ProjectDetails />}></Route>
-          <Route path="/venture" element={<VentureProj />}></Route>
-          <Route path="/venture/*" element={<ProjectDetails />}></Route>
           <Route path="/membership" element={<Membership />}></Route>
           <Route path="/launchapplyto" element={<LaunchSection />}></Route>
         </Routes>

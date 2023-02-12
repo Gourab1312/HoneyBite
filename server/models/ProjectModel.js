@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const ProjectModel = mongoose.Schema(
     {
         name: { type: String },
-        img_url:{type: String},
+        img_url: { type: String },
         swap_rate: { type: Number },
         token_name: { type: String },
         total_fund: { type: Number },
@@ -13,7 +13,8 @@ const ProjectModel = mongoose.Schema(
         linkedln_url: { type: String },
         website_url: { type: String },
         telegram_url: { type: String },
-        isInvestOn: { type: Boolean }
+        isInvestOn: { type: Boolean },
+        writeup: { type: String }
     }
 )
 
