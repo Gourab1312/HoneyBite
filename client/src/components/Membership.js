@@ -44,10 +44,10 @@ const Membership = () => {
               </Typography>
               <Grid container spacing={1}>
                 <Grid item xs={9}>
-                  <Typography variant="listfont">Investment Limit</Typography>
+                  <Typography variant="listfont">IDO Limit</Typography>
                 </Grid>
                 <Grid item xs={3}>
-                  <Typography variant="accordianhead">$25 Per IDOs</Typography>
+                  <Typography variant="accordianhead">3</Typography>
                 </Grid>
                 <Grid item xs={9}>
                   <Typography variant="listfont">Early Access</Typography>
@@ -87,7 +87,7 @@ const Membership = () => {
                   />
                   <Stack direction={"column"}>
                     <Typography variant="cardhrdtxt">FOR</Typography>
-                    <Typography variant="cardhrdtxt">3 IDOs</Typography>
+                    <Typography variant="cardhrdtxt">5 IDOs</Typography>
                   </Stack>
                 </Stack>
               </Stack>
@@ -99,18 +99,18 @@ const Membership = () => {
               </Typography>
               <Grid container spacing={1}>
                 <Grid item xs={9}>
-                  <Typography variant="listfont">Investment Limit</Typography>
+                  <Typography variant="listfont">IDO Limit</Typography>
                 </Grid>
                 <Grid item xs={3}>
                   <Typography variant="accordianhead">
-                    $10,000 Per IDOs
+                    5
                   </Typography>
                 </Grid>
                 <Grid item xs={9}>
                   <Typography variant="listfont">Early Access</Typography>
                 </Grid>
                 <Grid item xs={3}>
-                  <Typography variant="accordianhead">24 Hr</Typography>
+                  <Typography variant="accordianhead">Yes</Typography>
                 </Grid>
                 <Grid item xs={9}>
                   <Typography variant="listfont">TimeLimit</Typography>
@@ -144,7 +144,7 @@ const Membership = () => {
                   />
                   <Stack direction={"column"}>
                     <Typography variant="cardhrdtxt">FOR</Typography>
-                    <Typography variant="cardhrdtxt">5 VENTURES</Typography>
+                    <Typography variant="cardhrdtxt">Any Amount</Typography>
                   </Stack>
                 </Stack>
               </Stack>
@@ -156,24 +156,24 @@ const Membership = () => {
               </Typography>
               <Grid container spacing={1}>
                 <Grid item xs={9}>
-                  <Typography variant="listfont">Venture Investment</Typography>
+                  <Typography variant="listfont">IDO Limit</Typography>
                 </Grid>
                 <Grid item xs={3}>
                   <Typography variant="accordianhead">
-                    5 Venture Only
+                    Unlimited
                   </Typography>
                 </Grid>
                 <Grid item xs={9}>
-                  <Typography variant="listfont">Bidding Limit</Typography>
+                  <Typography variant="listfont">Early Access</Typography>
                 </Grid>
                 <Grid item xs={3}>
-                  <Typography variant="accordianhead">Unlimited</Typography>
+                  <Typography variant="accordianhead">Yes</Typography>
                 </Grid>
                 <Grid item xs={9}>
-                  <Typography variant="listfont">Invested Limit</Typography>
+                  <Typography variant="listfont">Time Limit</Typography>
                 </Grid>
                 <Grid item xs={3}>
-                  <Typography variant="accordianhead">No Limit</Typography>
+                  <Typography variant="accordianhead">No</Typography>
                 </Grid>
               </Grid>
               <Stack

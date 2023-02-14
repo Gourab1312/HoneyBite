@@ -1,5 +1,5 @@
 // to show detailed info of a particular projects
-import React, { useEffect, useState, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { Avatar, Divider, Grid, Stack } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
@@ -23,8 +23,12 @@ import Allocation from "./Allocation";
 import YourBid from "./YourBid";
 import UserContext from '../context/appContext';
 import InvestModal from "./InvestModal";
+import { TransactionContext } from "../context/TransactionContext";
 
 const ProjectDetails = () => {
+  const {
+    currentAccount,
+  } = useContext(TransactionContext);
   const context = useContext(UserContext);
   const { projectdetails } = context;
   const [isventure, setventure] = useState(true)
@@ -32,7 +36,13 @@ const ProjectDetails = () => {
 
 
   const handleModal = () => {
-    setOpen(true)
+    if (currentAccount === '') {
+      alert('Connect Wallet First')
+    }
+    else {
+      setOpen(true)
+    }
+
   }
 
   var investInfo = {

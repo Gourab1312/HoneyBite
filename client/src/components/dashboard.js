@@ -1,5 +1,5 @@
 // This component is the dashboard where all user interacts with all the components
-import React, {useState, useContext, useEffect} from "react";
+import React, { useState, useContext, useEffect } from "react";
 import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
 import Drawer from "@mui/material/Drawer";
@@ -18,7 +18,7 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
-import {Link, Route, Routes} from "react-router-dom";
+import { Link, Route, Routes } from "react-router-dom";
 // components import
 import Allprojects from "./Allprojects";
 import AirDrop from "./AirDrop";
@@ -38,27 +38,20 @@ import UserContext from "../context/appContext";
 // import axios from "axios";
 
 // importingTransactionContextProviders
-import {TransactionContext} from "../context/TransactionContext";
+import { TransactionContext } from "../context/TransactionContext";
 
-import {shortenWalletAddress} from "../utils/shortenWalletAddress";
+import { shortenWalletAddress } from "../utils/shortenWalletAddress";
+import ConnectWalletError from "./ConnectWalletError";
 
 const drawerWidth = 300;
-// var dummywallet = "13wqewqe231trtyty0wq";
+
 
 const Dashboard = () => {
   const context = useContext(UserContext);
-  const {user, setuser} = context;
+  const { user, setuser } = context;
 
   const [mobileOpen, setMobileOpen] = useState(false);
-  const handleuser = () => {
-    // axios.post('http://localhost:5000/usercrypto', { walletAddress: dummywallet }).then((res) => {
-    //   console.log(res);
-    // })
-    // setuser({userWallet: dummywallet});
-    setuser({userWallet: currentAccount});
 
-    localStorage.setItem("userCrypto", JSON.stringify(user));
-  };
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
@@ -122,20 +115,20 @@ const Dashboard = () => {
       <Stack
         spacing={1}
         direction="column"
-        sx={{margin: "20px 0", marginLeft: "20px"}}
+        sx={{ margin: "20px 0", marginLeft: "20px" }}
       >
         <Typography variant="listfont" display="block" gutterBottom>
-          <Link to="allprojects" style={{textDecoration: "none"}}>
+          <Link to="allprojects" style={{ textDecoration: "none" }}>
             All Projects
           </Link>
         </Typography>
         <Typography variant="listfont" display="block" gutterBottom>
-          <Link to="airdrop" style={{textDecoration: "none"}}>
+          <Link to="airdrop" style={{ textDecoration: "none" }}>
             AirDrop
           </Link>
         </Typography>
         <Typography variant="listfont" display="block" gutterBottom>
-          <Link to="membership" style={{textDecoration: "none"}}>
+          <Link to="membership" style={{ textDecoration: "none" }}>
             Membership
           </Link>
         </Typography>
@@ -156,12 +149,12 @@ const Dashboard = () => {
       <AccordionDetails>
         <Stack spacing={1} direction="column">
           <Typography variant="listfont" display="block" gutterBottom>
-            <Link to="feedbackAndBugReport" style={{textDecoration: "none"}}>
+            <Link to="feedbackAndBugReport" style={{ textDecoration: "none" }}>
               Feedback & Bug Report
             </Link>
           </Typography>
           <Typography variant="listfont" display="block" gutterBottom>
-            <Link to="contactUs" style={{textDecoration: "none"}}>
+            <Link to="contactUs" style={{ textDecoration: "none" }}>
               Comtact Us
             </Link>
           </Typography>
@@ -183,17 +176,17 @@ const Dashboard = () => {
       <AccordionDetails>
         <Stack spacing={1} direction="column">
           <Typography variant="listfont" display="block" gutterBottom>
-            <Link to="launchapplyto" style={{textDecoration: "none"}}>
+            <Link to="launchapplyto" style={{ textDecoration: "none" }}>
               Apply to Launch
             </Link>
           </Typography>
           <Typography variant="listfont" display="block" gutterBottom>
-            <Link to="privacyPolicy" style={{textDecoration: "none"}}>
+            <Link to="privacyPolicy" style={{ textDecoration: "none" }}>
               Privacy Policy
             </Link>
           </Typography>
           <Typography variant="listfont" display="block" gutterBottom>
-            <Link to="termsAndConditions" style={{textDecoration: "none"}}>
+            <Link to="termsAndConditions" style={{ textDecoration: "none" }}>
               Terms & Conditions
             </Link>
           </Typography>
@@ -203,13 +196,13 @@ const Dashboard = () => {
   );
 
   return (
-    <Box sx={{display: "flex"}}>
+    <Box sx={{ display: "flex" }}>
       <CssBaseline />
       <AppBar
         position="fixed"
         sx={{
-          display: {xs: "block", sm: "none"},
-          "& .MuiDrawer-paper": {boxSizing: "border-box", width: drawerWidth},
+          display: { xs: "block", sm: "none" },
+          "& .MuiDrawer-paper": { boxSizing: "border-box", width: drawerWidth },
           backgroundColor: "white",
         }}
       >
@@ -219,7 +212,7 @@ const Dashboard = () => {
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
-            sx={{mr: 2, display: {sm: "none"}}}
+            sx={{ mr: 2, display: { sm: "none" } }}
           >
             <MenuIcon />
           </IconButton>
@@ -228,7 +221,7 @@ const Dashboard = () => {
       </AppBar>
       <Box
         component="nav"
-        sx={{width: {sm: 240}, flexShrink: {sm: 0}}}
+        sx={{ width: { sm: 240 }, flexShrink: { sm: 0 } }}
         aria-label="mailbox folders"
       >
         <Drawer
@@ -236,8 +229,8 @@ const Dashboard = () => {
           open={mobileOpen}
           onClose={handleDrawerToggle}
           sx={{
-            display: {xs: "block", sm: "none"},
-            "& .MuiDrawer-paper": {boxSizing: "border-box", width: drawerWidth},
+            display: { xs: "block", sm: "none" },
+            "& .MuiDrawer-paper": { boxSizing: "border-box", width: drawerWidth },
           }}
         >
           {drawer}
@@ -255,15 +248,15 @@ const Dashboard = () => {
         sx={{
           flexGrow: 1,
           p: 3,
-          width: {sm: `calc(100% - ${drawerWidth}px)`},
+          width: { sm: `calc(100% - ${drawerWidth}px)` },
           marginLeft: "29px",
-          margin: {xs: "0 5px"},
+          margin: { xs: "0 5px" },
         }}
       >
         <Routes>
           <Route path="/*" element={<Allprojects />}></Route>
           <Route path="/allprojects" element={<Allprojects />}></Route>
-          <Route path="/airdrop" element={<AirDrop />}></Route>
+          <Route path="/airdrop" element={currentAccount === "" ? <ConnectWalletError /> : <AirDrop />}></Route>
           <Route path="/projectdetails/*" element={<ProjectDetails />}></Route>
           <Route path="/allprojects/*" element={<ProjectDetails />}></Route>
           <Route path="/membership" element={<Membership />}></Route>
@@ -271,7 +264,7 @@ const Dashboard = () => {
           <Route path="/feedbackAndBugReport" element={<Feedback />}></Route>
           <Route path="/contactUs" element={<ContactUs />}></Route>
 
-          <Route path="/launchapplyto" element={<LaunchSection />}></Route>
+          <Route path="/launchapplyto" element={currentAccount === "" ? <ConnectWalletError /> : <LaunchSection />}></Route>
           <Route path="/privacyPolicy" element={<PrivacyPolicy />}></Route>
           <Route
             path="/termsAndConditions"

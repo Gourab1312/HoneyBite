@@ -11,7 +11,7 @@
     "crypto",
     "backend"
   ],
-  "author": "honey-bite (aritra)",
+  "author": "Cryptic",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",

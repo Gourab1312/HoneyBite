@@ -1,7 +1,6 @@
 // All the active projects are shown here
 import React, { useState, useEffect, useContext, useRef } from 'react'
 import Box from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Grid } from '@mui/material';
@@ -23,9 +22,7 @@ const Allprojects = () => {
   const getprojectList = async () => {
     // let useraddres = User.current.walletAddress
     // console.log(useraddres);
-    let templist = await axios.post(`http://localhost:5000/getprojects/some?page=${page.current}`, {
-      walletAddress: user.userWallet
-    })
+    let templist = await axios.get(`http://localhost:5000/getprojects/some?page=${page.current}`)
     console.log(templist);
     setprojectList(templist.data.jsnres)
   }
@@ -33,9 +30,7 @@ const Allprojects = () => {
     setLoader(true)
     let existingList = projectList;
     page.current++
-    let templist = await axios.post(`http://localhost:5000/getprojects/some?page=${page.current}`, {
-      walletAddress: user.userWallet
-    })
+    let templist = await axios.get(`http://localhost:5000/getprojects/some?page=${page.current}`)
     if (Object.keys(templist.data.jsnres) == 0) {
       // alert('no more')
       setShow(false)
@@ -56,7 +51,7 @@ const Allprojects = () => {
       <Box sx={sxprop.headingboxsx}>
         <Typography variant='headingcon'>Active Projects</Typography>
       </Box>
-      <Grid container spacing={3} sx={{marginTop:'40px'}}>
+      <Grid container spacing={3} sx={{ marginTop: '40px' }}>
         {
           projectList.map((value, index) => {
             return (<Grid item xs={12} sm={4} key={index}>

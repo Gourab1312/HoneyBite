@@ -73,4 +73,44 @@ router.post('/getallocation', async (req, res) => {
 
 })
 
+const getstddev = (jsonarr, avg) => {
+    let sum = 0;
+    jsonarr.map((val) => {
+        sum = sum + (val.invested - avg) ** 2
+    })
+    return Math.sqrt(sum / (jsonarr.length - 1))
+}
+const getavg = (jsonarr) => {
+    let sum = 0;
+    jsonarr.map((val) => {
+        sum = sum + val.invested
+    })
+    return sum / jsonarr.length
+}
+
+router.post('/getmetrics', async (req, res) => {
+    try {
+        const { projId } = req.body
+        const proj = await ProjectDetails.findById(projId)
+        var allocatioarr = await ProjectAllocation.find({
+            token_name: proj.token_name
+        })
+        var avg = getavg(allocatioarr)
+        var stddv = getstddev(allocatioarr, avg)
+        console.log(avg);
+        res.status(200).json({
+            succes: true,
+            average: avg,
+            standardDev: stddv
+        })
+    } catch (error) {
+        res.status(error.statusCode || 500).json({
+            success: false,
+            message: error.message
+        });
+    }
+
+
+})
+
 module.exports = router;

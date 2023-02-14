@@ -4,7 +4,8 @@ const MemberModel = mongoose.Schema({
     userWallet: { type: String, ref: "CryptoUser" },
     isMember: { type: Boolean, default: false },
     whatMember: { type: String },
-    startDateMem: { type: Date }
+    startDateMem: { type: Date },
+    noOfinvested: { type: Number }
 })
 
 const MemberDetails = mongoose.model('MemberTable', MemberModel)
