@@ -42,6 +42,7 @@ import { TransactionContext } from "../context/TransactionContext";
 
 import { shortenWalletAddress } from "../utils/shortenWalletAddress";
 import ConnectWalletError from "./ConnectWalletError";
+import AirDropDetails from "./AirDropDetails";
 
 const drawerWidth = 300;
 
@@ -270,6 +271,7 @@ const Dashboard = () => {
             path="/termsAndConditions"
             element={<TermsAndConditions />}
           ></Route>
+          <Route path="/airdrop-details/*" element={<AirDropDetails />}></Route>
         </Routes>
       </Box>
     </Box>

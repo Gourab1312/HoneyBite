@@ -31,7 +31,7 @@ const ProjectDetails = () => {
   } = useContext(TransactionContext);
   const context = useContext(UserContext);
   const { projectdetails } = context;
-  const [isventure, setventure] = useState(true)
+
   const [open, setOpen] = useState(false)
 
 
@@ -96,7 +96,7 @@ const ProjectDetails = () => {
       <Divider variant="middle" sx={{ margin: '20px' }} />
       <Routes>
         <Route path='info' element={<ProjectInfo projectdetails={projectdetails} />}></Route>
-        <Route path='metrics' element={<Metrics />}></Route>
+        <Route path='metrics' element={<Metrics ID={projectdetails._id} />}></Route>
         <Route path='allocation' element={<Allocation proj={{ tkn_name: projectdetails.token_name, pdt_id: projectdetails._id }} />}></Route>
         <Route path='bid' element={<YourBid />}></Route>
 

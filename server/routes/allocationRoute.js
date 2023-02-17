@@ -78,7 +78,8 @@ const getstddev = (jsonarr, avg) => {
     jsonarr.map((val) => {
         sum = sum + (val.invested - avg) ** 2
     })
-    return Math.sqrt(sum / (jsonarr.length - 1))
+    let res = sum / (jsonarr.length - 1)
+    return Math.sqrt(res)
 }
 const getavg = (jsonarr) => {
     let sum = 0;
@@ -97,7 +98,7 @@ router.post('/getmetrics', async (req, res) => {
         })
         var avg = getavg(allocatioarr)
         var stddv = getstddev(allocatioarr, avg)
-        console.log(avg);
+        console.log(stddv);
         res.status(200).json({
             succes: true,
             average: avg,
