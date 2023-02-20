@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 
-const MemberModel = mongoose.Schema({ 
-    userWallet: { type: String, ref: "CryptoUser" }, 
-    whatMember: { type: String },
+const MemberModel = mongoose.Schema({
+    userWallet: { type: String, ref: "CryptoUser" },
+    memberShip: { type: String },
     startDateMem: { type: Date },
     noOfinvested: { type: Number }
 })
