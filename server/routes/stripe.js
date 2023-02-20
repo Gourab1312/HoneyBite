@@ -1,7 +1,7 @@
 const express = require("express");
 const Stripe = require("stripe");
 
-require("dotenv").config();
+require("dotenv").config(); 
 const stripe = Stripe(process.env.STRIPE_KEY)
 const router = express.Router(); 
  

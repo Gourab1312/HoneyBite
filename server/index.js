@@ -19,7 +19,7 @@ app.use(stripe);
 
 const port = process.env.PORT || 5000;
 
-const connectDB = async () => {
+const connectDB = async () => { 
   try { 
     const conn = await mongoose.connect(process.env.MONGO_URI);
     // check
