@@ -63,7 +63,7 @@ const Membership = () => {
                   <Typography variant="accordianhead">No</Typography>
                 </Grid>
               </Grid>
-              <Stack
+              <Stack 
                 direction={"column"}
                 sx={{alignItems: "center", marginTop: "10px"}}
               >

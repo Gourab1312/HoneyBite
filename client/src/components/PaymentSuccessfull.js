@@ -1,7 +1,7 @@
 import React from 'react'
 
 function PaymentSuccessfull() {
-  return (
+  return ( 
     <div>
       Payment successfull
     </div>

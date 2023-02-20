@@ -16,7 +16,7 @@ function PayButton({price,type}) {
         }).catch((err)=>console.log(err.message));
     }
   return (
-    <div>
+    <div> 
       {/* <button onClick={()=> handleCheckout()}>Checkout</button> */}
       <Button  onClick={()=> handleCheckout()} sx={sxprop.memberbtn}>Purchase Now</Button>
 
