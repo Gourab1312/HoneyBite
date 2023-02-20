@@ -43,6 +43,7 @@ import { TransactionContext } from "../context/TransactionContext";
 import { shortenWalletAddress } from "../utils/shortenWalletAddress";
 import ConnectWalletError from "./ConnectWalletError";
 import AirDropDetails from "./AirDropDetails";
+import PaymentSuccessfull from "./PaymentSuccessfull";
 
 const drawerWidth = 300;
 
@@ -261,7 +262,7 @@ const Dashboard = () => {
           <Route path="/projectdetails/*" element={<ProjectDetails />}></Route>
           <Route path="/allprojects/*" element={<ProjectDetails />}></Route>
           <Route path="/membership" element={<Membership />}></Route>
-
+          <Route path="/payment-successful" element={<PaymentSuccessfull/>}></Route>
           <Route path="/feedbackAndBugReport" element={<Feedback />}></Route>
           <Route path="/contactUs" element={<ContactUs />}></Route>
 
