@@ -4,6 +4,7 @@ const UserModel = mongoose.Schema(
     {
         walletAddress: { type: String },
         emailAddress: { type: String ,default:'nan'},
+        password:{type: String},
         name: { type: String ,default:'nan'},
         Date: {
             type: Date,

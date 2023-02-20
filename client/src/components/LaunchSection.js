@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
-import { TextField, InputLabel, Grid, Button, Box, FormLabel } from '@mui/material'
+import { TextField, InputLabel, Grid, Button, Box, FormLabel, CircularProgress, Typography } from '@mui/material'
 import sxprop from './sxStyle';
 import axios from "axios";
 
 const LaunchSection = () => {
   const [pics, Setpics] = useState(null)
+  const [showSucces, setSucces] = useState(false)
+  const [showText, setShow] = useState(false)
   const handledate = (e) => {
     var dateEntered = new Date(e.target.value);
     console.log(dateEntered.toISOString());
@@ -49,17 +51,23 @@ const LaunchSection = () => {
         });
     }
     else {
-      console.log('error occured');
+      alert('Photo Uploaded');
       return;
     }
   }
   const handlesubmit = async (e) => {
     e.preventDefault()
+    setSucces(true)
     let uri = await uploadPhoto(pics)
     console.log(uri);
     project.img_url = uri;
     axios.post('http://localhost:5000/addproject', project).then((res) => {
       console.log(res);
+      setShow(true)
+      setSucces(false)
+    }).catch((error) => {
+      alert(error.message)
+      setSucces(false)
     })
     console.log(project);
   }
@@ -103,13 +111,15 @@ const LaunchSection = () => {
           </Grid>
           <Grid item sm={6}>
             <FormLabel>Upload Logo Of Company</FormLabel>
-            <input type='file' accept='image/**' onChange={(e) => { Setpics(e.target.files[0]) }} ></input>
+            <input type='file' accept='image/**' onChange={(e) => { Setpics(e.target.files[0]) }} required={true}></input>
           </Grid>
 
         </Grid>
 
         <Box sx={sxprop.loadbox}>
-          <Button variant='outlined' type='submit'>Launch IDO</Button>
+          {showSucces && <CircularProgress />}
+          {!showSucces && !showText && <Button variant='outlined' type='submit'>Launch IDO</Button>}
+          {showText && <Typography variant='headingcon'>Succesfully Launched</Typography>}
         </Box>
 
       </form>

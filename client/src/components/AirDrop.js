@@ -6,6 +6,8 @@ import Box from '@mui/material/Box';
 import sxprop from './sxStyle';
 import Typography from '@mui/material/Typography';
 import axios from 'axios';
+import CircularProgress from '@mui/material/CircularProgress';
+import Button from '@mui/material/Button';
 
 const AirDrop = () => {
   const [airdrop, setairdrop] = useState([])
@@ -57,6 +59,10 @@ const AirDrop = () => {
         }
 
       </Grid>
+      <Box sx={sxprop.loadbox}>
+        {loader && <CircularProgress />}
+        {(!loader && btnshow) && <Button variant="outlined" sx={sxprop.buttonsx} onClick={showmore}>Load More</Button>}
+      </Box>
     </div >
 
   )

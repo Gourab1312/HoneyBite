@@ -2,8 +2,7 @@ const mongoose = require("mongoose");
 
 const MemberModel = mongoose.Schema({
     userWallet: { type: String, ref: "CryptoUser" },
-    isMember: { type: Boolean, default: false },
-    whatMember: { type: String },
+    memberShip: { type: String },
     startDateMem: { type: Date },
     noOfinvested: { type: Number }
 })
