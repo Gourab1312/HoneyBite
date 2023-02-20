@@ -6,6 +6,7 @@ import Typography from "@mui/material/Typography";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import {Button, Divider, Grid, Stack} from "@mui/material";
+import PayButton from "./PayButton";
 
 const Membership = () => {
   return (
@@ -62,11 +63,12 @@ const Membership = () => {
                   <Typography variant="accordianhead">No</Typography>
                 </Grid>
               </Grid>
-              <Stack
+              <Stack 
                 direction={"column"}
                 sx={{alignItems: "center", marginTop: "10px"}}
               >
-                <Button sx={sxprop.memberbtn}>Purchase Now</Button>
+                <PayButton price="0100" type="IDO LIMIT 3"/>
+                {/* <Button sx={sxprop.memberbtn}>Purchase Now</Button> */}
               </Stack>{" "}
             </CardContent>
           </Card>
@@ -123,7 +125,8 @@ const Membership = () => {
                 direction={"column"}
                 sx={{alignItems: "center", marginTop: "10px"}}
               >
-                <Button sx={sxprop.memberbtn}>Purchase Now</Button>
+              <PayButton price="9900" type="IDO LIMIT 5"/>
+
               </Stack>
             </CardContent>
           </Card>
@@ -180,7 +183,8 @@ const Membership = () => {
                 direction={"column"}
                 sx={{alignItems: "center", marginTop: "10px"}}
               >
-                <Button sx={sxprop.memberbtn}>Purchase Now</Button>
+               <PayButton price="39900" type="IDO LIMIT Unlimited"/>
+
               </Stack>
             </CardContent>
           </Card>

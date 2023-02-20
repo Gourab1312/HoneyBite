@@ -8,4 +8,4 @@ const MemberModel = mongoose.Schema({
 })
 
 const MemberDetails = mongoose.model('MemberTable', MemberModel)
-module.exports = MemberDetails
+module.exports = MemberDetails 
