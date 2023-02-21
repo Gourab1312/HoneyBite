@@ -55,7 +55,7 @@ const sxprop = {
   },
 
   customcardsx: {
-    minWidth: 275,
+    width:'100%',
     borderRadius: "10px",
     backgroundColor: "#e9e9e9",
     boxShadow: 5,

@@ -52,7 +52,7 @@ const AirdropCards = ({ ido }) => {
                             )}
                         </Typography></Grid>
                     </Grid>
-                    <Typography variant="body2" sx={{ margin: '10px' }}>
+                    <Typography variant="body2" sx={{margin: "10px", height:'120px',width:{sm:'328px',xs:'250px'}}}>
                         {ido.writeup}
                     </Typography>
                     <Grid container spacing={1}>

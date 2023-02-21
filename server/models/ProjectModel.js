@@ -13,8 +13,10 @@ const ProjectModel = mongoose.Schema(
         linkedln_url: { type: String },
         website_url: { type: String },
         telegram_url: { type: String },
+        git_url: { type: String },
         isInvestOn: { type: Boolean },
-        writeup: { type: String }
+        writeup: { type: String },
+        projWallAddress: { type: String }
     }
 )
 

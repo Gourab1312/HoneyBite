@@ -9,11 +9,13 @@ router.post('/addproject', async (req, res) => {
         token_name,
         total_fund,
         total_token,
+        projWallAddress,
         start_date,
         end_date,
         linkedln_url,
         website_url,
         telegram_url,
+        git_url,
         writeup,
         img_url } = req.body;
     try {
@@ -24,6 +26,7 @@ router.post('/addproject', async (req, res) => {
                 message: "Give Unique token name"
             }
         }
+        token_name = token_name.toUpperCase();
 
         const newProj = await new ProjectDetails({
             name,
@@ -31,11 +34,13 @@ router.post('/addproject', async (req, res) => {
             token_name,
             total_fund,
             total_token,
+            projWallAddress,
             start_date,
             end_date,
             linkedln_url,
             website_url,
             telegram_url,
+            git_url,
             writeup,
             img_url,
             isInvestOn: true
