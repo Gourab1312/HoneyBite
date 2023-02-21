@@ -28,11 +28,13 @@ const LaunchSection = () => {
     token_name: "",
     total_fund: "",
     total_token: "",
+    project_wallet_address: "",
     start_date: "",
     end_date: "",
     linkedln_url: "",
     website_url: "",
     telegram_url: "",
+    github_repository_url: "",
     writeup: "",
     img_url: "NONE",
   });
@@ -94,16 +96,19 @@ const LaunchSection = () => {
       }}
     >
       <Box m={3}>
-        <Typography variant="h4">ICO Launch Section</Typography>
+        <Typography variant="h4" style={{color: "#1976d2", fontWeight: "600"}}>
+          ICO Launch Section
+        </Typography>
 
-        <Typography variant="h7">
-          Launch your coin/ project in minutes !
+        <Typography variant="h7" style={{fontWeight: "600"}}>
+          Launch your WEB 3.0 project in minutes.
         </Typography>
 
         {/* formBox */}
-        <Box>
+        <Box mt={2}>
           <form onSubmit={handlesubmit}>
-            <Grid container spacing={2}>
+            <Grid container spacing={3}>
+              {/* projectName */}
               <Grid item sm={6}>
                 <TextField
                   name="title"
@@ -116,24 +121,28 @@ const LaunchSection = () => {
                   }}
                 />
               </Grid>
+
+              {/* tokenName */}
               <Grid item sm={6}>
                 <TextField
                   name="Token Name"
                   required
                   label="Token Name"
-                  placeholder="Enter name of your token (Ex. WNK)?"
+                  placeholder="Enter name of your token/ coin (Ex. WNK)?"
                   fullWidth
                   onChange={(e) => {
                     setProject({...project, token_name: e.target.value});
                   }}
                 />
               </Grid>
+
+              {/* fundsToRaise */}
               <Grid item sm={6}>
                 <TextField
                   name="Fund"
                   required
                   label="Total Fund"
-                  placeholder="How much fund you wanna raise ?"
+                  placeholder="How much fund you wanna raise (in INR) ?"
                   fullWidth
                   type={"number"}
                   onChange={(e) => {
@@ -141,12 +150,15 @@ const LaunchSection = () => {
                   }}
                 />
               </Grid>
+
               {/* idk, if this section is required */}
+              {/* swapRate */}
               <Grid item sm={6}>
                 <TextField
                   name="Fund"
                   required
-                  label="Swap rate in BUSD"
+                  label="Swap Rate (in BUSD)"
+                  placeholder="Enter swap rate (ex: 1) ?"
                   fullWidth
                   type={"number"}
                   onChange={(e) => {
@@ -154,6 +166,8 @@ const LaunchSection = () => {
                   }}
                 />
               </Grid>
+
+              {/* totalTokenSupplyInMarket */}
               <Grid item sm={6}>
                 <TextField
                   name="No of Token"
@@ -167,9 +181,28 @@ const LaunchSection = () => {
                   }}
                 />
               </Grid>
+
               <Grid item sm={6}>
                 <TextField
-                  name="Fund"
+                  name="ProjectWalletAddress"
+                  required
+                  label="Public Wallet Address"
+                  placeholder="What's the project's wallet address ?"
+                  fullWidth
+                  type={"text"}
+                  onChange={(e) => {
+                    setProject({
+                      ...project,
+                      project_wallet_address: e.target.value,
+                    });
+                  }}
+                />
+              </Grid>
+
+              {/* strrtingDate */}
+              <Grid item sm={6}>
+                <TextField
+                  name="startingDate"
                   required
                   InputLabelProps={{shrink: true}}
                   label="ICO Starting Date"
@@ -181,9 +214,11 @@ const LaunchSection = () => {
                   }}
                 />
               </Grid>
+
+              {/* endingDate */}
               <Grid item sm={6}>
                 <TextField
-                  name="Fund"
+                  name="endingDate"
                   required
                   InputLabelProps={{shrink: true}}
                   label="ICO Ending Date"
@@ -195,19 +230,23 @@ const LaunchSection = () => {
                   }}
                 />
               </Grid>
+
+              {/* linkedIn */}
               <Grid item sm={6}>
                 <TextField
                   name="title"
-                  required
+                  // required
                   // InputLabelProps={{shrink: true}}
-                  label="LinkedIn Project URL"
-                  placeholder="Enter project repository URL ?"
+                  label="Public LinkedIn URL"
+                  placeholder="Enter LinkedIn URL ?"
                   fullWidth
                   onChange={(e) => {
                     setProject({...project, linkedln_url: e.target.value});
                   }}
                 />
               </Grid>
+
+              {/* wenbsite */}
               <Grid item sm={6}>
                 <TextField
                   name="title"
@@ -222,11 +261,29 @@ const LaunchSection = () => {
                 />
               </Grid>
 
+              {/* githubURL */}
+              <Grid item sm={6}>
+                <TextField
+                  name="title"
+                  // required
+                  // InputLabelProps={{shrink: true}}
+                  label="Github Repository URL"
+                  placeholder="Enter Github's public repository URL ?"
+                  fullWidth
+                  onChange={(e) => {
+                    setProject({
+                      ...project,
+                      github_repository_url: e.target.value,
+                    });
+                  }}
+                />
+              </Grid>
+
               {/* notRequired */}
               <Grid item sm={6}>
                 <TextField
                   name="title"
-                  required
+                  // required
                   // InputLabelProps={{shrink: true}}
                   label="Telegram Channel"
                   fullWidth
@@ -267,9 +324,10 @@ const LaunchSection = () => {
               {showSucces && <CircularProgress />}
               {!showSucces && !showText && (
                 <Button
+                  size="large"
                   variant="outlined"
                   type="submit"
-                  style={{fontWeight: 800}}
+                  sx={{fontWeight: 800, fontSize: "15px"}}
                 >
                   Launch ICO
                 </Button>

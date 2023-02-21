@@ -9,7 +9,7 @@ const sxprop = {
   },
   buttonsx: {
     width: "fitcontent",
-    height:"fitcontent",
+    height: "fitcontent",
     borderRadius: "20px",
     fontFamily: "Montserrat",
     fontWeight: "600",
@@ -56,9 +56,9 @@ const sxprop = {
 
   customcardsx: {
     minWidth: 275,
-    borderRadius: "30px",
+    borderRadius: "10px",
     backgroundColor: "#e9e9e9",
-    boxShadow: 0,
+    boxShadow: 5,
   },
   headercardsx: {
     maxWidth: 500,
