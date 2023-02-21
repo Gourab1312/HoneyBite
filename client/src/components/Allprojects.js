@@ -48,25 +48,39 @@ const Allprojects = () => {
   }, []);
   return (
     <div>
-      <Box sx={sxprop.headingboxsx}>
-        <Typography variant="headingcon">Active Projects</Typography>
-      </Box>
-      <Grid container spacing={3} sx={{marginTop: "40px"}}>
-        {projectList.map((value, index) => {
-          return (
-            <Grid item xs={12} sm={4} key={index}>
-              <Cards ido={value} />
-            </Grid>
-          );
-        })}
-      </Grid>
-      <Box sx={sxprop.loadbox}>
-        {loader && <CircularProgress />}
-        {!loader && btnshow && (
-          <Button variant="outlined" sx={sxprop.buttonsx} onClick={showmore}>
-            Load More
-          </Button>
-        )}
+      <Box m={3}>
+        {/* headingBox */}
+        <Box sx={sxprop.headingboxsx}>
+          {/* <Typography variant="headingcon">Active Projects</Typography> */}
+          <Typography
+            variant="h4"
+            style={{color: "#1976d2", fontWeight: "600"}}
+          >
+            Active Projects
+          </Typography>
+
+          <Typography variant="h7" style={{fontWeight: "600"}}>
+            Start investing in ICOs in seconds.
+          </Typography>
+        </Box>
+
+        <Grid container spacing={3} sx={{marginTop: "10px"}}>
+          {projectList.map((value, index) => {
+            return (
+              <Grid item xs={12} sm={4} key={index}>
+                <Cards ido={value} />
+              </Grid>
+            );
+          })}
+        </Grid>
+        <Box sx={sxprop.loadbox}>
+          {loader && <CircularProgress />}
+          {!loader && btnshow && (
+            <Button variant="outlined" sx={sxprop.buttonsx} onClick={showmore}>
+              Load More
+            </Button>
+          )}
+        </Box>
       </Box>
     </div>
   );
