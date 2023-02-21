@@ -26,6 +26,16 @@ export const TransactionsProvider = ({children}) => {
     keyword: "",
     message: "",
   });
+
+  // forICOLaunchSection
+  const [
+    ICOLaunchSectionCryptoInvestmentData,
+    setICOLaunchSectionCryptoInvestmentData,
+  ] = useState({
+    addressTo: "",
+    amount: "",
+  });
+
   const [currentAccount, setCurrentAccount] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [transactionCount, setTransactionCount] = useState(
@@ -35,6 +45,14 @@ export const TransactionsProvider = ({children}) => {
 
   const handleChange = (e, name) => {
     setformData((prevState) => ({...prevState, [name]: e.target.value}));
+  };
+
+  // forICOLaunchSection
+  const handleICOLaunchSectionDataChange = (e, name) => {
+    setICOLaunchSectionCryptoInvestmentData((prevState) => ({
+      ...prevState,
+      [name]: e.target.value,
+    }));
   };
 
   const getAllTransactions = async () => {
@@ -128,7 +146,8 @@ export const TransactionsProvider = ({children}) => {
   const sendTransaction = async () => {
     try {
       if (ethereum) {
-        const {addressTo, amount, keyword, message} = formData;
+        // const {addressTo, amount, keyword, message} = formData;
+        const {addressTo, amount} = ICOLaunchSectionCryptoInvestmentData;
         const transactionsContract = createEthereumContract();
         const parsedAmount = ethers.utils.parseEther(amount);
 
@@ -144,11 +163,18 @@ export const TransactionsProvider = ({children}) => {
           ],
         });
 
+        // const transactionHash = await transactionsContract.addToBlockchain(
+        //   addressTo,
+        //   parsedAmount,
+        //   message,
+        //   keyword
+        // );
+
         const transactionHash = await transactionsContract.addToBlockchain(
           addressTo,
           parsedAmount,
-          message,
-          keyword
+          "ICOInvestment",
+          "ICOInvestment"
         );
 
         setIsLoading(true);
@@ -188,6 +214,8 @@ export const TransactionsProvider = ({children}) => {
         sendTransaction,
         handleChange,
         formData,
+        ICOLaunchSectionCryptoInvestmentData,
+        handleICOLaunchSectionDataChange,
       }}
     >
       {children}

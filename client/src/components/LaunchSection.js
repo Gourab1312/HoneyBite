@@ -1,31 +1,41 @@
-import React, { useState } from 'react'
-import { TextField, InputLabel, Grid, Button, Box, FormLabel, CircularProgress, Typography } from '@mui/material'
-import sxprop from './sxStyle';
+import React, {useState} from "react";
+import {
+  TextField,
+  InputLabel,
+  Grid,
+  Button,
+  Box,
+  FormLabel,
+  CircularProgress,
+  Typography,
+} from "@mui/material";
+import sxprop from "./sxStyle";
 import axios from "axios";
+import {fontWeight} from "@mui/system";
 
 const LaunchSection = () => {
-  const [pics, Setpics] = useState(null)
-  const [showSucces, setSucces] = useState(false)
-  const [showText, setShow] = useState(false)
+  const [pics, Setpics] = useState(null);
+  const [showSucces, setSucces] = useState(false);
+  const [showText, setShow] = useState(false);
   const handledate = (e) => {
     var dateEntered = new Date(e.target.value);
     console.log(dateEntered.toISOString());
-    return dateEntered.toISOString()
-  }
+    return dateEntered.toISOString();
+  };
   const [project, setProject] = useState({
-    name: '',
+    name: "",
     swap_rate: 0.0,
-    token_name: '',
-    total_fund: '',
-    total_token: '',
-    start_date: '',
-    end_date: '',
-    linkedln_url: '',
-    website_url: '',
-    telegram_url: '',
-    writeup: '',
-    img_url: 'NONE'
-  })
+    token_name: "",
+    total_fund: "",
+    total_token: "",
+    start_date: "",
+    end_date: "",
+    linkedln_url: "",
+    website_url: "",
+    telegram_url: "",
+    writeup: "",
+    img_url: "NONE",
+  });
   const uploadPhoto = (pics) => {
     if (pics === undefined) {
       console.log("please upload an image");
@@ -39,92 +49,242 @@ const LaunchSection = () => {
       return fetch("https://api.cloudinary.com/v1_1/db1grdyly/image/upload", {
         method: "post",
         body: data,
-      }).then((res) => res.json())
+      })
+        .then((res) => res.json())
         .then((data) => {
-
-
           console.log(data.url.toString());
           return data.url.toString();
         })
         .catch((err) => {
           console.log(err);
         });
-    }
-    else {
-      alert('Photo Uploaded');
+    } else {
+      alert("Photo Uploaded");
       return;
     }
-  }
+  };
   const handlesubmit = async (e) => {
-    e.preventDefault()
-    setSucces(true)
-    let uri = await uploadPhoto(pics)
+    // mongoDBFunctionality
+    e.preventDefault();
+    setSucces(true);
+    let uri = await uploadPhoto(pics);
     console.log(uri);
     project.img_url = uri;
-    axios.post('http://localhost:5000/addproject', project).then((res) => {
-      console.log(res);
-      setShow(true)
-      setSucces(false)
-    }).catch((error) => {
-      alert(error.message)
-      setSucces(false)
-    })
+    axios
+      .post("http://localhost:5000/addproject", project)
+      .then((res) => {
+        console.log(res);
+        setShow(true);
+        setSucces(false);
+      })
+      .catch((error) => {
+        alert(error.message);
+        setSucces(false);
+      });
     console.log(project);
-  }
+  };
+
   return (
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "100%",
+      }}
+    >
+      <Box m={3}>
+        <Typography variant="h4">ICO Launch Section</Typography>
 
-    <div>LaunchSection
-      <form onSubmit={handlesubmit}>
-        <Grid container spacing={3}>
-          <Grid item sm={6}>
-            <TextField name='title' required label="Name" defaultValue="eg:- WeWay" fullWidth onChange={(e) => { setProject({ ...project, name: e.target.value }) }} />
-          </Grid>
-          <Grid item sm={6}>
-            <TextField name='Token Name' required label="Token Name" defaultValue="eg:- WEW" fullWidth onChange={(e) => { setProject({ ...project, token_name: e.target.value }) }} />
-          </Grid>
-          <Grid item sm={6}>
-            <TextField name='Fund' required label="Total Fund in $" fullWidth type={'number'} onChange={(e) => { setProject({ ...project, total_fund: e.target.value }) }} />
-          </Grid>
-          <Grid item sm={6}>
-            <TextField name='Fund' required label="Swap rate in BUSD" fullWidth type={'number'} onChange={(e) => { setProject({ ...project, swap_rate: e.target.value }) }} />
-          </Grid>
-          <Grid item sm={6}>
-            <TextField name='No of Token' required label="No of Token" fullWidth type={'number'} onChange={(e) => { setProject({ ...project, total_token: e.target.value }) }} />
-          </Grid>
-          <Grid item sm={6}>
-            <TextField name='Fund' required InputLabelProps={{ shrink: true }} label="Starting Date" fullWidth type={'date'} onChange={(e) => { setProject({ ...project, start_date: handledate(e) }) }} />
-          </Grid>
-          <Grid item sm={6}>
-            <TextField name='Fund' required InputLabelProps={{ shrink: true }} label="Ending Date" fullWidth type={'date'} onChange={(e) => { setProject({ ...project, end_date: handledate(e) }) }} />
-          </Grid>
-          <Grid item sm={6}>
-            <TextField name='title' required label="LinkedIn Url" InputLabelProps={{ shrink: true }} fullWidth onChange={(e) => { setProject({ ...project, linkedln_url: e.target.value }) }} />
-          </Grid>
-          <Grid item sm={6}>
-            <TextField name='title' required label="Website Url" InputLabelProps={{ shrink: true }} fullWidth onChange={(e) => { setProject({ ...project, website_url: e.target.value }) }} />
-          </Grid>
-          <Grid item sm={6}>
-            <TextField name='title' required label="Telegram Channel" InputLabelProps={{ shrink: true }} fullWidth onChange={(e) => { setProject({ ...project, telegram_url: e.target.value }) }} />
-          </Grid>
-          <Grid item sm={12}>
-            <TextField name='title' multiline={true} required label="Project Details " InputLabelProps={{ shrink: true }} fullWidth onChange={(e) => { setProject({ ...project, writeup: e.target.value }) }} />
-          </Grid>
-          <Grid item sm={6}>
-            <FormLabel>Upload Logo Of Company</FormLabel>
-            <input type='file' accept='image/**' onChange={(e) => { Setpics(e.target.files[0]) }} required={true}></input>
-          </Grid>
+        <Typography variant="h7">
+          Launch your coin/ project in minutes !
+        </Typography>
 
-        </Grid>
+        {/* formBox */}
+        <Box>
+          <form onSubmit={handlesubmit}>
+            <Grid container spacing={2}>
+              <Grid item sm={6}>
+                <TextField
+                  name="title"
+                  required
+                  label="Project Name"
+                  placeholder="Enter name of your project (Ex. Wink)?"
+                  fullWidth
+                  onChange={(e) => {
+                    setProject({...project, name: e.target.value});
+                  }}
+                />
+              </Grid>
+              <Grid item sm={6}>
+                <TextField
+                  name="Token Name"
+                  required
+                  label="Token Name"
+                  placeholder="Enter name of your token (Ex. WNK)?"
+                  fullWidth
+                  onChange={(e) => {
+                    setProject({...project, token_name: e.target.value});
+                  }}
+                />
+              </Grid>
+              <Grid item sm={6}>
+                <TextField
+                  name="Fund"
+                  required
+                  label="Total Fund"
+                  placeholder="How much fund you wanna raise ?"
+                  fullWidth
+                  type={"number"}
+                  onChange={(e) => {
+                    setProject({...project, total_fund: e.target.value});
+                  }}
+                />
+              </Grid>
+              {/* idk, if this section is required */}
+              <Grid item sm={6}>
+                <TextField
+                  name="Fund"
+                  required
+                  label="Swap rate in BUSD"
+                  fullWidth
+                  type={"number"}
+                  onChange={(e) => {
+                    setProject({...project, swap_rate: e.target.value});
+                  }}
+                />
+              </Grid>
+              <Grid item sm={6}>
+                <TextField
+                  name="No of Token"
+                  required
+                  label="Total Supply"
+                  placeholder="What's the total token supply ?"
+                  fullWidth
+                  type={"number"}
+                  onChange={(e) => {
+                    setProject({...project, total_token: e.target.value});
+                  }}
+                />
+              </Grid>
+              <Grid item sm={6}>
+                <TextField
+                  name="Fund"
+                  required
+                  InputLabelProps={{shrink: true}}
+                  label="ICO Starting Date"
+                  placeholder="When will your ICO start ?"
+                  fullWidth
+                  type={"date"}
+                  onChange={(e) => {
+                    setProject({...project, start_date: handledate(e)});
+                  }}
+                />
+              </Grid>
+              <Grid item sm={6}>
+                <TextField
+                  name="Fund"
+                  required
+                  InputLabelProps={{shrink: true}}
+                  label="ICO Ending Date"
+                  placeholder="When will your ICO end ?"
+                  fullWidth
+                  type={"date"}
+                  onChange={(e) => {
+                    setProject({...project, end_date: handledate(e)});
+                  }}
+                />
+              </Grid>
+              <Grid item sm={6}>
+                <TextField
+                  name="title"
+                  required
+                  // InputLabelProps={{shrink: true}}
+                  label="LinkedIn Project URL"
+                  placeholder="Enter project repository URL ?"
+                  fullWidth
+                  onChange={(e) => {
+                    setProject({...project, linkedln_url: e.target.value});
+                  }}
+                />
+              </Grid>
+              <Grid item sm={6}>
+                <TextField
+                  name="title"
+                  required
+                  // InputLabelProps={{shrink: true}}
+                  label="Public Website URL"
+                  placeholder="Enter project's public URL ?"
+                  fullWidth
+                  onChange={(e) => {
+                    setProject({...project, website_url: e.target.value});
+                  }}
+                />
+              </Grid>
 
-        <Box sx={sxprop.loadbox}>
-          {showSucces && <CircularProgress />}
-          {!showSucces && !showText && <Button variant='outlined' type='submit'>Launch IDO</Button>}
-          {showText && <Typography variant='headingcon'>Succesfully Launched</Typography>}
+              {/* notRequired */}
+              <Grid item sm={6}>
+                <TextField
+                  name="title"
+                  required
+                  // InputLabelProps={{shrink: true}}
+                  label="Telegram Channel"
+                  fullWidth
+                  onChange={(e) => {
+                    setProject({...project, telegram_url: e.target.value});
+                  }}
+                />
+              </Grid>
+              <Grid item sm={12}>
+                <TextField
+                  name="title"
+                  multiline={true}
+                  required
+                  label="Project Description"
+                  placeholder="Enter a brief project description ?"
+                  // InputLabelProps={{shrink: true}}
+                  fullWidth
+                  onChange={(e) => {
+                    setProject({...project, writeup: e.target.value});
+                  }}
+                />
+              </Grid>
+              <Grid item sm={6}>
+                <FormLabel>Upload Project Logo</FormLabel>
+                <br />
+                <input
+                  type="file"
+                  accept="image/**"
+                  onChange={(e) => {
+                    Setpics(e.target.files[0]);
+                  }}
+                  required={true}
+                ></input>
+              </Grid>
+            </Grid>
+
+            <Box sx={sxprop.loadbox}>
+              {showSucces && <CircularProgress />}
+              {!showSucces && !showText && (
+                <Button
+                  variant="outlined"
+                  type="submit"
+                  style={{fontWeight: 800}}
+                >
+                  Launch ICO
+                </Button>
+              )}
+              {showText && (
+                <Typography variant="headingcon">
+                  Succesfully Launched
+                </Typography>
+              )}
+            </Box>
+          </form>
         </Box>
-
-      </form>
+      </Box>
     </div>
-  )
-}
+  );
+};
 
-export default LaunchSection
+export default LaunchSection;
