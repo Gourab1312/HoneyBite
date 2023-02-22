@@ -84,17 +84,20 @@ const Dashboard = () => {
     <>
       <Toolbar>
         {/* <Typography variant="logosame">Cryptic</Typography> */}
-        <Typography
-          variant="h4"
-          style={{
-            color: "white",
-            fontWeight: "600",
-            margin: "0px",
-            padding: "0px",
-          }}
-        >
-          Cryptic
-        </Typography>
+        <Link to="/" style={{textDecoration: "none"}}>
+          <Typography
+            variant="h5"
+            style={{
+              color: "white",
+              fontWeight: "600",
+              fontSize: "35px",
+              textAlign: "left",
+            }}
+          >
+            Cryptic
+          </Typography>
+        </Link>
+        <Box sx={sxprop.logo}>{/* <img src="../assets/logo.png"></img> */}</Box>
       </Toolbar>
       <Box sx={sxprop.toolboxsx}>
         {/* ifWalletIsNotConnected */}
@@ -103,7 +106,7 @@ const Dashboard = () => {
             {/* // <Button variant="outlined" sx={sxprop.buttonsx} onClick={handleuser}> */}
             <Button
               variant="outlined"
-              sx={sxprop.buttonsx}
+              sx={sxprop.connectWalletButton}
               onClick={connectWallet}
             >
               Connect WEB 3.0 Wallet
@@ -125,7 +128,11 @@ const Dashboard = () => {
         {/* ifWalletIsConnected  */}
         {currentAccount && (
           <>
-            <Button variant="outlined" sx={sxprop.buttonsx} size="large">
+            <Button
+              variant="outlined"
+              sx={sxprop.connectWalletButton}
+              size="large"
+            >
               {shortenWalletAddress(currentAccount)}
             </Button>
 
@@ -158,8 +165,19 @@ const Dashboard = () => {
           gutterBottom
           style={{fontSize: "15px"}}
         >
+          <Link to="/" style={{textDecoration: "none", color: "white"}}>
+            Active Projects
+          </Link>
+        </Typography>
+
+        <Typography
+          variant="listfont"
+          display="block"
+          gutterBottom
+          style={{fontSize: "15px"}}
+        >
           <Link to="airdrop" style={{textDecoration: "none", color: "white"}}>
-            AirDrop
+            Upcoming Projects
           </Link>
         </Typography>
 
