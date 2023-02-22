@@ -1,6 +1,12 @@
 // this is componets where all the custom styles are done and passed as props
 const sxprop = {
   loadbox: {display: "flex", justifyContent: "center", margin: "15px 10px"},
+  logo: {
+    backgroundImage: `url('../assets/logo.png)`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    height: 100,
+  },
   toolboxsx: {
     display: "flex",
     flexDirection: "column",
@@ -10,10 +16,19 @@ const sxprop = {
   buttonsx: {
     width: "fitcontent",
     height: "fitcontent",
-    borderRadius: "15px",
-    borderColor: "white",
+    borderRadius: "10px",
+    border: "2px solid #1976d2",
     fontFamily: "Montserrat",
-    fontWeight: "600",
+    fontWeight: "800",
+    color: "#1976d2",
+  },
+  connectWalletButton: {
+    width: "fitcontent",
+    height: "fitcontent",
+    borderRadius: "10px",
+    border: "2px solid white",
+    fontFamily: "Montserrat",
+    fontWeight: "800",
     color: "white",
   },
   greybtnsx: {
@@ -63,8 +78,10 @@ const sxprop = {
     width: "100%",
     borderRadius: "10px",
     backgroundColor: "#e9e9e9",
-    boxShadow: 5,
+    boxShadow: 8,
+    padding: "10px",
   },
+
   headercardsx: {
     maxWidth: 500,
     borderRadius: "30px",

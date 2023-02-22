@@ -2,6 +2,16 @@ const customTheme = {
   palette: {
     grey: "#8c8c8c",
   },
+
+  box: {
+    logo: {
+      backgroundImage: `url("../assets/logo.png)`,
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+      height: 300,
+    },
+  },
+
   typography: {
     fontFamily: '"Montserrat", sans-serif',
     memberheader: {
