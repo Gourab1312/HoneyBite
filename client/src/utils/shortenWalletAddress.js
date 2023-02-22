@@ -1,3 +1,3 @@
 // shorteningWalletAddressForImprovedDisplay
 export const shortenWalletAddress = (address) =>
-  `${address.slice(0, 7)}...${address.slice(address.length - 7)}`;
+  `${address.slice(0, 8)}...${address.slice(address.length - 8)}`;

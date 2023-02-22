@@ -36,7 +36,6 @@ const customTheme = {
     },
 
     logosame: {
-      //   fontFamily: "Open Sans",
       fontFamily: "Montserrat",
       textAlign: "center",
       fontSize: "25px",

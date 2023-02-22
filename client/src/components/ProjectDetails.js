@@ -46,7 +46,9 @@ const ProjectDetails = () => {
     totalFund: projectdetails.total_fund,
     Name: projectdetails.name,
     tokenName: projectdetails.token_name,
+    projectWalletAddress: projectdetails.projectWalletAddress,
   };
+
   return (
     <Box sx={sxprop.headingboxsx}>
       {open && <InvestModal mod={{open, setOpen, investInfo}} />}
@@ -105,7 +107,12 @@ const ProjectDetails = () => {
         </Card>
 
         <Box sx={sxprop.loadbox}>
-          <Button variant="outlined" sx={sxprop.buttonsx} onClick={handleModal}>
+          <Button
+            variant="outlined"
+            sx={sxprop.buttonsx}
+            onClick={handleModal}
+            style={{color: "black"}}
+          >
             Invest Now
           </Button>
         </Box>
@@ -135,7 +142,7 @@ const ProjectDetails = () => {
         ></Route>
         <Route
           path="metrics"
-          element={<Metrics ID={projectdetails._id} />}
+          element={<Metrics projectdetails={projectdetails} />}
         ></Route>
         <Route
           path="allocation"
