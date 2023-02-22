@@ -35,6 +35,13 @@ import TermsAndConditions from "./TermsAndConditions";
 
 import UserContext from "../context/appContext";
 
+import FacebookIcon from "@mui/icons-material/Facebook";
+// import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import TwitterIcon from "@mui/icons-material/Twitter";
+import GithubIcon from "@mui/icons-material/GitHub";
+// import TelegramIcon from "@mui/icons-material/Telegram";
+import LanguageIcon from "@mui/icons-material/Language";
+
 // import axios from "axios";
 
 // importingTransactionContextProviders
@@ -76,67 +83,117 @@ const Dashboard = () => {
   const drawer = (
     <>
       <Toolbar>
-        <Typography variant="logosame">Cryptic</Typography>
+        {/* <Typography variant="logosame">Cryptic</Typography> */}
+        <Typography
+          variant="h4"
+          style={{
+            color: "white",
+            fontWeight: "600",
+            margin: "0px",
+            padding: "0px",
+          }}
+        >
+          Cryptic
+        </Typography>
       </Toolbar>
       <Box sx={sxprop.toolboxsx}>
         {/* ifWalletIsNotConnected */}
         {!currentAccount && (
-          // <Button variant="outlined" sx={sxprop.buttonsx} onClick={handleuser}>
-          <Button
-            variant="outlined"
-            sx={sxprop.buttonsx}
-            onClick={connectWallet}
-          >
-            Connect Wallet
-          </Button>
-        )}
-        {/* ifWalletIsConnected  */}
-        {currentAccount && (
           <>
-            <Button variant="outlined" sx={sxprop.buttonsx} size="small">
-              {shortenWalletAddress(currentAccount)}
+            {/* // <Button variant="outlined" sx={sxprop.buttonsx} onClick={handleuser}> */}
+            <Button
+              variant="outlined"
+              sx={sxprop.buttonsx}
+              onClick={connectWallet}
+            >
+              Connect WEB 3.0 Wallet
             </Button>
 
             <Typography
-              variant="walletConnected"
-              color="grey"
+              variant="h7"
+              color="black"
               gutterBottom
               align="center"
+              style={{fontSize: "12px", marginTop: "8px", fontWeight: "bold"}}
             >
-              Wallet Connected :)
+              Your Cryptic Launchpad experience will be limited without
+              connecting.{" "}
             </Typography>
           </>
         )}
 
-        <Typography variant="captionmod" color="grey" gutterBottom>
-          Your Cryptic Launchpad experience will be limited without connecting.
-        </Typography>
+        {/* ifWalletIsConnected  */}
+        {currentAccount && (
+          <>
+            <Button variant="outlined" sx={sxprop.buttonsx} size="large">
+              {shortenWalletAddress(currentAccount)}
+            </Button>
+
+            <Typography
+              variant="h7"
+              color="white"
+              gutterBottom
+              align="center"
+              style={{
+                fontSize: "12px",
+                marginTop: "8px",
+                fontWeight: "bold",
+                color: "white",
+              }}
+            >
+              Web 3.0 Wallet Connected :)
+            </Typography>
+          </>
+        )}
       </Box>
 
       <Stack
         spacing={1}
         direction="column"
-        sx={{margin: "20px 0", marginLeft: "20px"}}
+        sx={{marginTop: "20px", marginLeft: "20px"}}
       >
-        <Typography variant="listfont" display="block" gutterBottom>
-          <Link to="allprojects" style={{textDecoration: "none"}}>
-            All Projects
-          </Link>
-        </Typography>
-        <Typography variant="listfont" display="block" gutterBottom>
-          <Link to="airdrop" style={{textDecoration: "none"}}>
+        <Typography
+          variant="listfont"
+          display="block"
+          gutterBottom
+          style={{fontSize: "15px"}}
+        >
+          <Link to="airdrop" style={{textDecoration: "none", color: "white"}}>
             AirDrop
           </Link>
         </Typography>
-        <Typography variant="listfont" display="block" gutterBottom>
-          <Link to="membership" style={{textDecoration: "none"}}>
+
+        <Typography
+          variant="listfont"
+          display="block"
+          color="white"
+          gutterBottom
+          style={{fontSize: "15px", color: "white"}}
+        >
+          <Link
+            to="membership"
+            style={{textDecoration: "none", color: "white"}}
+          >
             Membership
+          </Link>
+        </Typography>
+
+        <Typography
+          variant="listfont"
+          display="block"
+          gutterBottom
+          style={{fontSize: "15px", color: "white"}}
+        >
+          <Link
+            to="allprojects"
+            style={{textDecoration: "none", color: "white"}}
+          >
+            All Projects
           </Link>
         </Typography>
       </Stack>
     </>
   );
-
   // ResourceSectionDropdown
   const Resource = (
     <Accordion sx={sxprop.sxAccordian}>
@@ -196,6 +253,25 @@ const Dashboard = () => {
     </Accordion>
   );
 
+  const Socials = (
+    <Stack
+      direction={"row"}
+      spacing={3}
+      alignItems="center"
+      sx={{
+        position: "absolute",
+        alignItems: "center",
+        bottom: 10,
+        marginLeft: "25px",
+      }}
+    >
+      <LanguageIcon style={{color: "white", cursor: "pointer"}} />
+      <FacebookIcon style={{color: "white", cursor: "pointer"}} />
+      <TwitterIcon style={{color: "white", cursor: "pointer"}} />
+      <GithubIcon style={{color: "white", cursor: "pointer"}} />
+    </Stack>
+  );
+
   return (
     <Box sx={{display: "flex"}}>
       <CssBaseline />
@@ -233,15 +309,29 @@ const Dashboard = () => {
             display: {xs: "block", sm: "none"},
             "& .MuiDrawer-paper": {boxSizing: "border-box", width: drawerWidth},
           }}
+          style={{
+            backgroundImage:
+              "linear-gradient(to right bottom, #00426b, #1e608e, #367fb3, #4ca0d8, #62c3ff)",
+          }}
         >
           {drawer}
           {Resource}
           {General}
+          {Socials}
         </Drawer>
-        <Drawer variant="permanent" sx={sxprop.drawersx} open>
+        <Drawer
+          variant="permanent"
+          sx={sxprop.drawersx}
+          open
+          style={{
+            backgroundImage:
+              "linear-gradient(to right bottom, #00426b, #1e608e, #367fb3, #4ca0d8, #62c3ff)",
+          }}
+        >
           {drawer}
           {Resource}
           {General}
+          {Socials}
         </Drawer>
       </Box>
       <Box

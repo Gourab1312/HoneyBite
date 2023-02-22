@@ -64,7 +64,7 @@ const Allprojects = () => {
           </Typography>
         </Box>
 
-        <Grid container spacing={3} sx={{marginTop: "10px"}}>
+        <Grid container spacing={4} sx={{marginTop: "10px"}}>
           {projectList.map((value, index) => {
             return (
               <Grid item xs={12} sm={4} key={index}>
@@ -73,7 +73,7 @@ const Allprojects = () => {
             );
           })}
         </Grid>
-        <Box sx={sxprop.loadbox}>
+        <Box sx={sxprop.loadbox} pt={3}>
           {loader && <CircularProgress />}
           {!loader && btnshow && (
             <Button variant="outlined" sx={sxprop.buttonsx} onClick={showmore}>

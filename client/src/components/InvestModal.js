@@ -34,6 +34,13 @@ const InvestModal = ({mod}) => {
     handleICOLaunchSectionDataChange,
   } = useContext(TransactionContext);
 
+  // fetchAndSetProjectWalletAddress
+  // const fetchAndSetProjectWalletAddress = () => {
+  //   handleICOLaunchSectionDataChange(
+  //     "addressTo",
+  //     mod.investInfo.projectWalletAddress
+  //   );
+
   const iserror = useRef(false);
   const [InvestDetails, SetDetails] = useState({
     projId: mod.investInfo.id,
@@ -41,7 +48,6 @@ const InvestModal = ({mod}) => {
     token_name: mod.investInfo.tokenName,
     invested: 0,
     ProjectName: mod.investInfo.Name,
-
   });
 
   const handleClose = () => mod.setOpen(false);
@@ -79,8 +85,7 @@ const InvestModal = ({mod}) => {
   //   handlingInvestmentsThroughCryptocurrency
   const handleSubmitCryptoInvestmemt = (e) => {
     // console.log("invest fired >>>");
-    // checkValue();
-    // console.log(addressTo);
+
     const {addressTo, amount} = ICOLaunchSectionCryptoInvestmentData;
 
     // check
@@ -93,7 +98,6 @@ const InvestModal = ({mod}) => {
   };
 
   // liveEthereumValue
-
   //   forStoringLiveEthereumPriceInINR
   const [ethereumValueInInr, setEthereumValueInInr] = useState(null);
 
@@ -120,7 +124,6 @@ const InvestModal = ({mod}) => {
           <Typography id="modal-modal-title" variant="h6" component="h2">
             {mod.investInfo.Name}
           </Typography>
-
           {/* displayingLiveEthereumValue */}
           <Stack
             direction={"row"}
@@ -136,7 +139,6 @@ const InvestModal = ({mod}) => {
               {ethereumValueInInr}
             </Typography>
           </Stack>
-
           <Stack
             direction={"row"}
             sx={{
@@ -164,14 +166,17 @@ const InvestModal = ({mod}) => {
             <Typography id="modal-modal-title" variant="h6" component="h2">
               {mod.investInfo.totalFund}
             </Typography>
-          </Stack>
+          </Stack>{" "}
           <Typography id="modal-modal-description" sx={{mt: 2}}>
             Note* Invest must be less than or equal to Total Fund
           </Typography>
+          {/* check */}
+          {/* <Typography id="modal-modal-description" sx={{mt: 2}}>
+            {mod.investInfo.projectWalletAddress}
+          </Typography> */}
           <Typography id="modal-modal-title" variant="h6" component="h2">
             Invest Amount
           </Typography>
-
           {/* forFiatInvestments */}
           {/* <TextField
             name="Amount"
@@ -185,11 +190,10 @@ const InvestModal = ({mod}) => {
               iserror.current && "Invest Amount can't be more than Total Fund"
             }
           /> */}
-
           {/* forCryptoInvestments */}
           {/* enterProjectWalletAddressManuallyForNow */}
           <Grid item sm={12} mb={1} mt={1}>
-            <TextField
+            {/* <TextField
               name="addressTo"
               required
               label="Project Wallet Address"
@@ -197,9 +201,20 @@ const InvestModal = ({mod}) => {
               fullWidth
               type={"text"}
               onChange={(e) => handleICOLaunchSectionDataChange(e, "addressTo")}
+            /> */}
+            <TextField
+              name="addressTo"
+              required
+              // label="Project Wallet Address"
+              // placeholder="Enter project wallet address ?"
+              fullWidth
+              type={"text"}
+              value={mod.investInfo.projectWalletAddress}
+              onChange={(e) =>
+                handleICOLaunchSectionDataChange("addressTo", e.target.value)
+              }
             />
           </Grid>
-
           <Grid item sm={12} mb={1} mt={1}>
             {/* enterInvestmentValueInEthForNow */}
             <TextField
@@ -209,10 +224,11 @@ const InvestModal = ({mod}) => {
               placeholder="Enter investment amount (in Eth) ?"
               fullWidth
               type={"number"}
-              onChange={(e) => handleICOLaunchSectionDataChange(e, "amount")}
+              onChange={(e) =>
+                handleICOLaunchSectionDataChange("amount", e.target.value)
+              }
             />
           </Grid>
-
           <Grid item sm={12} mt={1}>
             {isLoading ? (
               <Box sx={{display: "flex"}}>
