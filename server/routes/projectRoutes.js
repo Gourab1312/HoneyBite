@@ -4,30 +4,28 @@ const express = require("express");
 const router = express.Router();
 
 router.post('/addproject', async (req, res) => {
-    const { name,
-        swap_rate,
-        token_name,
-        total_fund,
-        total_token,
-        projWallAddress,
-        start_date,
-        end_date,
-        linkedln_url,
-        website_url,
-        telegram_url,
-        git_url,
-        writeup,
-        img_url } = req.body;
-    try {
-        const existingproj = await ProjectDetails.findOne({ token_name: req.body.token_name })
-        if (existingproj) {
-            throw {
-                statusCode: 400,
-                message: "Give Unique token name"
-            }
-        }
-        token_name = token_name.toUpperCase();
-
+  const { name,
+    swap_rate,
+    token_name,
+    total_fund,
+    total_token,
+    projectWalletAddress,
+    start_date,
+    end_date,
+    linkedln_url,
+    website_url,
+    telegram_url,
+    git_url,
+    writeup,
+    img_url } = req.body;
+  try {
+    const existingproj = await ProjectDetails.findOne({ token_name: req.body.token_name })
+    if (existingproj) {
+      throw {
+        statusCode: 400,
+        message: "Give Unique token name"
+      }
+    }
     const newProj = await new ProjectDetails({
       name,
       swap_rate,
@@ -71,8 +69,8 @@ router.get("/getprojects/some", async (req, res) => {
   // else {
   //     jsnres = await ProjectDetails.find({ start_date: { $lte: systime2 } }).skip(page * projperpage).limit(projperpage)
   // }
-  jsnres = await ProjectDetails.find({start_date: {$lte: systime1}})
-    .sort({end_date: -1})
+  jsnres = await ProjectDetails.find({ start_date: { $lte: systime1 } })
+    .sort({ end_date: -1 })
     .skip(page * projperpage)
     .limit(projperpage);
   res.status(200).json({
@@ -85,8 +83,8 @@ router.get("/getprojectsfuture", async (req, res) => {
   const projperpage = 3;
   var systime1 = new Date();
   systime1.setDate(systime1.getDate() + 1);
-  jsnres = await ProjectDetails.find({start_date: {$gte: systime1}})
-    .sort({end_date: -1})
+  jsnres = await ProjectDetails.find({ start_date: { $gte: systime1 } })
+    .sort({ end_date: -1 })
     .skip(page * projperpage)
     .limit(projperpage);
   res.status(200).json({
