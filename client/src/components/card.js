@@ -31,7 +31,7 @@ const Cards = ({ido}) => {
   return (
     <ThemeProvider theme={theme}>
       <Link to="projectdetails" style={{textDecoration: "none"}}>
-        <Card sx={sxprop.customcardsx} onClick={handleproject}>
+        <Card sx={sxprop.customcardsx} onClick={handleproject} m={5}>
           <CardContent>
             <Grid
               container
@@ -63,8 +63,15 @@ const Cards = ({ido}) => {
                 </Typography>
               </Grid>
             </Grid>
-            <Typography variant="body2" sx={{margin: "10px", height:'120px',width:{sm:'328px',xs:'250px'}}}>
-              {ido.writeup.slice(0, 200)}
+            <Typography
+              variant="body2"
+              sx={{
+                margin: "10px",
+                height: "120px",
+                width: {sm: "328px", xs: "250px"},
+              }}
+            >
+              {ido.writeup.slice(0, 150)}
             </Typography>
             <Grid container spacing={1}>
               <Grid item xs={9}>

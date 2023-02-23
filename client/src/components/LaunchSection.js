@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import {
   TextField,
   InputLabel,
@@ -11,16 +11,18 @@ import {
 } from "@mui/material";
 import sxprop from "./sxStyle";
 import axios from "axios";
-import { fontWeight } from "@mui/system";
+import {fontWeight} from "@mui/system";
 
 const LaunchSection = () => {
   const [pics, Setpics] = useState(null);
   const [showSucces, setSucces] = useState(false);
   const [showText, setShow] = useState(false);
+
   const calc_SwapRate = (ttlfund, ttltoken) => {
     project.swap_rate = ttlfund / ttltoken;
     return ttlfund / ttltoken;
-  }
+  };
+
   const handledate = (e) => {
     var dateEntered = new Date(e.target.value);
     console.log(dateEntered.toISOString());
@@ -32,7 +34,7 @@ const LaunchSection = () => {
     token_name: "",
     total_fund: "",
     total_token: "",
-    projWallAddress: "",
+    projectWalletAddress: "",
     start_date: "",
     end_date: "",
     linkedln_url: "",
@@ -74,9 +76,8 @@ const LaunchSection = () => {
     e.preventDefault();
     setSucces(true);
     if (project.swap_rate === NaN) {
-      alert('Give proper values')
-    }
-    else {
+      alert("Give proper values");
+    } else {
       let uri = await uploadPhoto(pics);
       console.log(uri);
       project.img_url = uri;
@@ -93,7 +94,6 @@ const LaunchSection = () => {
         });
       console.log(project);
     }
-
   };
 
   return (
@@ -106,11 +106,11 @@ const LaunchSection = () => {
       }}
     >
       <Box m={3}>
-        <Typography variant="h4" style={{ color: "#1976d2", fontWeight: "600" }}>
+        <Typography variant="h4" style={{color: "#1976d2", fontWeight: "600"}}>
           ICO Launch Section
         </Typography>
 
-        <Typography variant="h7" style={{ fontWeight: "600" }}>
+        <Typography variant="h7" style={{fontWeight: "600"}}>
           Launch your WEB 3.0 project in minutes.
         </Typography>
 
@@ -127,7 +127,7 @@ const LaunchSection = () => {
                   placeholder="Enter name of your project (Ex. Wink)?"
                   fullWidth
                   onChange={(e) => {
-                    setProject({ ...project, name: e.target.value });
+                    setProject({...project, name: e.target.value});
                   }}
                 />
               </Grid>
@@ -141,7 +141,7 @@ const LaunchSection = () => {
                   placeholder="Enter name of your token/ coin (Ex. WNK)?"
                   fullWidth
                   onChange={(e) => {
-                    setProject({ ...project, token_name: e.target.value });
+                    setProject({...project, token_name: e.target.value});
                   }}
                 />
               </Grid>
@@ -156,7 +156,7 @@ const LaunchSection = () => {
                   fullWidth
                   type={"number"}
                   onChange={(e) => {
-                    setProject({ ...project, total_fund: e.target.value });
+                    setProject({...project, total_fund: e.target.value});
                   }}
                 />
               </Grid>
@@ -185,7 +185,7 @@ const LaunchSection = () => {
                   fullWidth
                   type={"number"}
                   onChange={(e) => {
-                    setProject({ ...project, total_token: e.target.value });
+                    setProject({...project, total_token: e.target.value});
                   }}
                 />
               </Grid>
@@ -201,7 +201,7 @@ const LaunchSection = () => {
                   onChange={(e) => {
                     setProject({
                       ...project,
-                      projWallAddress: e.target.value,
+                      projectWalletAddress: e.target.value,
                     });
                   }}
                 />
@@ -212,13 +212,13 @@ const LaunchSection = () => {
                 <TextField
                   name="startingDate"
                   required
-                  InputLabelProps={{ shrink: true }}
+                  InputLabelProps={{shrink: true}}
                   label="ICO Starting Date"
                   placeholder="When will your ICO start ?"
                   fullWidth
                   type={"date"}
                   onChange={(e) => {
-                    setProject({ ...project, start_date: handledate(e) });
+                    setProject({...project, start_date: handledate(e)});
                   }}
                 />
               </Grid>
@@ -228,13 +228,13 @@ const LaunchSection = () => {
                 <TextField
                   name="endingDate"
                   required
-                  InputLabelProps={{ shrink: true }}
+                  InputLabelProps={{shrink: true}}
                   label="ICO Ending Date"
                   placeholder="When will your ICO end ?"
                   fullWidth
                   type={"date"}
                   onChange={(e) => {
-                    setProject({ ...project, end_date: handledate(e) });
+                    setProject({...project, end_date: handledate(e)});
                   }}
                 />
               </Grid>
@@ -249,7 +249,7 @@ const LaunchSection = () => {
                   placeholder="Enter LinkedIn URL ?"
                   fullWidth
                   onChange={(e) => {
-                    setProject({ ...project, linkedln_url: e.target.value });
+                    setProject({...project, linkedln_url: e.target.value});
                   }}
                 />
               </Grid>
@@ -264,7 +264,7 @@ const LaunchSection = () => {
                   placeholder="Enter project's public URL ?"
                   fullWidth
                   onChange={(e) => {
-                    setProject({ ...project, website_url: e.target.value });
+                    setProject({...project, website_url: e.target.value});
                   }}
                 />
               </Grid>
@@ -296,7 +296,7 @@ const LaunchSection = () => {
                   label="Telegram Channel"
                   fullWidth
                   onChange={(e) => {
-                    setProject({ ...project, telegram_url: e.target.value });
+                    setProject({...project, telegram_url: e.target.value});
                   }}
                 />
               </Grid>
@@ -310,7 +310,7 @@ const LaunchSection = () => {
                   // InputLabelProps={{shrink: true}}
                   fullWidth
                   onChange={(e) => {
-                    setProject({ ...project, writeup: e.target.value });
+                    setProject({...project, writeup: e.target.value});
                   }}
                 />
               </Grid>
@@ -335,7 +335,7 @@ const LaunchSection = () => {
                   size="large"
                   variant="outlined"
                   type="submit"
-                  sx={{ fontWeight: 800, fontSize: "15px" }}
+                  sx={{fontWeight: 800, fontSize: "15px"}}
                 >
                   Launch ICO
                 </Button>

@@ -48,10 +48,10 @@ export const TransactionsProvider = ({children}) => {
   };
 
   // forICOLaunchSection
-  const handleICOLaunchSectionDataChange = (e, name) => {
+  const handleICOLaunchSectionDataChange = (name, value) => {
     setICOLaunchSectionCryptoInvestmentData((prevState) => ({
       ...prevState,
-      [name]: e.target.value,
+      [name]: value,
     }));
   };
 

@@ -1,18 +1,35 @@
 // this is componets where all the custom styles are done and passed as props
 const sxprop = {
   loadbox: {display: "flex", justifyContent: "center", margin: "15px 10px"},
+  logo: {
+    backgroundImage: `url('../assets/logo.png)`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    height: 100,
+  },
   toolboxsx: {
     display: "flex",
     flexDirection: "column",
     AlignContent: "center",
-    margin: "15px 10px",
+    margin: "1px 10px",
   },
   buttonsx: {
     width: "fitcontent",
     height: "fitcontent",
-    borderRadius: "20px",
+    borderRadius: "10px",
+    border: "2px solid #1976d2",
     fontFamily: "Montserrat",
-    fontWeight: "600",
+    fontWeight: "800",
+    color: "#1976d2",
+  },
+  connectWalletButton: {
+    width: "fitcontent",
+    height: "fitcontent",
+    borderRadius: "10px",
+    border: "2px solid white",
+    fontFamily: "Montserrat",
+    fontWeight: "800",
+    color: "white",
   },
   greybtnsx: {
     width: "fitcontent",
@@ -30,7 +47,7 @@ const sxprop = {
   sxAccordian: {
     "&.MuiAccordion-root": {boxShadow: 0},
     "&:before": {
-      backgroundColor: "transparent",
+      backgroundColor: "transperant",
       boxShadow: 0,
     },
   },
@@ -38,9 +55,12 @@ const sxprop = {
     display: {xs: "none", sm: "block"},
     "& .MuiDrawer-paper": {
       boxSizing: "border-box",
-      width: 240,
-      borderRadius: "40px",
-      boxShadow: " 31px 0px 55px -19px rgba(138,138,138,1)",
+      width: 250,
+      borderRadius: "0px 25px 25px 0px",
+      boxShadow: "10px 0px 30px 0px rgba(138,138,138,1)",
+      padding: "10px",
+      backgroundImage:
+        "linear-gradient(to right bottom, #00426b, #1e608e, #367fb3, #4ca0d8, #62c3ff)",
     },
   },
   headingboxsx: {
@@ -55,11 +75,13 @@ const sxprop = {
   },
 
   customcardsx: {
-    width:'100%',
+    width: "100%",
     borderRadius: "10px",
     backgroundColor: "#e9e9e9",
-    boxShadow: 5,
+    boxShadow: 8,
+    padding: "10px",
   },
+
   headercardsx: {
     maxWidth: 500,
     borderRadius: "30px",
