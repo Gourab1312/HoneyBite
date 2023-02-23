@@ -48,7 +48,14 @@ export const TransactionsProvider = ({children}) => {
   };
 
   // forICOLaunchSection
+  // const handleICOLaunchSectionDataChange = (e, name) => {
+  //   setICOLaunchSectionCryptoInvestmentData((prevState) => ({
+  //     ...prevState,
+  //     [name]: e.target.value,
+  //   }));
+  // };
   const handleICOLaunchSectionDataChange = (name, value) => {
+    console.log("stored", value);
     setICOLaunchSectionCryptoInvestmentData((prevState) => ({
       ...prevState,
       [name]: value,
@@ -76,7 +83,7 @@ export const TransactionsProvider = ({children}) => {
           })
         );
 
-        console.log(structuredTransactions);
+        // console.log(structuredTransactions);
 
         setTransactions(structuredTransactions);
       } else {
