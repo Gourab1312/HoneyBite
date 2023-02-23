@@ -26,7 +26,7 @@ router.post('/addproject', async (req, res) => {
                 message: "Give Unique token name"
             }
         }
-        token_name = token_name.toUpperCase();
+    
 
         const newProj = await new ProjectDetails({
             name,
