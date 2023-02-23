@@ -95,6 +95,21 @@ const InvestModal = ({mod}) => {
     e.preventDefault();
     if (!amount || !addressTo) return;
     sendTransaction();
+
+    //     if (InvestDetails.invested == 0 && !iserror.current) {
+    //       alert("Invested Can't be Zero or more that max fund");
+    //     } else {
+    //       // TriggerBlockchainWalletTransaction
+    //       sendTransaction();
+
+    //       console.log(InvestDetails);
+    //       axios
+    //         .post("http://localhost:5000/investproj", InvestDetails)
+    //         .then((res) => {
+    //           console.log(res);
+    //         });
+    //     }
+    //     console.log("this working");
   };
 
   // liveEthereumValue

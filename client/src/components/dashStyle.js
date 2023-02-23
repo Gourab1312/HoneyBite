@@ -30,6 +30,18 @@ const customTheme = {
       fontWeight: "700",
     },
 
+    faqQ: {
+      fontFamily: "Montserrat",
+      fontSize: "13px",
+      fontWeight: "800",
+    },
+
+    faqA: {
+      fontFamily: "Montserrat",
+      fontSize: "13px",
+      fontWeight: "400",
+    },
+
     captionmod: {
       marginTop: "5px",
       fontSize: "12px",
@@ -66,9 +78,9 @@ const customTheme = {
     },
 
     cardhrdtxt: {
-      fontFamily: "Open Sans",
-      fontSize: "14px",
-      fontWeight: "600",
+      fontFamily: "Montserrat",
+      fontSize: "15px",
+      fontWeight: "700",
     },
   },
   stack: {

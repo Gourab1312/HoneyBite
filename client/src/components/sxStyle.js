@@ -16,7 +16,9 @@ const sxprop = {
   buttonsx: {
     width: "fitcontent",
     height: "fitcontent",
-    borderRadius: "10px",
+    paddingLeft: "10px",
+    paddingRight: "10px",
+    borderRadius: "5px",
     border: "2px solid #1976d2",
     fontFamily: "Montserrat",
     fontWeight: "800",
@@ -68,7 +70,7 @@ const sxprop = {
     fontFamily: "Montserrat",
     fontWeight: "600",
   },
-  subboxsx: {margin: "10px 25px"},
+  subboxsx: {margin: "10px 10px"},
   buttongrpsx: {
     margin: "18px 0",
     marginTop: {xs: "45px"},
@@ -83,21 +85,21 @@ const sxprop = {
   },
 
   headercardsx: {
-    maxWidth: 500,
+    width: "50%",
     borderRadius: "30px",
     backgroundColor: "transparent",
     boxShadow: 0,
   },
   sxfaq: {
     "&.MuiAccordion-root": {
-      boxShadow: 0,
-      width: "50%",
-      marginTop: "40px",
+      boxShadow: 3,
+      width: "100%",
+      marginTop: "20px",
     },
     "&:before": {
       backgroundColor: "transparent",
       boxShadow: 0,
-      width: "50%",
+      width: "100%",
     },
   },
   membercardsx: {
