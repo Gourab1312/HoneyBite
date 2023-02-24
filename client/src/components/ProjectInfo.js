@@ -1,11 +1,11 @@
 import React from "react";
-import {Grid, Stack} from "@mui/material";
+import { Grid, Stack } from "@mui/material";
 import Typography from "@mui/material/Typography";
 
-const ProjectInfo = ({projectdetails}) => {
+const ProjectInfo = ({ projectdetails }) => {
   return (
     <div>
-      <Grid container spacing={5} sx={{margin: "2px"}}>
+      <Grid container spacing={5} sx={{ margin: "2px" }}>
         <Grid item xs={12} sm={6}>
           <Stack direction={"column"}>
             <Typography variant="cardhrdtxt">ICO INFORMATION</Typography>
@@ -15,7 +15,7 @@ const ProjectInfo = ({projectdetails}) => {
               </Grid>
               <Grid item xs={6}>
                 <Typography variant="body2">
-                  {projectdetails.start_date.slice(0, 10)}
+                  {projectdetails.start_date?.slice(0, 10)}
                 </Typography>
               </Grid>
               {/* <Grid item xs={6}>
@@ -29,7 +29,7 @@ const ProjectInfo = ({projectdetails}) => {
               </Grid>
               <Grid item xs={6}>
                 <Typography variant="body2">
-                  {projectdetails.end_date.slice(0, 10)}
+                  {projectdetails.end_date?.slice(0, 10)}
                 </Typography>
               </Grid>
               <Grid item xs={6}>

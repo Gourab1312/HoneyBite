@@ -137,7 +137,7 @@ const ProjectDetails = () => {
       <Divider variant="middle" sx={{margin: "20px"}} />
       <Routes>
         <Route
-          path="info"
+          path="/*"
           element={<ProjectInfo projectdetails={projectdetails} />}
         ></Route>
         <Route

@@ -4,8 +4,10 @@ import { useForm } from "react-hook-form";
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export const Login = (props) => {
+  const navigate = useNavigate();
   const [showpass, setShow] = useState(true)
   const {
     register,
@@ -17,6 +19,7 @@ export const Login = (props) => {
     axios.post('http://localhost:5000/userLogin', data).then((res) => {
       console.log(res);
       localStorage.setItem('crypticUser', JSON.stringify(res.data.user))
+      navigate("/dashboard");
     }).catch((error) => {
       alert(error.message)
     })
@@ -27,15 +30,17 @@ export const Login = (props) => {
       <Form className="login-form" onSubmit={handleSubmit(onSubmit)}>
         <Form.Field>
           <label>Email</label>
+          <span className="passwordHolder">
           <input
             placeholder="Email"
             type="email"
             {...register("email", {
               required: true,
               pattern:
-                /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                '/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/',
             })}
           />
+          </span>
         </Form.Field>
         {errors.email && <p className="error-paragraph">Please check the Email</p>}
         <Form.Field>
