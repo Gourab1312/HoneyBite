@@ -36,10 +36,10 @@ import TermsAndConditions from "./TermsAndConditions";
 import UserContext from "../context/appContext";
 
 import FacebookIcon from "@mui/icons-material/Facebook";
-// import LinkedInIcon from "@mui/icons-material/LinkedIn";
+
 import TwitterIcon from "@mui/icons-material/Twitter";
 import GithubIcon from "@mui/icons-material/GitHub";
-// import TelegramIcon from "@mui/icons-material/Telegram";
+
 import LanguageIcon from "@mui/icons-material/Language";
 
 // import axios from "axios";
@@ -52,9 +52,12 @@ import ConnectWalletError from "./ConnectWalletError";
 import AirDropDetails from "./AirDropDetails";
 import PaymentSuccessfull from "./PaymentSuccessfull";
 
+
+
 const drawerWidth = 300;
 
 const Dashboard = () => {
+  
   const context = useContext(UserContext);
   const {user, setuser} = context;
 
@@ -79,6 +82,12 @@ const Dashboard = () => {
     formData,
     isLoading,
   } = useContext(TransactionContext);
+  const handleConnect = async () => {
+
+    connectWallet()
+
+
+  }
 
   const drawer = (
     <>
@@ -107,7 +116,7 @@ const Dashboard = () => {
             <Button
               variant="outlined"
               sx={sxprop.connectWalletButton}
-              onClick={connectWallet}
+              onClick={handleConnect}
             >
               Connect WEB 3.0 Wallet
             </Button>

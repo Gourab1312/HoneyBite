@@ -1,5 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {ethers} from "ethers";
+import axios from "axios";
+import {useNavigate} from "react-router-dom";
 
 import {contractABI, contractAddress} from "../utils/constants";
 
@@ -143,13 +145,31 @@ export const TransactionsProvider = ({children}) => {
   const connectWallet = async () => {
     try {
       if (!ethereum) return alert("Please install MetaMask.");
+      let user = JSON.parse(localStorage.getItem("crypticUser"));
+      if (user) {
+        const accounts = await ethereum.request({
+          method: "eth_requestAccounts",
+        });
 
-      // else
+        setCurrentAccount(accounts[0]);
+        // post
+        axios
+          .post("http://localhost:5000/connectWallet", {
+            email: user.emailAddress,
+            walletAddress: accounts[0],
+          })
+          .then((res) => {
+            console.log(res);
+            console.log(accounts);
+          })
+          .catch((error) => {
+            alert(error.message);
+          });
+      } else {
+        alert("first login");
+      }
 
-      const accounts = await ethereum.request({method: "eth_requestAccounts"});
-
-      setCurrentAccount(accounts[0]);
-      window.location.reload();
+      // window.location.reload();
     } catch (error) {
       console.log(error);
 
