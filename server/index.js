@@ -5,6 +5,7 @@ const cors = require("cors");
 const userRoutes = require("./routes/userRoutes");
 const projectRoutes = require("./routes/projectRoutes");
 const allocationRoute = require("./routes/allocationRoute");
+const membershipRoute = require("./routes/membershipRoute");
 const stripe = require("./routes/stripe");
 dotenv.config();
 
@@ -15,6 +16,7 @@ app.use(express.json());
 app.use(userRoutes);
 app.use(projectRoutes);
 app.use(allocationRoute);
+app.use(membershipRoute);
 app.use(stripe);
 
 const port = process.env.PORT || 5000;
