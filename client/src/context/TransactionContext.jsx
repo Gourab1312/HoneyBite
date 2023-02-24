@@ -1,11 +1,14 @@
-import React, {useEffect, useState} from "react";
-import {ethers} from "ethers";
+import React, { useEffect, useState } from "react";
+import { ethers } from "ethers";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-import {contractABI, contractAddress} from "../utils/constants";
+import { contractABI, contractAddress } from "../utils/constants";
 
 export const TransactionContext = React.createContext();
 
-const {ethereum} = window;
+
+const { ethereum } = window;
 
 const createEthereumContract = () => {
   const provider = new ethers.providers.Web3Provider(ethereum);
@@ -19,7 +22,7 @@ const createEthereumContract = () => {
   return transactionsContract;
 };
 
-export const TransactionsProvider = ({children}) => {
+export const TransactionsProvider = ({ children }) => {
   const [formData, setformData] = useState({
     addressTo: "",
     amount: "",
@@ -44,7 +47,7 @@ export const TransactionsProvider = ({children}) => {
   const [transactions, setTransactions] = useState([]);
 
   const handleChange = (e, name) => {
-    setformData((prevState) => ({...prevState, [name]: e.target.value}));
+    setformData((prevState) => ({ ...prevState, [name]: e.target.value }));
   };
 
   // forICOLaunchSection
@@ -100,7 +103,7 @@ export const TransactionsProvider = ({children}) => {
       // ifNoEthereumWalletIsFound?
       if (!ethereum) return alert("Please install MetaMask.");
 
-      const accounts = await ethereum.request({method: "eth_accounts"});
+      const accounts = await ethereum.request({ method: "eth_accounts" });
 
       if (accounts.length) {
         setCurrentAccount(accounts[0]);
@@ -137,11 +140,31 @@ export const TransactionsProvider = ({children}) => {
   const connectWallet = async () => {
     try {
       if (!ethereum) return alert("Please install MetaMask.");
+      let user = JSON.parse(localStorage.getItem("crypticUser"));
+      if (user) {
+        const accounts = await ethereum.request({
+          method: "eth_requestAccounts",
+        });
 
-      const accounts = await ethereum.request({method: "eth_requestAccounts"});
+        setCurrentAccount(accounts[0]);
+        // post
+        axios
+          .post("http://localhost:5000/connectWallet", {
+            email: user.emailAddress,
+            walletAddress: accounts[0],
+          })
+          .then((res) => {
+            console.log(res);
+            console.log(accounts);
+          })
+          .catch((error) => {
+            alert(error.message);
+          });
+      } else {
+        alert("first login")
+      }
 
-      setCurrentAccount(accounts[0]);
-      window.location.reload();
+      // window.location.reload();
     } catch (error) {
       console.log(error);
 
@@ -154,7 +177,7 @@ export const TransactionsProvider = ({children}) => {
     try {
       if (ethereum) {
         // const {addressTo, amount, keyword, message} = formData;
-        const {addressTo, amount} = ICOLaunchSectionCryptoInvestmentData;
+        const { addressTo, amount } = ICOLaunchSectionCryptoInvestmentData;
         const transactionsContract = createEthereumContract();
         const parsedAmount = ethers.utils.parseEther(amount);
 

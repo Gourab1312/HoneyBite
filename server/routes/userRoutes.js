@@ -47,6 +47,7 @@ router.post('/connectWallet', async (req, res) => {
         const user = await CryptoUser.findOne({ emailAddress: email })
         if (user) {
             if (user.walletAddress == walletAddress) {
+                console.log('worked');
                 res.status(200).json({
                     success: true
                 })
