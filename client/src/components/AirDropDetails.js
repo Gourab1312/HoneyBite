@@ -1,5 +1,5 @@
-import React, {useState, useContext} from "react";
-import {Avatar, Divider, Grid, Stack} from "@mui/material";
+import React, { useState, useContext, useEffect } from "react";
+import { Avatar, Divider, Grid, Stack } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import sxprop from "./sxStyle";
@@ -15,20 +15,20 @@ import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import {Link, Route, Routes} from "react-router-dom";
+import { Link, Route, Routes } from "react-router-dom";
 import Metrics from "./Metrics";
 import ProjectInfo from "./ProjectInfo";
 import Allocation from "./Allocation";
 import YourBid from "./YourBid";
 import UserContext from "../context/appContext";
 import InvestModal from "./InvestModal";
-import {TransactionContext} from "../context/TransactionContext";
+import { TransactionContext } from "../context/TransactionContext";
+import axios from "axios";
 
 const AirDropDetails = () => {
-  const {currentAccount} = useContext(TransactionContext);
+  const { currentAccount } = useContext(TransactionContext);
   const context = useContext(UserContext);
-  const {projectdetails} = context;
-  const [isventure, setventure] = useState(true);
+  const { projectdetails, setprojectList } = context;
   const [open, setOpen] = useState(false);
 
   const handleModal = () => {
@@ -46,9 +46,23 @@ const AirDropDetails = () => {
     Name: projectdetails.name,
     tokenName: projectdetails.token_name,
   };
+
+
+  const getpjtdtls = async (id) => {
+    axios.post('http://localhost:5000/getOneproj', { pjtid: id }).then((res) => {
+      setprojectList(res.data.pjt)
+      console.log(res);
+    }).catch((error) => {
+      alert(error.message)
+    })
+  }
+  useEffect(() => {
+    getpjtdtls(localStorage.getItem('projId'))
+  }, [])
+
   return (
     <Box sx={sxprop.headingboxsx}>
-      {open && <InvestModal mod={{open, setOpen, investInfo}} />}
+      {open && <InvestModal mod={{ open, setOpen, investInfo }} />}
       <Stack
         direction={"column"}
         spacing={4}
@@ -62,7 +76,7 @@ const AirDropDetails = () => {
             <Grid
               container
               spacing={1}
-              sx={{alignItems: "center", marginBottom: "10px"}}
+              sx={{ alignItems: "center", marginBottom: "10px" }}
             >
               <Grid item xs={10}>
                 <Typography variant="headingcon">
@@ -84,10 +98,10 @@ const AirDropDetails = () => {
               <Grid item xs={2}>
                 <Typography variant="cardhrdtxt">
                   {projectdetails.img_url == "NONE" ? (
-                    <Avatar sx={{bgcolor: "#838588"}}>NO</Avatar>
+                    <Avatar sx={{ bgcolor: "#838588" }}>NO</Avatar>
                   ) : (
                     <Avatar
-                      sx={{bgcolor: "#838588"}}
+                      sx={{ bgcolor: "#838588" }}
                       src={projectdetails.img_url}
                     />
                   )}
@@ -96,7 +110,7 @@ const AirDropDetails = () => {
             </Grid>
             <Typography
               variant="body2"
-              sx={{margin: "10px", whiteSpace: "pre-line"}}
+              sx={{ margin: "10px", whiteSpace: "pre-line" }}
             >
               {projectdetails.writeup}
             </Typography>
@@ -108,32 +122,32 @@ const AirDropDetails = () => {
           </Button>
         </Box>
       </Stack>
-      <Stack direction={"row"} spacing={4} sx={{margin: "20px"}}>
+      <Stack direction={"row"} spacing={4} sx={{ margin: "20px" }}>
         <Typography>
-          <Link to="info" style={{textDecoration: "none"}}>
+          <Link to="info" style={{ textDecoration: "none" }}>
             Project Details
           </Link>
         </Typography>
         <Typography>
-          <Link to="metrics" style={{textDecoration: "none"}}>
+          <Link to="metrics" style={{ textDecoration: "none" }}>
             Metrics
           </Link>
         </Typography>
         <Typography>
-          <Link to="allocation" style={{textDecoration: "none"}}>
+          <Link to="allocation" style={{ textDecoration: "none" }}>
             Your Allocation
           </Link>
         </Typography>
       </Stack>
-      <Divider variant="middle" sx={{margin: "20px"}} />
+      <Divider variant="middle" sx={{ margin: "20px" }} />
       <Routes>
         <Route
-          path="info"
+          path="/*"
           element={<ProjectInfo projectdetails={projectdetails} />}
         ></Route>
         <Route
           path="metrics"
-          element={<Metrics ID={projectdetails._id} />}
+          element={<Metrics projectdetails={projectdetails} />}
         ></Route>
         <Route
           path="allocation"
@@ -160,13 +174,59 @@ const AirDropDetails = () => {
           <Stack
             spacing={1}
             direction="column"
-            sx={{marginTop: "20px", marginLeft: "20px"}}
+            sx={{ marginTop: "0px", marginLeft: "20px", width: "90%" }}
           >
             <Typography variant="listfont" display="block" gutterBottom>
-              What is Muon Network ?
+              How to invest in this ICO ?
             </Typography>
+            <Typography
+              variant="listfont"
+              display="block"
+              gutterBottom
+              style={{ fontWeight: "400" }}
+            >
+              Press the [INVEST NOW] button to start the investing procedure.
+            </Typography>
+
             <Typography variant="listfont" display="block" gutterBottom>
-              What makes Muon Network Unique?
+              Can I invest using cryptocurrencies ?
+            </Typography>
+            <Typography
+              variant="listfont"
+              display="block"
+              gutterBottom
+              style={{ fontWeight: "400" }}
+            >
+              Yes, you can invest using cryptocurrencies (Ethers) for investing
+              in any ICO.
+            </Typography>
+
+            <Typography variant="listfont" display="block" gutterBottom>
+              Can I invest using fiat currencies ?
+            </Typography>
+            <Typography
+              variant="listfont"
+              display="block"
+              gutterBottom
+              style={{ fontWeight: "400" }}
+            >
+              No, you cannot make ICO investment using fiat cuurrencies for now
+              but our team is working on implementing that soon.
+            </Typography>
+
+            <Typography variant="listfont" display="block" gutterBottom>
+              What's an ICO ?
+            </Typography>
+            <Typography
+              variant="listfont"
+              display="block"
+              gutterBottom
+              style={{ fontWeight: "400" }}
+            >
+              An initial coin offering (ICO) is a type of capital-raising
+              activity in the cryptocurrency and blockchain environment. The ICO
+              can be viewed as an initial public offering (IPO) that uses
+              cryptocurrencies.
             </Typography>
           </Stack>
         </AccordionDetails>

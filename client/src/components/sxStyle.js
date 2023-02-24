@@ -1,6 +1,6 @@
 // this is componets where all the custom styles are done and passed as props
 const sxprop = {
-  loadbox: {display: "flex", justifyContent: "center", margin: "15px 10px"},
+  loadbox: { display: "flex", justifyContent: "center", margin: "15px 10px" },
   logo: {
     backgroundImage: `url('../assets/logo.png)`,
     backgroundSize: "cover",
@@ -47,14 +47,21 @@ const sxprop = {
     },
   },
   sxAccordian: {
-    "&.MuiAccordion-root": {boxShadow: 0},
+    color: 'white',
+    marginTop:'10px',
+
+    "&.MuiAccordion-root": {
+      backgroundColor: 'transparent',
+      border:0
+    },
     "&:before": {
-      backgroundColor: "transperant",
+      backgroundImage:
+        "linear-gradient(to right bottom, #00426b, #1e608e, #367fb3, #4ca0d8, #62c3ff)",
       boxShadow: 0,
     },
   },
   drawersx: {
-    display: {xs: "none", sm: "block"},
+    display: { xs: "none", sm: "block" },
     "& .MuiDrawer-paper": {
       boxSizing: "border-box",
       width: 250,
@@ -70,10 +77,10 @@ const sxprop = {
     fontFamily: "Montserrat",
     fontWeight: "600",
   },
-  subboxsx: {margin: "10px 15px"},
+  subboxsx: { margin: "10px 15px" },
   buttongrpsx: {
     margin: "18px 0",
-    marginTop: {xs: "45px"},
+    marginTop: { xs: "45px" },
   },
 
   customcardsx: {

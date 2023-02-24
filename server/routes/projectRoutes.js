@@ -78,6 +78,21 @@ router.get("/getprojects/some", async (req, res) => {
   });
 });
 
+router.post('/getOneproj', async (req, res) => {
+  try {
+    const { pjtid } = req.body
+    let pjt = await ProjectDetails.findById(pjtid)
+    res.status(200).json({
+      pjt
+    })
+  } catch (error) {
+    res.status(error.statusCode || 500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+})
+
 router.get("/getprojectsfuture", async (req, res) => {
   const page = req.query.page || 0;
   const projperpage = 3;

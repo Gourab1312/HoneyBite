@@ -1,5 +1,5 @@
 // This component is the dashboard where all user interacts with all the components
-import React, {useState, useContext, useEffect} from "react";
+import React, { useState, useContext, useEffect } from "react";
 import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
 import Drawer from "@mui/material/Drawer";
@@ -18,7 +18,7 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
-import {Link, Route, Routes} from "react-router-dom";
+import { Link, Route, Routes } from "react-router-dom";
 // components import
 import Allprojects from "./Allprojects";
 import AirDrop from "./AirDrop";
@@ -45,9 +45,9 @@ import LanguageIcon from "@mui/icons-material/Language";
 // import axios from "axios";
 
 // importingTransactionContextProviders
-import {TransactionContext} from "../context/TransactionContext";
+import { TransactionContext } from "../context/TransactionContext";
 
-import {shortenWalletAddress} from "../utils/shortenWalletAddress";
+import { shortenWalletAddress } from "../utils/shortenWalletAddress";
 import ConnectWalletError from "./ConnectWalletError";
 import AirDropDetails from "./AirDropDetails";
 import PaymentSuccessfull from "./PaymentSuccessfull";
@@ -57,9 +57,9 @@ import PaymentSuccessfull from "./PaymentSuccessfull";
 const drawerWidth = 300;
 
 const Dashboard = () => {
-  
+
   const context = useContext(UserContext);
-  const {user, setuser} = context;
+  const { user, setuser } = context;
 
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -93,7 +93,7 @@ const Dashboard = () => {
     <>
       <Toolbar>
         {/* <Typography variant="logosame">Cryptic</Typography> */}
-        <Link to="/" style={{textDecoration: "none"}}>
+        <Link to="/" style={{ textDecoration: "none" }}>
           <Typography
             variant="h5"
             style={{
@@ -126,7 +126,7 @@ const Dashboard = () => {
               color="black"
               gutterBottom
               align="center"
-              style={{fontSize: "12px", marginTop: "8px", fontWeight: "bold"}}
+              style={{ fontSize: "12px", marginTop: "8px", fontWeight: "bold" }}
             >
               Your Cryptic Launchpad experience will be limited without
               connecting.{" "}
@@ -166,17 +166,17 @@ const Dashboard = () => {
       <Stack
         spacing={1}
         direction="column"
-        sx={{marginTop: "20px", marginLeft: "20px"}}
+        sx={{ marginTop: "20px", marginLeft: "20px" }}
       >
         <Typography
           variant="listfont"
           display="block"
           gutterBottom
-          style={{fontSize: "15px"}}
+          style={{ fontSize: "15px" }}
         >
           <Link
             to="/dashboard"
-            style={{textDecoration: "none", color: "white"}}
+            style={{ textDecoration: "none", color: "white" }}
           >
             Active Projects
           </Link>
@@ -186,9 +186,9 @@ const Dashboard = () => {
           variant="listfont"
           display="block"
           gutterBottom
-          style={{fontSize: "15px"}}
+          style={{ fontSize: "15px" }}
         >
-          <Link to="airdrop" style={{textDecoration: "none", color: "white"}}>
+          <Link to="airdrop" style={{ textDecoration: "none", color: "white" }}>
             Upcoming Projects
           </Link>
         </Typography>
@@ -198,11 +198,11 @@ const Dashboard = () => {
           display="block"
           color="white"
           gutterBottom
-          style={{fontSize: "15px", color: "white"}}
+          style={{ fontSize: "15px", color: "white" }}
         >
           <Link
             to="membership"
-            style={{textDecoration: "none", color: "white"}}
+            style={{ textDecoration: "none", color: "white" }}
           >
             Membership
           </Link>
@@ -214,7 +214,7 @@ const Dashboard = () => {
   const Resource = (
     <Accordion sx={sxprop.sxAccordian}>
       <AccordionSummary
-        expandIcon={<ExpandMoreIcon />}
+        expandIcon={<ExpandMoreIcon sx={{color:'white'}}/>}
         aria-controls="panel1a-content"
         id="panel1a-header"
       >
@@ -223,13 +223,13 @@ const Dashboard = () => {
       <AccordionDetails>
         <Stack spacing={1} direction="column">
           <Typography variant="listfont" display="block" gutterBottom>
-            <Link to="feedbackAndBugReport" style={{textDecoration: "none"}}>
+            <Link to="feedbackAndBugReport" style={{ textDecoration: "none" ,color:'white'}}>
               Feedback & Bug Report
             </Link>
           </Typography>
           <Typography variant="listfont" display="block" gutterBottom>
-            <Link to="contactUs" style={{textDecoration: "none"}}>
-              Comtact Us
+            <Link to="contactUs" style={{ textDecoration: "none" ,color:'white'}}>
+              Contact Us
             </Link>
           </Typography>
         </Stack>
@@ -241,26 +241,27 @@ const Dashboard = () => {
   const General = (
     <Accordion sx={sxprop.sxAccordian}>
       <AccordionSummary
-        expandIcon={<ExpandMoreIcon />}
+        expandIcon={<ExpandMoreIcon sx={{color:'white'}}/>}
         aria-controls="panel1a-content"
         id="panel1a-header"
+      sx={{color:'white'}}
       >
         <Typography variant="accordianhead">General</Typography>
       </AccordionSummary>
       <AccordionDetails>
         <Stack spacing={1} direction="column">
           <Typography variant="listfont" display="block" gutterBottom>
-            <Link to="launchapplyto" style={{textDecoration: "none"}}>
+            <Link to="launchapplyto" style={{ textDecoration: "none",color:'white' }}>
               Apply to Launch
             </Link>
           </Typography>
           <Typography variant="listfont" display="block" gutterBottom>
-            <Link to="privacyPolicy" style={{textDecoration: "none"}}>
+            <Link to="privacyPolicy" style={{ textDecoration: "none" ,color:'white'}}>
               Privacy Policy
             </Link>
           </Typography>
           <Typography variant="listfont" display="block" gutterBottom>
-            <Link to="termsAndConditions" style={{textDecoration: "none"}}>
+            <Link to="termsAndConditions" style={{ textDecoration: "none" ,color:'white'}}>
               Terms & Conditions
             </Link>
           </Typography>
@@ -281,21 +282,21 @@ const Dashboard = () => {
         marginLeft: "25px",
       }}
     >
-      <LanguageIcon style={{color: "white", cursor: "pointer"}} />
-      <FacebookIcon style={{color: "white", cursor: "pointer"}} />
-      <TwitterIcon style={{color: "white", cursor: "pointer"}} />
-      <GithubIcon style={{color: "white", cursor: "pointer"}} />
+      <LanguageIcon style={{ color: "white", cursor: "pointer" }} />
+      <FacebookIcon style={{ color: "white", cursor: "pointer" }} />
+      <TwitterIcon style={{ color: "white", cursor: "pointer" }} />
+      <GithubIcon style={{ color: "white", cursor: "pointer" }} />
     </Stack>
   );
 
   return (
-    <Box sx={{display: "flex"}}>
+    <Box sx={{ display: "flex" }}>
       <CssBaseline />
       <AppBar
         position="fixed"
         sx={{
-          display: {xs: "block", sm: "none"},
-          "& .MuiDrawer-paper": {boxSizing: "border-box", width: drawerWidth},
+          display: { xs: "block", sm: "none" },
+          "& .MuiDrawer-paper": { boxSizing: "border-box", width: drawerWidth },
           backgroundColor: "white",
         }}
       >
@@ -305,7 +306,7 @@ const Dashboard = () => {
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
-            sx={{mr: 2, display: {sm: "none"}}}
+            sx={{ mr: 2, display: { sm: "none" } }}
           >
             <MenuIcon />
           </IconButton>
@@ -314,7 +315,7 @@ const Dashboard = () => {
       </AppBar>
       <Box
         component="nav"
-        sx={{width: {sm: 240}, flexShrink: {sm: 0}}}
+        sx={{ width: { sm: 240 }, flexShrink: { sm: 0 } }}
         aria-label="mailbox folders"
       >
         <Drawer
@@ -322,8 +323,8 @@ const Dashboard = () => {
           open={mobileOpen}
           onClose={handleDrawerToggle}
           sx={{
-            display: {xs: "block", sm: "none"},
-            "& .MuiDrawer-paper": {boxSizing: "border-box", width: drawerWidth},
+            display: { xs: "block", sm: "none" },
+            "& .MuiDrawer-paper": { boxSizing: "border-box", width: drawerWidth },
           }}
           style={{
             backgroundImage:
@@ -355,9 +356,9 @@ const Dashboard = () => {
         sx={{
           flexGrow: 1,
           p: 3,
-          width: {sm: `calc(100% - ${drawerWidth}px)`},
+          width: { sm: `calc(100% - ${drawerWidth}px)` },
           marginLeft: "29px",
-          margin: {xs: "0 5px"},
+          margin: { xs: "0 5px" },
         }}
       >
         <Routes>
@@ -390,7 +391,7 @@ const Dashboard = () => {
             path="/termsAndConditions"
             element={<TermsAndConditions />}
           ></Route>
-          <Route path="/airdrop-details/*" element={<AirDropDetails />}></Route>
+          <Route path="airdrop/airdrop-details/*" element={<AirDropDetails />}></Route>
         </Routes>
       </Box>
     </Box>

@@ -1,6 +1,6 @@
 // This card component is used to show all the card view of the projects listed
 import * as React from "react";
-import {useState, useContext} from "react";
+import { useState, useContext } from "react";
 
 import Card from "@mui/material/Card";
 
@@ -12,31 +12,32 @@ import TelegramIcon from "@mui/icons-material/Telegram";
 import LanguageIcon from "@mui/icons-material/Language";
 import Typography from "@mui/material/Typography";
 import sxprop from "./sxStyle";
-import {Avatar, Grid, Stack} from "@mui/material";
-import {ThemeProvider} from "@emotion/react";
+import { Avatar, Grid, Stack } from "@mui/material";
+import { ThemeProvider } from "@emotion/react";
 import customTheme from "./dashStyle";
-import {createTheme} from "@mui/material";
-import {Link} from "react-router-dom";
+import { createTheme } from "@mui/material";
+import { Link } from "react-router-dom";
 
 import UserContext from "../context/appContext";
 
-const Cards = ({ido}) => {
+const Cards = ({ ido }) => {
   const context = useContext(UserContext);
-  const {setprojectList} = context;
+  const { setprojectList } = context;
   const handleproject = () => {
     setprojectList(ido);
+    localStorage.setItem('projId', ido._id)
   };
 
   const theme = createTheme(customTheme);
   return (
     <ThemeProvider theme={theme}>
-      <Link to="projectdetails" style={{textDecoration: "none"}}>
+      <Link to="projectdetails" style={{ textDecoration: "none" }}>
         <Card sx={sxprop.customcardsx} onClick={handleproject} m={5}>
           <CardContent>
             <Grid
               container
               spacing={1}
-              sx={{alignItems: "center", marginBottom: "10px"}}
+              sx={{ alignItems: "center", marginBottom: "10px" }}
             >
               <Grid item xs={10}>
                 <Typography variant="cardhrdtxt">{ido.name}</Typography>
@@ -56,9 +57,9 @@ const Cards = ({ido}) => {
               <Grid item xs={2}>
                 <Typography variant="cardhrdtxt">
                   {ido.img_url == "NONE" ? (
-                    <Avatar sx={{bgcolor: "#838588"}}>NO</Avatar>
+                    <Avatar sx={{ bgcolor: "#838588" }}>NO</Avatar>
                   ) : (
-                    <Avatar sx={{bgcolor: "#838588"}} src={ido.img_url} />
+                    <Avatar sx={{ bgcolor: "#838588" }} src={ido.img_url} />
                   )}
                 </Typography>
               </Grid>
@@ -68,7 +69,7 @@ const Cards = ({ido}) => {
               sx={{
                 // margin: "10px",
                 height: "110px",
-                width: {sm: "328px", xs: "250px"},
+                width: { sm: "328px", xs: "250px" },
               }}
             >
               {ido.writeup.slice(0, 150)}

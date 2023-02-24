@@ -26,13 +26,14 @@ const AirdropCards = ({ido}) => {
   const {setprojectList} = context;
   const handleproject = () => {
     setprojectList(ido);
+    localStorage.setItem('projId', ido._id)
   };
 
   const theme = createTheme(customTheme);
 
   return (
     <ThemeProvider theme={theme}>
-      <Link to="/airdrop-details" style={{textDecoration: "none"}}>
+      <Link to="airdrop-details" style={{textDecoration: "none"}}>
         <Card sx={sxprop.customcardsx} onClick={handleproject}>
           <Stack sx={{alignItems: "center"}}>
             <Button
