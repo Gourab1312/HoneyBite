@@ -11,6 +11,7 @@ import axios from "axios";
 
 import {TransactionContext} from "../context/TransactionContext";
 import CircularProgress from "@mui/material/CircularProgress";
+import {textAlign} from "@mui/system";
 
 const style = {
   position: "absolute",
@@ -24,22 +25,17 @@ const style = {
 };
 
 const InvestModal = ({mod}) => {
+  const projectWalletAddress = mod.investInfo.projectWalletAddress;
+
   //   enablingBlockchainTransactionFunctionality
   const {
     currentAccount,
-    connectWallet,
+    // connectWallet,
     sendTransaction,
     isLoading,
     ICOLaunchSectionCryptoInvestmentData,
     handleICOLaunchSectionDataChange,
   } = useContext(TransactionContext);
-
-  // fetchAndSetProjectWalletAddress
-  // const fetchAndSetProjectWalletAddress = () => {
-  //   handleICOLaunchSectionDataChange(
-  //     "addressTo",
-  //     mod.investInfo.projectWalletAddress
-  //   );
 
   const iserror = useRef(false);
   const [InvestDetails, SetDetails] = useState({
@@ -68,36 +64,52 @@ const InvestModal = ({mod}) => {
   //     console.log("this working");
   //   };
 
-  const checkValue = (e) => {
-    if (e.target.value > mod.investInfo.totalFund) {
-      iserror.current = true;
-      // alert('not happening')
-      SetDetails({...InvestDetails, invested: 0});
-    } else {
-      iserror.current = false;
-      SetDetails({...InvestDetails, invested: e.target.value});
-    }
-  };
+  // const checkValue = (e) => {
+  //   if (e.target.value > mod.investInfo.totalFund) {
+  //     iserror.current = true;
+  //     // alert('not happening')
+  //     SetDetails({...InvestDetails, invested: 0});
+  //   } else {
+  //     iserror.current = false;
+  //     SetDetails({...InvestDetails, invested: e.target.value});
+  //   }
+  // };
 
   //   settingDemoProjectPublicAddress
   //   const addressTo = "0xd34861d1dc54bdaa9b42a9fbc875bf9685804b17";
 
+  // functionToPassAddressToToState
+  // const addAddressToValue = () => {
+  //   console.log(projectWalletAddress);
+
+  //   handleICOLaunchSectionDataChange("addressTo", projectWalletAddress);
+
+  //   return projectWalletAddress;
+  // };
+
   //   handlingInvestmentsThroughCryptocurrency
   const handleSubmitCryptoInvestmemt = (e) => {
-    // console.log("invest fired >>>");
+    console.log("invest fired >>>");
+    // checkValue();
+    // console.log(addressTo);
+
+    handleICOLaunchSectionDataChange("addressTo", projectWalletAddress);
 
     const {addressTo, amount} = ICOLaunchSectionCryptoInvestmentData;
 
-    // check
-    // console.log(addressTo);
-    // console.log(amount);
-
     e.preventDefault();
+
+    // check
+    console.log("addressTo", addressTo);
+    console.log("amount", amount);
+
     if (!amount || !addressTo) return;
+
     sendTransaction();
   };
 
   // liveEthereumValue
+
   //   forStoringLiveEthereumPriceInINR
   const [ethereumValueInInr, setEthereumValueInInr] = useState(null);
 
@@ -121,9 +133,15 @@ const InvestModal = ({mod}) => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
+          <Typography
+            id="modal-modal-title"
+            variant="h6"
+            component="h2"
+            sx={{textAlign: "center"}}
+          >
             {mod.investInfo.Name}
           </Typography>
+
           {/* displayingLiveEthereumValue */}
           <Stack
             direction={"row"}
@@ -139,6 +157,7 @@ const InvestModal = ({mod}) => {
               {ethereumValueInInr}
             </Typography>
           </Stack>
+
           <Stack
             direction={"row"}
             sx={{
@@ -166,17 +185,41 @@ const InvestModal = ({mod}) => {
             <Typography id="modal-modal-title" variant="h6" component="h2">
               {mod.investInfo.totalFund}
             </Typography>
-          </Stack>{" "}
-          <Typography id="modal-modal-description" sx={{mt: 2}}>
-            Note* Invest must be less than or equal to Total Fund
+          </Stack>
+
+          <Stack
+            direction={"row"}
+            sx={{
+              flexWrap: "wrap",
+              justifyContent: "space-between",
+            }}
+          >
+            <Typography id="modal-modal-title" variant="h6" component="h2">
+              Your Investment
+            </Typography>
+            <Typography id="modal-modal-title" variant="h6" component="h2">
+              {/* {mod.investInfo.totalFund} */}
+              {/* calculateValueInINRHere */}
+            </Typography>
+          </Stack>
+
+          <Typography
+            id="modal-modal-description"
+            sx={{
+              mt: 2,
+              mb: 2,
+              fontSize: "13px",
+              // fontWeight: "bold",
+              textAlign: "center",
+            }}
+          >
+            Project Wallet Address {projectWalletAddress}
           </Typography>
-          {/* check */}
-          {/* <Typography id="modal-modal-description" sx={{mt: 2}}>
-            {mod.investInfo.projectWalletAddress}
-          </Typography> */}
+
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            Invest Amount
+            Investment Details
           </Typography>
+
           {/* forFiatInvestments */}
           {/* <TextField
             name="Amount"
@@ -190,31 +233,27 @@ const InvestModal = ({mod}) => {
               iserror.current && "Invest Amount can't be more than Total Fund"
             }
           /> */}
+
           {/* forCryptoInvestments */}
           {/* enterProjectWalletAddressManuallyForNow */}
           <Grid item sm={12} mb={1} mt={1}>
-            {/* <TextField
+            <TextField
               name="addressTo"
               required
               label="Project Wallet Address"
               placeholder="Enter project wallet address ?"
               fullWidth
               type={"text"}
-              onChange={(e) => handleICOLaunchSectionDataChange(e, "addressTo")}
-            /> */}
-            <TextField
-              name="addressTo"
-              required
-              // label="Project Wallet Address"
-              // placeholder="Enter project wallet address ?"
-              fullWidth
-              type={"text"}
-              value={mod.investInfo.projectWalletAddress}
+              // value={projectWalletAddress}
               onChange={(e) =>
                 handleICOLaunchSectionDataChange("addressTo", e.target.value)
               }
+              // handleChange={(e) =>
+              //   handleICOLaunchSectionDataChange("addressTo", e.target.value)
+              // }
             />
           </Grid>
+
           <Grid item sm={12} mb={1} mt={1}>
             {/* enterInvestmentValueInEthForNow */}
             <TextField
@@ -229,6 +268,7 @@ const InvestModal = ({mod}) => {
               }
             />
           </Grid>
+
           <Grid item sm={12} mt={1}>
             {isLoading ? (
               <Box sx={{display: "flex"}}>
@@ -251,6 +291,19 @@ const InvestModal = ({mod}) => {
               </Button>
             )}
           </Grid>
+
+          <Typography
+            id="modal-modal-description"
+            sx={{
+              mt: 2,
+              fontSize: "10px",
+              textAlign: "center",
+              fontWeight: "600",
+            }}
+          >
+            Note* Investments must be less than or equal to the total funds |
+            Please recheck wallet address before investing
+          </Typography>
         </Box>
       </Modal>
     </div>

@@ -17,6 +17,7 @@ import customTheme from "./dashStyle";
 import sxprop from "./sxStyle";
 import {Avatar, Grid, Stack} from "@mui/material";
 import Chip from "@mui/material/Chip";
+import Button from "@mui/material/Button";
 import {Link} from "react-router-dom";
 import UserContext from "../context/appContext";
 
@@ -34,17 +35,21 @@ const AirdropCards = ({ido}) => {
       <Link to="/airdrop-details" style={{textDecoration: "none"}}>
         <Card sx={sxprop.customcardsx} onClick={handleproject}>
           <Stack sx={{alignItems: "center"}}>
-            <Chip
-              label="Airdrop Project"
-              sx={{
-                backgroundColor: "#466b59",
-                color: "white",
+            <Button
+              variant="outlined"
+              // sx={sxprop.buttonsx}
+              style={{
+                width: "fitcontent",
+                height: "fitcontent",
+                borderRadius: "10px",
                 fontFamily: "Montserrat",
-                fontWeight: 700,
-                fontSize: "12px",
-                padding: "2%",
+                fontWeight: "800",
+                color: "white",
+                backgroundColor: "#1976d2",
               }}
-            />
+            >
+              Airdrop Project
+            </Button>
           </Stack>
 
           <CardContent>
@@ -81,7 +86,7 @@ const AirdropCards = ({ido}) => {
             <Typography
               variant="body2"
               sx={{
-                height: "120px",
+                height: "110px",
                 width: {sm: "328px", xs: "250px"},
               }}
             >

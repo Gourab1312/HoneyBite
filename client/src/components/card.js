@@ -66,8 +66,8 @@ const Cards = ({ido}) => {
             <Typography
               variant="body2"
               sx={{
-                margin: "10px",
-                height: "120px",
+                // margin: "10px",
+                height: "110px",
                 width: {sm: "328px", xs: "250px"},
               }}
             >
@@ -83,19 +83,29 @@ const Cards = ({ido}) => {
                 </Typography>
               </Grid>
               <Grid item xs={8} sm={9}>
-                <Typography variant="listfont">Price</Typography>
+                <Typography variant="listfont">Swap Rate</Typography>
               </Grid>
               <Grid item xs={4} sm={3}>
                 <Typography variant="accordianhead">
                   {ido.swap_rate} BUSD
                 </Typography>
               </Grid>
+
               <Grid item xs={9}>
                 <Typography variant="listfont">Starting Date</Typography>
               </Grid>
               <Grid item xs={3}>
                 <Typography variant="accordianhead">
                   {`${ido.start_date.slice(0, 10)}`}
+                </Typography>
+              </Grid>
+
+              <Grid item xs={9}>
+                <Typography variant="listfont">Ending Date</Typography>
+              </Grid>
+              <Grid item xs={3}>
+                <Typography variant="accordianhead">
+                  {`${ido.end_date.slice(0, 10)}`}
                 </Typography>
               </Grid>
             </Grid>
