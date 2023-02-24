@@ -4,6 +4,7 @@ const AllocationModel = mongoose.Schema(
     {
         userWallet: { type: String, ref: "CryptoUser" },
         token_name: { type: String, ref: 'ProjectDetails' },
+        projectWalletAddress: { type: String },
         invested: { type: Number },
         tokenGain: { type: Number, default: 0 },
         ProjectName: { type: String },

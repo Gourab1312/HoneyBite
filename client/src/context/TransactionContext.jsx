@@ -1,5 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {ethers} from "ethers";
+import axios from "axios";
+import {useNavigate} from "react-router-dom";
 
 import {contractABI, contractAddress} from "../utils/constants";
 
@@ -26,8 +28,24 @@ export const TransactionsProvider = ({children}) => {
     keyword: "",
     message: "",
   });
+
+  // forICOLaunchSection
+  const [
+    ICOLaunchSectionCryptoInvestmentData,
+    setICOLaunchSectionCryptoInvestmentData,
+  ] = useState({
+    addressTo: "",
+    amount: 0,
+  });
+
   const [currentAccount, setCurrentAccount] = useState("");
+
   const [isLoading, setIsLoading] = useState(false);
+
+  // useStateToTrigerWhenATransactionIsFinallySuccessfullAndTransactionHashIsGenerated
+  const [isTransactionSuccessfull, setIsTransactionSuccessfull] =
+    useState(false);
+
   const [transactionCount, setTransactionCount] = useState(
     localStorage.getItem("transactionCount")
   );
@@ -35,6 +53,21 @@ export const TransactionsProvider = ({children}) => {
 
   const handleChange = (e, name) => {
     setformData((prevState) => ({...prevState, [name]: e.target.value}));
+  };
+
+  // forICOLaunchSection
+  // const handleICOLaunchSectionDataChange = (e, name) => {
+  //   setICOLaunchSectionCryptoInvestmentData((prevState) => ({
+  //     ...prevState,
+  //     [name]: e.target.value,
+  //   }));
+  // };
+  const handleICOLaunchSectionDataChange = (name, value) => {
+    console.log("stored", value);
+    setICOLaunchSectionCryptoInvestmentData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
   };
 
   const getAllTransactions = async () => {
@@ -58,7 +91,7 @@ export const TransactionsProvider = ({children}) => {
           })
         );
 
-        console.log(structuredTransactions);
+        // console.log(structuredTransactions);
 
         setTransactions(structuredTransactions);
       } else {
@@ -112,11 +145,31 @@ export const TransactionsProvider = ({children}) => {
   const connectWallet = async () => {
     try {
       if (!ethereum) return alert("Please install MetaMask.");
+      let user = JSON.parse(localStorage.getItem("crypticUser"));
+      if (user) {
+        const accounts = await ethereum.request({
+          method: "eth_requestAccounts",
+        });
 
-      const accounts = await ethereum.request({method: "eth_requestAccounts"});
+        setCurrentAccount(accounts[0]);
+        // post
+        axios
+          .post("http://localhost:5000/connectWallet", {
+            email: user.emailAddress,
+            walletAddress: accounts[0],
+          })
+          .then((res) => {
+            console.log(res);
+            console.log(accounts);
+          })
+          .catch((error) => {
+            alert(error.message);
+          });
+      } else {
+        alert("first login");
+      }
 
-      setCurrentAccount(accounts[0]);
-      window.location.reload();
+      // window.location.reload();
     } catch (error) {
       console.log(error);
 
@@ -128,7 +181,8 @@ export const TransactionsProvider = ({children}) => {
   const sendTransaction = async () => {
     try {
       if (ethereum) {
-        const {addressTo, amount, keyword, message} = formData;
+        // const {addressTo, amount, keyword, message} = formData;
+        const {addressTo, amount} = ICOLaunchSectionCryptoInvestmentData;
         const transactionsContract = createEthereumContract();
         const parsedAmount = ethers.utils.parseEther(amount);
 
@@ -144,24 +198,54 @@ export const TransactionsProvider = ({children}) => {
           ],
         });
 
+        // const transactionHash = await transactionsContract.addToBlockchain(
+        //   addressTo,
+        //   parsedAmount,
+        //   message,
+        //   keyword
+        // );
+
         const transactionHash = await transactionsContract.addToBlockchain(
           addressTo,
           parsedAmount,
-          message,
-          keyword
+          "ICOInvestment",
+          "ICOInvestment"
         );
 
         setIsLoading(true);
-        console.log(`Loading - ${transactionHash.hash}`);
-        await transactionHash.wait();
-        console.log(`Success - ${transactionHash.hash}`);
-        setIsLoading(false);
+
+        // fethcingPromiseGivenBy[transactionHash.wait()]
+        const receipt = await transactionHash.wait();
+
+        console.log("receipt", receipt.status);
+
+        // ifTransactionSuccessfullyExecuted
+        if (receipt.status == 1) {
+          setIsTransactionSuccessfull(true);
+
+          setIsLoading(false);
+        }
+        // ifTransactionFailed
+        else {
+          setIsTransactionSuccessfull(false);
+
+          setIsLoading(false);
+        }
+
+        console.log(
+          "isTransactionSuccessfull inside context",
+          setIsTransactionSuccessfull
+        );
+
+        // await transactionHash.wait();
+        // console.log(setIsTransactionSuccessfull);
+        // console.log(`Success - ${transactionHash.hash}`);
 
         const transactionsCount =
           await transactionsContract.getTransactionCount();
 
         setTransactionCount(transactionsCount.toNumber());
-        window.location.reload();
+        // window.location.reload();
       } else {
         console.log("No ethereum object");
       }
@@ -185,9 +269,12 @@ export const TransactionsProvider = ({children}) => {
         transactions,
         currentAccount,
         isLoading,
+        isTransactionSuccessfull,
         sendTransaction,
         handleChange,
         formData,
+        ICOLaunchSectionCryptoInvestmentData,
+        handleICOLaunchSectionDataChange,
       }}
     >
       {children}

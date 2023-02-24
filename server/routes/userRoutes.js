@@ -6,22 +6,27 @@ const router = express.Router();
 
 router.post('/usercrypto', async (req, res) => {
     try {
-        const existinguser = await CryptoUser.findOne({ walletAddress: req.body.walletAddress })
+        const { Name, email, password } = req.body
+        const existinguser = await CryptoUser.findOne({ emailAddress: email })
         if (existinguser) {
             throw {
                 statusCode: 400,
-                message: "user already exist"
+                message: "User already exists"
             }
  
         }; 
         const membership = await new MemberDetails({
-            userWallet: req.body.walletAddress,
-            isMember: false,
-            whatMember: 'free'
+            userWallet: '',
+            userEmail: email,
+            memberShip: 'free',
+            noOfinvested: 0,
+            maxInvest: 3
         }).save()
         const newUser = await new CryptoUser({
-            ...req.body,
-            walletAddress: req.body.walletAddress,
+            name: Name,
+            emailAddress: email,
+            password: password,
+            walletAddress: ''
         }).save();
 
         res.status(200).json({
@@ -36,5 +41,71 @@ router.post('/usercrypto', async (req, res) => {
     }
 })
 
+router.post('/connectWallet', async (req, res) => {
+    try {
+        const { email, walletAddress } = req.body
+        const user = await CryptoUser.findOne({ emailAddress: email })
+        if (user) {
+            if (user.walletAddress == walletAddress) {
+                console.log('worked');
+                res.status(200).json({
+                    success: true
+                })
+            }
+            else if (user.walletAddress == '') {
+                await MemberDetails.updateOne({emailAddress: email},{ $set: { userWallet: walletAddress } })
+                await CryptoUser.updateOne({ emailAddress: email }, { $set: { walletAddress: walletAddress } })
+            }
+            else {
+                throw {
+                    statusCode: 400,
+                    message: "you fraud"
+                }
+            }
+        }
+        else {
+            throw {
+                statusCode: 400,
+                message: "you must login to connect wallet"
+            }
+        }
+    } catch (error) {
+        res.status(error.statusCode || 500).json({
+            success: false,
+            message: error.message,
+        });
+    }
+
+})
+
+router.post('/userLogin', async (req, res) => {
+    try {
+        const { email, password } = req.body;
+        const Loggeduser = await CryptoUser.findOne({ emailAddress: email })
+        if (!Loggeduser) {
+            throw {
+                statusCode: 400,
+                message: "Need to Register First"
+            }
+        }
+        if (Loggeduser.password != password) {
+            throw {
+                statusCode: 700,
+                message: "Wrong Password"
+            }
+        }
+        res.status(200).json({
+            success: true,
+            user: Loggeduser
+        })
+
+    } catch (error) {
+        res.status(error.statusCode || 500).json({
+            success: false,
+            message: error.message
+        });
+    }
+
+})
 
 module.exports = router;

@@ -2,6 +2,16 @@ const customTheme = {
   palette: {
     grey: "#8c8c8c",
   },
+
+  box: {
+    logo: {
+      backgroundImage: `url("../assets/logo.png)`,
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+      height: 300,
+    },
+  },
+
   typography: {
     fontFamily: '"Montserrat", sans-serif',
     memberheader: {
@@ -20,6 +30,18 @@ const customTheme = {
       fontWeight: "700",
     },
 
+    faqQ: {
+      fontFamily: "Montserrat",
+      fontSize: "13px",
+      fontWeight: "800",
+    },
+
+    faqA: {
+      fontFamily: "Montserrat",
+      fontSize: "13px",
+      fontWeight: "400",
+    },
+
     captionmod: {
       marginTop: "5px",
       fontSize: "12px",
@@ -36,7 +58,6 @@ const customTheme = {
     },
 
     logosame: {
-      //   fontFamily: "Open Sans",
       fontFamily: "Montserrat",
       textAlign: "center",
       fontSize: "25px",
@@ -57,9 +78,9 @@ const customTheme = {
     },
 
     cardhrdtxt: {
-      fontFamily: "Open Sans",
-      fontSize: "14px",
-      fontWeight: "600",
+      fontFamily: "Montserrat",
+      fontSize: "15px",
+      fontWeight: "700",
     },
   },
   stack: {
