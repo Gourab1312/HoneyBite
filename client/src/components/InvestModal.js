@@ -33,18 +33,40 @@ const InvestModal = ({mod}) => {
     // connectWallet,
     sendTransaction,
     isLoading,
+    isTransactionSuccessfull,
     ICOLaunchSectionCryptoInvestmentData,
     handleICOLaunchSectionDataChange,
   } = useContext(TransactionContext);
 
   const iserror = useRef(false);
+
+  // passingTheValuesToUseState
   const [InvestDetails, SetDetails] = useState({
     projId: mod.investInfo.id,
     userWallet: currentAccount,
     token_name: mod.investInfo.tokenName,
+    projectWalletAddress: mod.investInfo.projectWalletAddress,
     invested: 0,
     ProjectName: mod.investInfo.Name,
   });
+
+  //functionToConvertEthToINRAccordingToLiveEth-INRValue
+  const ethToINR = (ethereumValueInInr, amount) => {
+    const INRValuation = amount * ethereumValueInInr;
+
+    // console.log(INRValuation);
+
+    if (INRValuation <= 0) {
+      alert("Invested amount can't be 0 !");
+    } else if (INRValuation > mod.investInfo.totalFund) {
+      alert("Invested amount can't be more than project's total fund !");
+    } else {
+      // setUseStateValue
+      InvestDetails.invested = INRValuation;
+    }
+
+    return INRValuation;
+  };
 
   const handleClose = () => mod.setOpen(false);
   //   const handleSubmit = () => {
@@ -89,27 +111,52 @@ const InvestModal = ({mod}) => {
 
   //   handlingInvestmentsThroughCryptocurrency
   const handleSubmitCryptoInvestmemt = (e) => {
-    console.log("invest fired >>>");
-    // checkValue();
-    // console.log(addressTo);
+    // console.log("invest fired >>>");
 
     handleICOLaunchSectionDataChange("addressTo", projectWalletAddress);
 
     const {addressTo, amount} = ICOLaunchSectionCryptoInvestmentData;
 
+    // setInvestedValueFromEthToINR
+    ethToINR(ethereumValueInInr, amount);
+
+    // console.log(InvestDetails);
+
     e.preventDefault();
 
     // check
-    console.log("addressTo", addressTo);
-    console.log("amount", amount);
+    // console.log("addressTo", addressTo);
+    // console.log("amount", amount);
 
-    if (!amount || !addressTo) return;
+    if (!InvestDetails.invested || !addressTo) return;
 
     sendTransaction();
+
+    // console.log(
+    //   "isTransactionSuccessfull inside Modal",
+    //   isTransactionSuccessfull
+    // );
+
+    // onlyExecuteWhenTransactionIsSuccessfull
+    // if (isTransactionSuccessfull) {
+    // sendingDetailsToDatabase
+
+    axios
+      .post("http://localhost:5000/investproj", InvestDetails)
+      .then((res) => {
+        console.log(res);
+        if (res.status == 200) {
+          // console.log("Investment allocated successfully !");
+          // alert("Investment allocated successfully !");
+        } else {
+          // alert("Investment allocated unsuccessfull !");
+        }
+      });
+
+    // window.location.reload();
   };
 
   // liveEthereumValue
-
   //   forStoringLiveEthereumPriceInINR
   const [ethereumValueInInr, setEthereumValueInInr] = useState(null);
 

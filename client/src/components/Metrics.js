@@ -28,18 +28,21 @@ const Metrics = ({projectdetails}) => {
         </Grid>
         <Grid item sm={6} xs={12}>
           <Typography variant="body2">
-            {Json.average ? "$" + Json.average : "Oops no one has invested yet"}
+            {Json.average
+              ? Json.average + " INR"
+              : "Oops no one has invested yet"}
+            {/* {Json.average ? "₹ " + Json.average : "Oops no one has invested yet"} */}
           </Typography>
         </Grid>
 
-        <Grid item sm={6} xs={12}>
+        {/* <Grid item sm={6} xs={12}>
           Invest distribution
         </Grid>
         <Grid item sm={6} xs={12}>
           <Typography variant="body2">
             {Json.standardDev ? "+/- $" + Json.standardDev : "Not much data"}
           </Typography>
-        </Grid>
+        </Grid> */}
 
         <Grid item sm={6} xs={12}>
           Project Wallet Address

@@ -33,11 +33,17 @@ export const TransactionsProvider = ({children}) => {
     setICOLaunchSectionCryptoInvestmentData,
   ] = useState({
     addressTo: "",
-    amount: "",
+    amount: 0,
   });
 
   const [currentAccount, setCurrentAccount] = useState("");
+
   const [isLoading, setIsLoading] = useState(false);
+
+  // useStateToTrigerWhenATransactionIsFinallySuccessfullAndTransactionHashIsGenerated
+  const [isTransactionSuccessfull, setIsTransactionSuccessfull] =
+    useState(false);
+
   const [transactionCount, setTransactionCount] = useState(
     localStorage.getItem("transactionCount")
   );
@@ -138,6 +144,8 @@ export const TransactionsProvider = ({children}) => {
     try {
       if (!ethereum) return alert("Please install MetaMask.");
 
+      // else
+
       const accounts = await ethereum.request({method: "eth_requestAccounts"});
 
       setCurrentAccount(accounts[0]);
@@ -185,16 +193,39 @@ export const TransactionsProvider = ({children}) => {
         );
 
         setIsLoading(true);
-        console.log(`Loading - ${transactionHash.hash}`);
-        await transactionHash.wait();
-        console.log(`Success - ${transactionHash.hash}`);
-        setIsLoading(false);
+
+        // fethcingPromiseGivenBy[transactionHash.wait()]
+        const receipt = await transactionHash.wait();
+
+        console.log("receipt", receipt.status);
+
+        // ifTransactionSuccessfullyExecuted
+        if (receipt.status == 1) {
+          setIsTransactionSuccessfull(true);
+
+          setIsLoading(false);
+        }
+        // ifTransactionFailed
+        else {
+          setIsTransactionSuccessfull(false);
+
+          setIsLoading(false);
+        }
+
+        console.log(
+          "isTransactionSuccessfull inside context",
+          setIsTransactionSuccessfull
+        );
+
+        // await transactionHash.wait();
+        // console.log(setIsTransactionSuccessfull);
+        // console.log(`Success - ${transactionHash.hash}`);
 
         const transactionsCount =
           await transactionsContract.getTransactionCount();
 
         setTransactionCount(transactionsCount.toNumber());
-        window.location.reload();
+        // window.location.reload();
       } else {
         console.log("No ethereum object");
       }
@@ -218,6 +249,7 @@ export const TransactionsProvider = ({children}) => {
         transactions,
         currentAccount,
         isLoading,
+        isTransactionSuccessfull,
         sendTransaction,
         handleChange,
         formData,

@@ -70,7 +70,7 @@ const sxprop = {
     fontFamily: "Montserrat",
     fontWeight: "600",
   },
-  subboxsx: {margin: "10px 10px"},
+  subboxsx: {margin: "10px 15px"},
   buttongrpsx: {
     margin: "18px 0",
     marginTop: {xs: "45px"},
