@@ -12,8 +12,8 @@ router.post('/usercrypto', async (req, res) => {
                 statusCode: 400,
                 message: "user already exist"
             }
-
-        };
+ 
+        }; 
         const membership = await new MemberDetails({
             userWallet: req.body.walletAddress,
             isMember: false,

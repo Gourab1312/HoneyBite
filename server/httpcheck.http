@@ -1,0 +1,9 @@
+POST http://localhost:5000/addmember
+Content-Type: application/json
+
+{
+    "userWallet":"2345",
+    "memberShip":"free",
+    "startDateMem":"20/10/10",
+    "noOfinvested":"2000"
+}

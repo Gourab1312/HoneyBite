@@ -5,7 +5,7 @@ import sxprop from "./sxStyle";
 import Typography from "@mui/material/Typography";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import {Button, Divider, Grid, Stack} from "@mui/material";
+import { Divider, Grid, Stack} from "@mui/material";
 import PayButton from "./PayButton";
 
 const Membership = () => {
@@ -67,7 +67,7 @@ const Membership = () => {
                 direction={"column"}
                 sx={{alignItems: "center", marginTop: "10px"}}
               >
-                <PayButton price="0100" type="IDO LIMIT 3"/>
+                <PayButton price="0100" type="Basic IDO LIMIT 3" noOfivested="3"/>
                 {/* <Button sx={sxprop.memberbtn}>Purchase Now</Button> */}
               </Stack>{" "}
             </CardContent>
@@ -125,7 +125,7 @@ const Membership = () => {
                 direction={"column"}
                 sx={{alignItems: "center", marginTop: "10px"}}
               >
-              <PayButton price="9900" type="IDO LIMIT 5"/>
+              <PayButton price="9900" type="IDO SPECIAL LIMIT 5" noOfivested="3"/>
 
               </Stack>
             </CardContent>
@@ -183,7 +183,7 @@ const Membership = () => {
                 direction={"column"}
                 sx={{alignItems: "center", marginTop: "10px"}}
               >
-               <PayButton price="39900" type="IDO LIMIT Unlimited"/>
+               <PayButton price="39900" type="VENTURE SPECIAL IDO LIMIT Unlimited"/>
 
               </Stack>
             </CardContent>
