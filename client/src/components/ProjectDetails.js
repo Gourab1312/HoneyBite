@@ -50,6 +50,8 @@ const ProjectDetails = () => {
     projectWalletAddress: projectdetails.projectWalletAddress,
   };
 
+  // INRconversionFunction
+
   return (
     <Box m={3}>
       {open && <InvestModal mod={{open, setOpen, investInfo}} />}

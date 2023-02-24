@@ -75,13 +75,16 @@ const Cards = ({ido}) => {
             </Typography>
             <Grid container spacing={1}>
               <Grid item xs={9}>
-                <Typography variant="listfont">Total Raise</Typography>
+                <Typography variant="listfont">Total Fund</Typography>
               </Grid>
               <Grid item xs={3}>
                 <Typography variant="accordianhead">
-                  ${ido.total_fund}
+                  ₹ {ido.total_fund}
                 </Typography>
               </Grid>
+
+              {/* DisplaytotalFundAllocatedByTheProjectHere */}
+
               <Grid item xs={8} sm={9}>
                 <Typography variant="listfont">Swap Rate</Typography>
               </Grid>

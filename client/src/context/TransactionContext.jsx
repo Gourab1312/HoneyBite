@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { ethers } from "ethers";
+import React, {useEffect, useState} from "react";
+import {ethers} from "ethers";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
-import { contractABI, contractAddress } from "../utils/constants";
+import {contractABI, contractAddress} from "../utils/constants";
 
 export const TransactionContext = React.createContext();
 
-
-const { ethereum } = window;
+const {ethereum} = window;
 
 const createEthereumContract = () => {
   const provider = new ethers.providers.Web3Provider(ethereum);
@@ -22,7 +21,7 @@ const createEthereumContract = () => {
   return transactionsContract;
 };
 
-export const TransactionsProvider = ({ children }) => {
+export const TransactionsProvider = ({children}) => {
   const [formData, setformData] = useState({
     addressTo: "",
     amount: "",
@@ -36,18 +35,24 @@ export const TransactionsProvider = ({ children }) => {
     setICOLaunchSectionCryptoInvestmentData,
   ] = useState({
     addressTo: "",
-    amount: "",
+    amount: 0,
   });
 
   const [currentAccount, setCurrentAccount] = useState("");
+
   const [isLoading, setIsLoading] = useState(false);
+
+  // useStateToTrigerWhenATransactionIsFinallySuccessfullAndTransactionHashIsGenerated
+  const [isTransactionSuccessfull, setIsTransactionSuccessfull] =
+    useState(false);
+
   const [transactionCount, setTransactionCount] = useState(
     localStorage.getItem("transactionCount")
   );
   const [transactions, setTransactions] = useState([]);
 
   const handleChange = (e, name) => {
-    setformData((prevState) => ({ ...prevState, [name]: e.target.value }));
+    setformData((prevState) => ({...prevState, [name]: e.target.value}));
   };
 
   // forICOLaunchSection
@@ -103,7 +108,7 @@ export const TransactionsProvider = ({ children }) => {
       // ifNoEthereumWalletIsFound?
       if (!ethereum) return alert("Please install MetaMask.");
 
-      const accounts = await ethereum.request({ method: "eth_accounts" });
+      const accounts = await ethereum.request({method: "eth_accounts"});
 
       if (accounts.length) {
         setCurrentAccount(accounts[0]);
@@ -161,7 +166,7 @@ export const TransactionsProvider = ({ children }) => {
             alert(error.message);
           });
       } else {
-        alert("first login")
+        alert("first login");
       }
 
       // window.location.reload();
@@ -177,7 +182,7 @@ export const TransactionsProvider = ({ children }) => {
     try {
       if (ethereum) {
         // const {addressTo, amount, keyword, message} = formData;
-        const { addressTo, amount } = ICOLaunchSectionCryptoInvestmentData;
+        const {addressTo, amount} = ICOLaunchSectionCryptoInvestmentData;
         const transactionsContract = createEthereumContract();
         const parsedAmount = ethers.utils.parseEther(amount);
 
@@ -208,16 +213,39 @@ export const TransactionsProvider = ({ children }) => {
         );
 
         setIsLoading(true);
-        console.log(`Loading - ${transactionHash.hash}`);
-        await transactionHash.wait();
-        console.log(`Success - ${transactionHash.hash}`);
-        setIsLoading(false);
+
+        // fethcingPromiseGivenBy[transactionHash.wait()]
+        const receipt = await transactionHash.wait();
+
+        console.log("receipt", receipt.status);
+
+        // ifTransactionSuccessfullyExecuted
+        if (receipt.status == 1) {
+          setIsTransactionSuccessfull(true);
+
+          setIsLoading(false);
+        }
+        // ifTransactionFailed
+        else {
+          setIsTransactionSuccessfull(false);
+
+          setIsLoading(false);
+        }
+
+        console.log(
+          "isTransactionSuccessfull inside context",
+          setIsTransactionSuccessfull
+        );
+
+        // await transactionHash.wait();
+        // console.log(setIsTransactionSuccessfull);
+        // console.log(`Success - ${transactionHash.hash}`);
 
         const transactionsCount =
           await transactionsContract.getTransactionCount();
 
         setTransactionCount(transactionsCount.toNumber());
-        window.location.reload();
+        // window.location.reload();
       } else {
         console.log("No ethereum object");
       }
@@ -241,6 +269,7 @@ export const TransactionsProvider = ({ children }) => {
         transactions,
         currentAccount,
         isLoading,
+        isTransactionSuccessfull,
         sendTransaction,
         handleChange,
         formData,
