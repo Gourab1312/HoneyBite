@@ -1,10 +1,12 @@
 import "./App.css";
 import Dashboard from "./components/Dashboard";
-import {ThemeProvider} from "@emotion/react";
-import {createTheme} from "@mui/material";
+import { ThemeProvider } from "@emotion/react";
+import { createTheme } from "@mui/material";
 import customTheme from "./components/dashStyle";
-import {BrowserRouter} from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import AppState from "./context/UserContext";
+import LandingPage from "./components/HomePage/LandingPage";
+import { Route, Routes} from "react-router-dom";
 
 function App() {
   const theme = createTheme(customTheme);
@@ -12,7 +14,10 @@ function App() {
     <AppState>
       <ThemeProvider theme={theme}>
         <BrowserRouter>
-          <Dashboard />
+          <Routes>
+            <Route path="/" element={<LandingPage />}></Route>
+            <Route path="/allprojects" element={<Dashboard />}></Route>
+          </Routes>
         </BrowserRouter>
       </ThemeProvider>
     </AppState>

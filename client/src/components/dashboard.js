@@ -363,7 +363,6 @@ const Dashboard = () => {
         }}
       >
         <Routes>
-          <Route path="/*" element={<Allprojects />}></Route>
           <Route path="/allprojects" element={<Allprojects />}></Route>
           <Route
             path="/airdrop"

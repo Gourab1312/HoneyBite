@@ -41,7 +41,38 @@ router.post('/usercrypto', async (req, res) => {
     }
 })
 
-router.post('/connect-wallet', async (req, res) => {
+router.post('/connectWallet', async (req, res) => {
+    try {
+        const { email, walletAddress } = req.body
+        const user = await CryptoUser.findOne({ emailAddress: email })
+        if (user) {
+            if (user.walletAddress == walletAddress) {
+                res.status(200).json({
+                    success: true
+                })
+            }
+            else if (user.walletAddress == '') {
+                await CryptoUser.updateOne({ emailAddress: email }, { $set: { walletAddress: walletAddress } })
+            }
+            else {
+                throw {
+                    statusCode: 400,
+                    message: "you fraud"
+                }
+            }
+        }
+        else {
+            throw {
+                statusCode: 400,
+                message: "you must login to connect wallet"
+            }
+        }
+    } catch (error) {
+        res.status(error.statusCode || 500).json({
+            success: false,
+            message: error.message,
+        });
+    }
 
 })
 

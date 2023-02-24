@@ -4,12 +4,12 @@ const express = require("express");
 const router = express.Router();
 
 router.post('/investproj', async (req, res) => {
-    const { userWallet, token_name, invested, ProjectName, projId } = req.body
+    const { userWallet, projectWalletAddress, token_name, invested, ProjectName, projId } = req.body
     try {
         const projectOne = await ProjectDetails.findById(projId)
         projectOne.total_fund = projectOne.total_fund - invested;
         await ProjectDetails.findByIdAndUpdate(projId, projectOne, { new: true })
-        const newallocation = await new ProjectAllocation({ userWallet, token_name, invested, ProjectName }).save()
+        const newallocation = await new ProjectAllocation({ userWallet, projectWalletAddress, token_name, invested, ProjectName }).save()
 
         res.status(200).json({
             succes: true,
