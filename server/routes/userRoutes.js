@@ -53,6 +53,7 @@ router.post('/connectWallet', async (req, res) => {
                 })
             }
             else if (user.walletAddress == '') {
+                await MemberDetails.updateOne({emailAddress: email},{ $set: { userWallet: walletAddress } })
                 await CryptoUser.updateOne({ emailAddress: email }, { $set: { walletAddress: walletAddress } })
             }
             else {
