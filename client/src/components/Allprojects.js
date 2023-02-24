@@ -24,7 +24,7 @@ const Allprojects = () => {
     let templist = await axios.get(
       `http://localhost:5000/getprojects/some?page=${page.current}`
     );
-    console.log(templist);
+    // console.log(templist);
     setprojectList(templist.data.jsnres);
   };
   const showmore = async () => {

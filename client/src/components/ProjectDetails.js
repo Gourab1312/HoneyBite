@@ -24,6 +24,7 @@ import YourBid from "./YourBid";
 import UserContext from "../context/appContext";
 import InvestModal from "./InvestModal";
 import {TransactionContext} from "../context/TransactionContext";
+import {height} from "@mui/system";
 
 const ProjectDetails = () => {
   const {currentAccount} = useContext(TransactionContext);
@@ -50,7 +51,7 @@ const ProjectDetails = () => {
   };
 
   return (
-    <Box sx={sxprop.headingboxsx}>
+    <Box m={3}>
       {open && <InvestModal mod={{open, setOpen, investInfo}} />}
       <Stack
         direction={"column"}
@@ -67,74 +68,121 @@ const ProjectDetails = () => {
               spacing={1}
               sx={{alignItems: "center", marginBottom: "10px"}}
             >
-              <Grid item xs={10}>
-                <Typography variant="headingcon">
-                  {projectdetails.name}
-                </Typography>
-                <Stack direction={"column"}>
-                  <Typography variant="captionmod">
-                    ${projectdetails.token_name}
+              <Grid item xs={12}>
+                <Stack direction={"row"} spacing={1}>
+                  <Typography
+                    variant="h5"
+                    style={{color: "#1976d2", fontWeight: "500"}}
+                  >
+                    Project
                   </Typography>
-                  <Stack direction={"row"} spacing={1}>
-                    <LanguageIcon />
-                    <FacebookIcon />
-                    <LinkedInIcon />
-                    <TelegramIcon />
-                    <TwitterIcon />
-                  </Stack>
+                  <Typography
+                    variant="h5"
+                    style={{color: "#1976d2", fontWeight: "800"}}
+                  >
+                    {projectdetails.name}
+                  </Typography>
                 </Stack>
               </Grid>
-              <Grid item xs={2}>
+
+              <Grid item xs={6}>
+                <Stack direction={"row"} spacing={4} style={{}}>
+                  <LanguageIcon style={{fontSize: "25px", cursor: "pointer"}} />
+                  <FacebookIcon style={{fontSize: "25px", cursor: "pointer"}} />
+                  <LinkedInIcon style={{fontSize: "25px", cursor: "pointer"}} />
+                  <TelegramIcon style={{fontSize: "25px", cursor: "pointer"}} />
+                  <TwitterIcon style={{fontSize: "25px", cursor: "pointer"}} />
+                </Stack>
+              </Grid>
+
+              <Grid item xs={6}>
                 <Typography variant="cardhrdtxt">
                   {projectdetails.img_url == "NONE" ? (
                     <Avatar sx={{bgcolor: "#838588"}}>NO</Avatar>
                   ) : (
                     <Avatar
-                      sx={{bgcolor: "#838588"}}
+                      sx={{bgcolor: "#838588", width: "30%", height: "30%"}}
                       src={projectdetails.img_url}
+                      sizes="large"
                     />
                   )}
                 </Typography>
               </Grid>
+
+              <Grid item xs={12} style={{}}>
+                <Stack direction={"row"} spacing={1} style={{margin: "0px"}}>
+                  <Typography
+                    variant="h7"
+                    style={{color: "#1976d2", fontWeight: "500"}}
+                  >
+                    Token Symbol
+                  </Typography>
+                  <Typography
+                    variant="h7"
+                    style={{color: "#1976d2", fontWeight: "800"}}
+                  >
+                    {projectdetails.token_name}
+                  </Typography>
+                </Stack>
+              </Grid>
             </Grid>
+
+            {/* <Typography sx={{margin: "10px", whiteSpace: "pre-line"}}>
+              {projectdetails.writeup}
+            </Typography> */}
             <Typography
-              variant="body2"
-              sx={{margin: "10px", whiteSpace: "pre-line"}}
+              variant="h7"
+              style={{
+                fontWeight: "600",
+                // margin: "10px",
+                whiteSpace: "pre-line",
+              }}
             >
               {projectdetails.writeup}
             </Typography>
           </CardContent>
         </Card>
 
-        <Box sx={sxprop.loadbox}>
-          <Button
-            variant="outlined"
-            sx={sxprop.buttonsx}
-            onClick={handleModal}
-            style={{color: "black"}}
-          >
+        <Box
+          sx={sxprop.loadbox}
+          style={{width: "100%", justifyContent: "center"}}
+        >
+          <Button sx={sxprop.buttonsx} onClick={handleModal}>
             Invest Now
           </Button>
         </Box>
       </Stack>
-      <Stack direction={"row"} spacing={4} sx={{margin: "20px"}}>
-        <Typography>
+
+      <Stack
+        direction={"row"}
+        spacing={10}
+        sx={{
+          marginTop: "20px",
+          width: "100%",
+          justifyContent: "center",
+          boxShadow: 3,
+          padding: "12px",
+        }}
+      >
+        <Typography variant="cardhrdtxt">
           <Link to="info" style={{textDecoration: "none"}}>
             Project Details
           </Link>
         </Typography>
-        <Typography>
+        <Typography variant="cardhrdtxt">
           <Link to="metrics" style={{textDecoration: "none"}}>
             Metrics
           </Link>
         </Typography>
-        <Typography>
+        <Typography variant="cardhrdtxt">
           <Link to="allocation" style={{textDecoration: "none"}}>
             Your Allocation
           </Link>
         </Typography>
       </Stack>
-      <Divider variant="middle" sx={{margin: "20px"}} />
+
+      <Divider variant="middle" sx={{margin: "15px 50px 30px 50px"}} />
+
       <Routes>
         <Route
           path="info"
@@ -157,6 +205,9 @@ const ProjectDetails = () => {
         ></Route>
         <Route path="bid" element={<YourBid />}></Route>
       </Routes>
+
+      <Divider variant="middle" sx={{margin: "30px 50px 0px 50px"}} />
+
       <Accordion sx={sxprop.sxfaq}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
@@ -169,13 +220,59 @@ const ProjectDetails = () => {
           <Stack
             spacing={1}
             direction="column"
-            sx={{marginTop: "20px", marginLeft: "20px"}}
+            sx={{marginTop: "0px", marginLeft: "20px", width: "90%"}}
           >
             <Typography variant="listfont" display="block" gutterBottom>
-              What is Muon Network ?
+              How to invest in this ICO ?
             </Typography>
+            <Typography
+              variant="listfont"
+              display="block"
+              gutterBottom
+              style={{fontWeight: "400"}}
+            >
+              Press the [INVEST NOW] button to start the investing procedure.
+            </Typography>
+
             <Typography variant="listfont" display="block" gutterBottom>
-              What makes Muon Network Unique?
+              Can I invest using cryptocurrencies ?
+            </Typography>
+            <Typography
+              variant="listfont"
+              display="block"
+              gutterBottom
+              style={{fontWeight: "400"}}
+            >
+              Yes, you can invest using cryptocurrencies (Ethers) for investing
+              in any ICO.
+            </Typography>
+
+            <Typography variant="listfont" display="block" gutterBottom>
+              Can I invest using fiat currencies ?
+            </Typography>
+            <Typography
+              variant="listfont"
+              display="block"
+              gutterBottom
+              style={{fontWeight: "400"}}
+            >
+              No, you cannot make ICO investment using fiat cuurrencies for now
+              but our team is working on implementing that soon.
+            </Typography>
+
+            <Typography variant="listfont" display="block" gutterBottom>
+              What's an ICO ?
+            </Typography>
+            <Typography
+              variant="listfont"
+              display="block"
+              gutterBottom
+              style={{fontWeight: "400"}}
+            >
+              An initial coin offering (ICO) is a type of capital-raising
+              activity in the cryptocurrency and blockchain environment. The ICO
+              can be viewed as an initial public offering (IPO) that uses
+              cryptocurrencies.
             </Typography>
           </Stack>
         </AccordionDetails>

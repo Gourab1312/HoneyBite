@@ -1,17 +1,19 @@
 import React from "react";
 import {Grid, Stack} from "@mui/material";
+import Box from "@mui/material/Box";
+import sxprop from "./sxStyle";
 import Typography from "@mui/material/Typography";
 
 const ProjectInfo = ({projectdetails}) => {
   return (
-    <div>
-      <Grid container spacing={5} sx={{margin: "2px"}}>
+    <Box sx={sxprop.subboxsx}>
+      <Grid container spacing={2}>
         <Grid item xs={12} sm={6}>
           <Stack direction={"column"}>
-            <Typography variant="cardhrdtxt">ICO INFORMATION</Typography>
-            <Grid container spacing={1}>
+            <Typography variant="cardhrdtxt">ICO Information</Typography>
+            <Grid container spacing={1} style={{marginTop: "2px"}}>
               <Grid item xs={6}>
-                <Typography variant="body2">FCFS opens</Typography>
+                <Typography variant="body2">ICO opens on</Typography>
               </Grid>
               <Grid item xs={6}>
                 <Typography variant="body2">
@@ -25,7 +27,7 @@ const ProjectInfo = ({projectdetails}) => {
             <Typography variant="body2">dates</Typography>
           </Grid> */}
               <Grid item xs={6}>
-                <Typography variant="body2">FCFS closes</Typography>
+                <Typography variant="body2">ICO closes on</Typography>
               </Grid>
               <Grid item xs={6}>
                 <Typography variant="body2">
@@ -33,7 +35,7 @@ const ProjectInfo = ({projectdetails}) => {
                 </Typography>
               </Grid>
               <Grid item xs={6}>
-                <Typography variant="body2">Swap Rates</Typography>
+                <Typography variant="body2">Swap Rate</Typography>
               </Grid>
               <Grid item xs={6}>
                 <Typography variant="body2">
@@ -60,10 +62,11 @@ const ProjectInfo = ({projectdetails}) => {
             </Grid>
           </Stack>
         </Grid>
+
         <Grid item xs={12} sm={6}>
           <Stack direction={"column"}>
             <Typography variant="cardhrdtxt">Token Information</Typography>
-            <Grid container spacing={1}>
+            <Grid container spacing={1} style={{marginTop: "2px"}}>
               <Grid item xs={6}>
                 <Typography variant="body2">Name</Typography>
               </Grid>
@@ -96,7 +99,7 @@ const ProjectInfo = ({projectdetails}) => {
           </Stack>
         </Grid>
       </Grid>
-    </div>
+    </Box>
   );
 };
 
